@@ -1,0 +1,42 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: lightblue;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+nav {
+  background-color: navy;
+  color: white;
+  display: inline-block;
+  padding: 10px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+main {
+  padding: 20px;
+}
+
+section {
+  background-color: lightgray;
+  padding: 20px;
+}
+
+footer {
+  background-color: navy;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}

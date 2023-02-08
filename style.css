@@ -1,42 +1,229 @@
-body {
-  font-family: Arial, sans-serif;
+html { 
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  } 
+
+/* Global Styles */
+body{
+    color: #0A1233;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
 }
 
-header {
-  background-color: lightblue;
-  padding: 20px;
-  text-align: center;
+img {
+    width: 300px;
+    max-width: 100%;
 }
 
-header h1 {
-  margin: 0;
+a{
+    /* color: #E5BE10; */
+}
+a:hover{
+    text-decoration: none;
 }
 
-nav {
-  background-color: navy;
-  color: white;
-  display: inline-block;
-  padding: 10px;
-  text-align: center;
+h1{
+    font-size: 100px;
+    line-height: 1;
+}
+h2{
+    margin: 0; /* eliminates extra space at top of each section */
+    font-size: 45px;
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
+h1, h2{
+    /* font-family: 'Caveat', cursive; */
+    font-weight: 400;
+    margin: 0;
+
 }
 
-main {
-  padding: 20px;
+header{
+    /* border: 1px solid red; */
 }
 
-section {
-  background-color: lightgray;
-  padding: 20px;
+.nav-wrapper{
+    /* margin: 1rem auto;  */
+    /* background: #101C4D; */
+}
+.hamburger{
+    background: #101C4D;
+}
+/* is block level element and will stretch length of page */
+nav{
+    /* border: 5px solid blue; */
+    /* background: #101C4D; */
+    padding: 1rem;
+    /* added for positioning of nav menu and close button */
+    display: flex;
+    justify-content: space-between;
+    /* sets out of regular flow and sets where declared */
+    position:absolute;
+    /* want bar over hamburger when open */
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    
+    /* animate slide up and down */
+
+    transform: translateY(-100%);
+    transition: transform 0.2s ease;
 }
 
-footer {
-  background-color: navy;
-  color: white;
-  padding: 10px;
-  text-align: center;
+nav:target{
+    transform: translateY(0);
+}
+ .close:hover{
+     background-color: transparent;
+     /* color:#E5BE10; */
+ }
+
+/* flex container */
+nav ul{
+    /* border: 2px solid black; */
+     /* remove default bullets */
+     list-style-type: none;
+     /* remove spacing around */
+     margin: 0;
+     padding: 0;
+     display: flex;
+     flex-flow: column wrap;
+     width: 100%;
+     /* send everything right */
+     justify-content: center;
+     align-items: center;
+  }
+
+  .name-logo{
+      display: none;
+  }
+
+  /* clickable area only as big as words by default */
+  nav a{
+    /* color:#E5BE10; */
+    /* background: #101C4D; */
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 600;
+    /* bigger clickable area */
+    display: block;
+    padding: 0.5rem 1rem;
+  }
+/* mouse hover no click */
+  nav a:hover{
+      /* color: #101C4D; */
+      /* background: #E5BE10; */
+  }
+  /* runs color across */
+  .nav-link nav li:hover{
+    /* background: #E5BE10;  */
+  }
+
+  @media(min-width:750px){
+    nav{
+        padding:0;
+        position: static;
+        height: auto;
+        transform: translateY(0);
+    } 
+ 
+    .hamburger, .close{
+        display:none;
+    }
+ 
+    nav ul{
+        flex-flow: row wrap;
+        justify-content: flex-end;
+    }
+ 
+    .name-logo{
+        display: block;
+     /* color: #E5BE10; */
+     font-family: sans-serif;
+     font-weight: 600;
+     font-size: 2.5rem;
+     padding: 0.5rem 1rem;
+     /* flex-basis: 25vw; */
+     /* border: 2px solid white; */
+     /* use to shove left */
+     margin-right: auto;
+     text-align: left;
+   }
+ }
+
+ /* main body */
+
+ /* wraps each section in a container */
+
+.content_wrapper{
+    max-width: 800px; 
+    width: 85%; /* applies when viewport < 800px*/
+    margin: 0 auto; /* centers content wrapper horizontally */
+    padding: 60px 0;  /* 60px prev value pushes content in on top and bottom to eliminate gaps between sections */
+  }
+  
+
+ /* Footer */
+footer{
+    /* add font and bg colors here */
+}
+
+.contact-list{
+    list-style-type: none;
+    padding: 0;
+}
+    
+.contact-list a{
+    /* color:#E5BE10; */
+    padding: 15px;
+    display:  inline-block;
+    text-decoration: none;
+}
+.icon{
+    width: 20px;
+}
+
+/* responsive styles */
+
+@media screen and (min-width:750px){
+
+    /* text centers header and footer */
+    header, footer {
+        text-align: center;
+    }
+    .contact-list{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width:749px){
+    h1{
+        font-size: 75px;
+        line-height: 0.9;
+        margin-bottom: 20px;
+    }
+    h2{
+       line-height: 1; 
+       margin-bottom:15px;
+    }
+    .contact-list a{
+        padding: 5px;
+    }
+    .content_wrapper h1{
+        font-size: 70px;
+    }
+
+    .content_wrapper h2{
+        font-size: 40px;
+    }
 }

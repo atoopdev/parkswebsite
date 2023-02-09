@@ -15,14 +15,19 @@ body{
     line-height: 1.6;
 }
 
+/* remove margins on typography to keep margins consistent */
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
 img {
     width: 300px;
     max-width: 100%;
 }
 
-a{
-    /* color: #E5BE10; */
-}
 a:hover{
     text-decoration: none;
 }
@@ -66,6 +71,7 @@ nav a{
 .menu-item{
     padding: 10px;
 }
+
 .menu-item a:hover::after {
     color: #ccc;
 }
@@ -81,12 +87,14 @@ nav a{
 
 .menu li a{
     display: block;
-    padding: 15px 5px;
-    color:#111
+    padding: 15px 0px;
+    color:#111;
+    /* border: 2px solid yellow; */
 }
 
 .menu li.subitem a{
-    /* padding: 15px; */
+    padding: 15px 0px;
+    /* border: 2px solid purple; */
 }
 
 .toggle{
@@ -109,11 +117,15 @@ nav a{
 
 .submenu{
     display: none;
+    padding: 0;
 }
 
 .submenu-active .submenu{
-    display: block;
-    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid green; */
 }
 
 /* add down arrows next to menu items with submenus */
@@ -123,76 +135,18 @@ nav a{
     line-height: 16px;
     font-weight: 900;
     content: "\f078";
-    color: white;
+    color: black;
     padding-left: 5px;
 }
 
 .subitem a{
-    /* padding: 10px 15px; */
+  /* border: 1px solid red; */
 }
 
 .submenu-active{
     background-color: grey;
     border-radius: 3px;
 }
-
-/* tablet nav */
-
-@media(min-width:700px){
-    .menu{
-        justify-content: center;
-    }
-    .name-logo{
-        flex:1;
-    }
-    .toggle{
-        flex: 1;
-        text-align: right;
-        order: 2;
-    }
-}
-
-/* desktop nav */
-
-@media(min-width:960px){
-    .menu{
-        align-items: flex-start;
-        flex-wrap:nowrap;
-        background: none;
-    }
-
-    .name-logo{
-        order:0;
-    }
-    .menu-item{
-        order:1;
-        position: relative;
-        display: block;
-        width: auto;
-    }
-
-    .submenu-active .submenu{
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 68px;
-        background: #111;
-    }
-
-    .toggle{
-        display: none;
-    }
-
-    .submenu-active{
-        border-radius: 0;
-    }
-}
-
-
-
-
-
-
 
  /* main body */
 
@@ -232,6 +186,58 @@ footer{
 }
 
 /* responsive styles */
+
+/* tablet nav */
+
+@media (min-width:700px){
+    .menu{
+        justify-content: center;
+    }
+    .name-logo{
+        flex:1;
+    }
+    .toggle{
+        flex: 1;
+        text-align: right;
+        order: 2;
+    }
+}
+
+/* desktop nav */
+
+@media (min-width:960px){
+    .menu{
+        align-items: flex-start;
+        flex-wrap:nowrap;
+        background: none;
+    }
+
+    .name-logo{
+        order:0;
+    }
+    .menu-item{
+        order:1;
+        position: relative;
+        display: block;
+        width: auto;
+    }
+
+    .submenu-active .submenu{
+        /* display: block;
+        position: absolute;
+        left: 5px;
+        top: 68px;
+        background: grey; */
+    }
+
+    .toggle{
+        display: none;
+    }
+
+    .submenu-active{
+        border-radius: 0;
+    }
+} 
 
 @media (min-width:750px){
 

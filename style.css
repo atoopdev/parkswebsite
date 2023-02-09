@@ -82,10 +82,11 @@ nav a{
 .menu li a{
     display: block;
     padding: 15px 5px;
+    color:#111
 }
 
 .menu li.subitem a{
-    padding: 15px;
+    /* padding: 15px; */
 }
 
 .toggle{
@@ -112,6 +113,7 @@ nav a{
 
 .submenu-active .submenu{
     display: block;
+    border: 1px solid red;
 }
 
 /* add down arrows next to menu items with submenus */
@@ -126,13 +128,70 @@ nav a{
 }
 
 .subitem a{
-    padding: 10px 15px;
+    /* padding: 10px 15px; */
 }
 
 .submenu-active{
-    background-color: #111;
+    background-color: grey;
     border-radius: 3px;
 }
+
+/* tablet nav */
+
+@media(min-width:700px){
+    .menu{
+        justify-content: center;
+    }
+    .name-logo{
+        flex:1;
+    }
+    .toggle{
+        flex: 1;
+        text-align: right;
+        order: 2;
+    }
+}
+
+/* desktop nav */
+
+@media(min-width:960px){
+    .menu{
+        align-items: flex-start;
+        flex-wrap:nowrap;
+        background: none;
+    }
+
+    .name-logo{
+        order:0;
+    }
+    .menu-item{
+        order:1;
+        position: relative;
+        display: block;
+        width: auto;
+    }
+
+    .submenu-active .submenu{
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 68px;
+        background: #111;
+    }
+
+    .toggle{
+        display: none;
+    }
+
+    .submenu-active{
+        border-radius: 0;
+    }
+}
+
+
+
+
+
 
 
  /* main body */

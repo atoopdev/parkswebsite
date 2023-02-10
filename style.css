@@ -83,6 +83,13 @@ nav a{
     color: #A17A3E;
 }
 
+/* change menu items color when mouse hover */
+.menu-item a:hover{
+    background-color: #D0AF8E;
+    color: #2E2715;
+}
+
+
 /*  nav mobile design */
 
 .menu{
@@ -100,18 +107,13 @@ nav a{
     /* border: 2px solid yellow; */
 }
 
-/* change menu items color when mouse hover */
-.menu-item a:hover{
-    background-color: #D0AF8E;
-    color: #2E2715;
-}
-
+/* controls submenu item highlight size */
 .menu li.subitem a{
-    padding: 15px 0px;
-    /* border: 2px solid purple; */
+    padding: 15px 15px;
+    /* border: 5px solid purple; */
 }
 
-/* is malfunctioning and not appearing */
+/* hamburger menu */
 .toggle{
     order: 1;
     font-size: 20px;
@@ -141,7 +143,7 @@ nav a{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     
 }
 
@@ -172,8 +174,8 @@ background-color: #635036;
 .submenu-active .subitem{
     /* background-color: grey; */
     border-radius: 3px;
-    border:1px solid red;
-    padding: 0 15px;
+    /* border:1px solid red; */
+    padding: 0 0px;
 }
 
  /* main body */
@@ -193,9 +195,28 @@ background-color: #635036;
     margin: 0 auto; /* centers content wrapper horizontally */
     padding: 60px 0;  /* 60px prev value pushes content in on top and bottom to eliminate gaps between sections */
   }
-  
 
- /* Footer */
+  /********************* intro section with bg image *************************************** */
+  .intro {
+    background-image: url(../images/goldengorge.jpg);
+    background-size: cover;
+    background-position: top right;
+    padding-bottom: 100px;
+    height: 100vh;
+}
+
+.intro h1, h2{
+    color: #2E2715;
+    /* increase visibility over picture */
+    text-shadow: 0px 0px 30px #fff;
+}
+
+.intro p{
+    color: #fff;
+    text-shadow: 0px 0px 20px #aaaaaa;
+}
+
+ /*************************************** Footer ************************************************/
 footer{
     /* add font and bg colors here */
 }
@@ -220,7 +241,7 @@ footer{
     padding-right: 3px;
 }
 
-/* responsive styles */
+/*************************************** responsive styles **********************************/
 
 /* tablet nav */
 
@@ -237,24 +258,7 @@ footer{
         order: 2;
     }
 
-    .intro {
-        background-image: url(../images/goldengorge.jpg);
-        background-size: cover;
-        background-position: top right;
-        padding-bottom: 100px;
-        height: 100vh;
-    }
-
-    .intro h1, h2{
-        color: #2E2715;
-  /* increase visibility over picture */
-  text-shadow: 0px 0px 30px #fff;
-    }
-
-    .intro p{
-        color: #fff;
-        text-shadow: 0px 0px 20px #aaaaaa;
-    }
+   
 
 /* desktop nav */
 

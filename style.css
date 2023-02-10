@@ -21,6 +21,7 @@ h2,
 h3,
 p {
   margin: 0;
+  padding:0;
 }
 
 img {
@@ -37,25 +38,30 @@ h1{
     line-height: 1;
 }
 h2{
-    margin: 0; /* eliminates extra space at top of each section */
     font-size: 45px;
 }
 
 h1, h2{
     /* font-family: 'Caveat', cursive; */
     font-weight: 400;
-    margin: 0;
+    
 
 }
 
 /* nav basic styling */
-
+/* nav bar bg color */
 nav{
     padding: 0 15px;
+    background-color: #2E2715;
 }
 
 nav a{
     text-decoration: none;
+}
+
+.menu{
+    margin:0;
+    padding:0;
 }
 
 .menu,
@@ -72,8 +78,9 @@ nav a{
     padding: 10px;
 }
 
+/* change carrot icon when submenu mouseover */
 .menu-item a:hover::after {
-    color: #ccc;
+    color: #A17A3E;
 }
 
 /*  nav mobile design */
@@ -85,11 +92,18 @@ nav a{
     align-items: center;
 }
 
+/* menu text color */
 .menu li a{
     display: block;
-    padding: 15px 0px;
-    color:#111;
+    padding: 15px 10px;
+    color:#D0AF8E;
     /* border: 2px solid yellow; */
+}
+
+/* change menu items color when mouse hover */
+.menu-item a:hover{
+    background-color: #D0AF8E;
+    color: #2E2715;
 }
 
 .menu li.subitem a{
@@ -97,9 +111,11 @@ nav a{
     /* border: 2px solid purple; */
 }
 
+/* is malfunctioning and not appearing */
 .toggle{
     order: 1;
     font-size: 20px;
+    color: #D0AF8E;
 }
 
 .menu-item{
@@ -125,30 +141,49 @@ nav a{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* border: 1px solid green; */
+    border: 1px solid green;
+    
 }
 
 /* add down arrows next to menu items with submenus */
+/* resting color of submenu carrot */
 .has-submenu > a::after{
     font-family: "Font Awesome 5 Free";
     font-size: 12px;
     line-height: 16px;
     font-weight: 900;
     content: "\f078";
-    color: black;
+    color: #D0AF8E;
     padding-left: 5px;
 }
 
 .subitem a{
-  /* border: 1px solid red; */
+ 
+  
 }
 
+/* do i want to highlight top menu that's open in a diff color? */
+/* submenu bg color */
 .submenu-active{
-    background-color: grey;
+background-color: #635036;
+}
+
+/* only highlight the submenu items when clicked */
+.submenu-active .subitem{
+    /* background-color: grey; */
     border-radius: 3px;
+    border:1px solid red;
+    padding: 0 15px;
 }
 
  /* main body */
+ .intro{
+    background-color: #A17A3E;
+ }
+
+ .intro h1, h2, p{
+    color: #121009;
+ }
 
  /* wraps each section in a container */
 
@@ -201,7 +236,25 @@ footer{
         text-align: right;
         order: 2;
     }
-}
+
+    .intro {
+        background-image: url(../images/goldengorge.jpg);
+        background-size: cover;
+        background-position: top right;
+        padding-bottom: 100px;
+        height: 100vh;
+    }
+
+    .intro h1, h2{
+        color: #2E2715;
+  /* increase visibility over picture */
+  text-shadow: 0px 0px 30px #fff;
+    }
+
+    .intro p{
+        color: #fff;
+        text-shadow: 0px 0px 20px #aaaaaa;
+    }
 
 /* desktop nav */
 

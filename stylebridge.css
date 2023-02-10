@@ -1,0 +1,339 @@
+html { 
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  } 
+
+/* Global Styles */
+body{
+    color: #0A1233;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* remove margins on typography to keep margins consistent */
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  padding:0;
+}
+
+img {
+    width: 300px;
+    max-width: 100%;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+h1{
+    font-size: 75px;
+    line-height: 0.9;
+    margin-bottom: 20px;
+}
+h2{
+    font-size: 45px;
+    line-height: 1;
+    margin-bottom: 15px;
+
+}
+
+.content_wrapper h1{
+    font-size: 70px;
+}
+
+.content-wrapper h2{
+    font-size:40px;
+}
+
+h1, h2{
+    /* font-family: 'Caveat', cursive; */
+    font-weight: 400;
+    
+
+}
+
+/* nav basic styling */
+/* nav bar bg color */
+nav{
+    padding: 0 15px;
+    background-color: #3F4B59;
+}
+
+nav a{
+    text-decoration: none;
+}
+
+.menu{
+    margin:0;
+    padding:0;
+}
+
+.menu,
+.submenu{
+    list-style-type: none;
+}
+
+.name-logo{
+    font-size: 20px;
+    padding: 7.5px 10px 7.5px 0;
+}
+
+.menu-item{
+    padding: 10px;
+}
+
+/* change carrot icon when submenu mouseover */
+.menu-item a:hover::after {
+    color: #A17A3E;
+}
+
+/* change menu items color when mouse hover */
+.menu-item a:hover{
+    background-color: #D0AF8E;
+    color: #2E2715;
+}
+
+
+/*  nav mobile design */
+
+.menu{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* menu text color */
+.menu li a{
+    display: block;
+    padding: 15px 10px;
+    color:#FAF8F5;
+    /* border: 2px solid yellow; */
+}
+
+/* controls submenu item highlight size */
+.menu li.subitem a{
+    padding: 15px 15px;
+    /* border: 5px solid purple; */
+}
+
+/* hamburger menu */
+.toggle{
+    order: 1;
+    font-size: 20px;
+    color: #D0AF8E;
+}
+
+.menu-item{
+    order:3;
+    width: 100%;
+    text-align: center;
+    display: none;
+}
+
+.active .menu-item{
+    display: block;
+}
+
+/* mobile submenu styles */
+
+.submenu{
+    display: none;
+    padding: 0;
+}
+
+.submenu-active .submenu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid green; */
+    
+}
+
+/* add down arrows next to menu items with submenus */
+/* resting color of submenu carrot */
+.has-submenu > a::after{
+    font-family: "Font Awesome 5 Free";
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 900;
+    content: "\f078";
+    color: #D0AF8E;
+    padding-left: 5px;
+}
+
+.subitem a{
+ 
+  
+}
+
+/* do i want to highlight top menu that's open in a diff color? */
+/* submenu bg color */
+.submenu-active{
+background-color: #635036;
+}
+
+/* only highlight the submenu items when clicked */
+.submenu-active .subitem{
+    /* background-color: grey; */
+    border-radius: 3px;
+    /* border:1px solid red; */
+    padding: 0 0px;
+}
+
+ /* main body */
+
+ /* wraps content of each section in a container */
+
+.content_wrapper{
+    max-width: 800px; 
+    width: 85%; /* applies when viewport < 800px*/
+    margin: 0 auto; /* centers content wrapper horizontally */
+    padding: 60px 0;  /* 60px prev value pushes content in on top and bottom to eliminate gaps between sections */
+  }
+
+  /********************* intro section with bg image *************************************** */
+  .intro {
+    background-image: url(../images/hoodriverbridge.jpg);
+    background-size: cover;
+    background-position: top right;
+    padding-bottom: 100px;
+    height: 100vh;
+}
+
+.intro h1, h2{
+    color: #2F2E2C;
+    /* increase visibility over picture */
+    text-shadow: 0px 0px 30px #fff;
+}
+
+.intro p{
+    color: #fff;
+    text-shadow: 0px 0px 20px #aaaaaa;
+}
+
+ /*************************************** Footer ************************************************/
+footer{
+    /* add font and bg colors here */
+}
+
+.contact-list{
+    list-style-type: none;
+    padding: 0;
+}
+    
+.contact-list a{
+    /* color:#E5BE10; */
+    padding: 15px;
+    text-decoration: none;
+    display:inline-block;
+}
+
+.icon{
+    height: 1.25em;
+    width: 1.25em;
+    display:inline-block;
+    vertical-align:text-bottom;
+    padding-right: 3px;
+}
+
+/*************************************** responsive styles **********************************/
+
+/* tablet nav */
+
+@media (min-width:700px){
+    .menu{
+        justify-content: center;
+    }
+    .name-logo{
+        flex:1;
+    }
+    .toggle{
+        flex: 1;
+        text-align: right;
+        order: 2;
+    }
+
+   
+
+/* desktop nav */
+
+@media (min-width:960px){
+    .menu{
+        align-items: flex-start;
+        flex-wrap:nowrap;
+        background: none;
+    }
+
+    .name-logo{
+        order:0;
+    }
+    .menu-item{
+        order:1;
+        position: relative;
+        display: block;
+        width: auto;
+    }
+
+    .submenu-active .submenu{
+        /* display: block;
+        position: absolute;
+        left: 5px;
+        top: 68px;
+        background: grey; */
+    }
+
+    .toggle{
+        display: none;
+    }
+
+    .submenu-active{
+        border-radius: 0;
+    }
+} 
+
+@media (min-width:750px){
+
+    /* text centers header and footer */
+    header, footer {
+        text-align: center;
+    }
+    .contact-list{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+ }
+
+
+@media screen and (max-width:749px){
+    h1{
+        font-size: 75px;
+        line-height: 0.9;
+        margin-bottom: 20px;
+    }
+    h2{
+       line-height: 1; 
+       margin-bottom:15px;
+    }
+    .contact-list a{
+        padding: 5px;
+    }
+    .content_wrapper h1{
+        font-size: 70px;
+    }
+
+    .content_wrapper h2{
+        font-size: 40px;
+    }
+}

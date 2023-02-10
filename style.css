@@ -34,11 +34,23 @@ a:hover{
 }
 
 h1{
-    font-size: 100px;
-    line-height: 1;
+    font-size: 75px;
+    line-height: 0.9;
+    margin-bottom: 20px;
 }
 h2{
     font-size: 45px;
+    line-height: 1;
+    margin-bottom: 15px;
+
+}
+
+.content_wrapper h1{
+    font-size: 70px;
+}
+
+.content-wrapper h2{
+    font-size:40px;
 }
 
 h1, h2{
@@ -142,9 +154,14 @@ nav a{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center;  
+   
     /* border: 1px solid green; */
     
+}
+
+.has-submenu i {
+    font-size: 12px;
 }
 
 /* add down arrows next to menu items with submenus */
@@ -168,6 +185,7 @@ nav a{
 /* submenu bg color */
 .submenu-active{
 background-color: #635036;
+border-radius: 3px;
 }
 
 /* only highlight the submenu items when clicked */
@@ -178,14 +196,9 @@ background-color: #635036;
     padding: 0 0px;
 }
 
- /* main body */
- .intro{
-    background-color: #A17A3E;
- }
 
- .intro h1, h2, p{
-    color: #121009;
- }
+ /* main body */
+ 
 
  /* wraps each section in a container */
 
@@ -205,10 +218,15 @@ background-color: #635036;
     height: 100vh;
 }
 
-.intro h1, h2{
-    color: #2E2715;
+.intro h1{
+    color: #3B3C36;
     /* increase visibility over picture */
-    text-shadow: 0px 0px 30px #fff;
+    text-shadow: 0px 0px 20px #aaaaaa;
+}
+
+.intro h2{
+    color: #FF4F00;
+    text-shadow: 0px 0px 20px #aaaaaa;
 }
 
 .intro p{
@@ -279,12 +297,13 @@ footer{
         width: auto;
     }
 
+    /* controls dropdown submenu */
     .submenu-active .submenu{
-        /* display: block;
+        display: block;
         position: absolute;
-        left: 5px;
+        left: 0px;
         top: 68px;
-        background: grey; */
+        background: #635036;
     }
 
     .toggle{

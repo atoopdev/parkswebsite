@@ -39,6 +39,18 @@ function toggleItem(){
     } 
 }
 
+/* Close Submenu From Anywhere */
+function closeSubmenu(e) {
+    if (menu.querySelector(".submenu-active")) {
+      let isClickInside = menu
+        .querySelector(".submenu-active")
+        .contains(e.target);
+      if (!isClickInside && menu.querySelector(".submenu-active")) {
+        menu.querySelector(".submenu-active").classList.remove("submenu-active");
+      }
+    }
+  }
+
 // event listener
 toggle.addEventListener("click", toggleMenu, false)
 
@@ -48,3 +60,7 @@ for (let item of items){
         item.addEventListener("keypress", toggleItem, false)
     }
 }
+
+/* Event listener */
+document.addEventListener("click", closeSubmenu, false);
+

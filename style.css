@@ -4,7 +4,7 @@
 
 /* Global Styles */
 body{
-    color: #0A1233;
+    color: #2E2715;
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
@@ -233,6 +233,9 @@ border-radius: 3px;
     padding: 10px;
 }
 
+.intro{
+    background-color: #F5DEB3;
+}
 /* .hero-text{
     background-color: rgba(255, 255, 255, 0.6);
     border-radius: 5px;

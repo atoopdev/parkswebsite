@@ -11,6 +11,7 @@ body{
     font-size: 1rem;
     line-height: 1.6;
     height: 100vh;
+    overflow-x: hidden;
 }
 
 /* remove margins on typography to keep margins consistent */
@@ -258,7 +259,7 @@ border-radius: 3px;
 
 .issues-container{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 20px;
     grid-auto-rows: minmax(100px, auto)
 }
@@ -333,6 +334,32 @@ footer{
     border-radius: 10px;
    } */
   
+   /* issues */
+
+   .issues{
+
+   }
+   
+   .issues h3{
+       text-transform: uppercase;
+   }
+   
+   .issues-container{
+       display: grid;
+       grid-template-columns: 1fr 1fr;
+       gap: 20px;
+       grid-auto-rows: minmax(100px, auto)
+   }
+   
+   .issue{
+       border: 1px solid black;
+       border-radius: 5px;
+       padding: 20px;
+   }
+   
+   .issue img{
+   
+   }
 
 /* desktop nav */
 
@@ -389,6 +416,32 @@ footer{
     background-color: rgba(255, 255, 255, 0.6);
     border-radius: 5px;
     } */
+
+    /* issues */
+    .issues{
+
+    }
+    
+    .issues h3{
+        text-transform: uppercase;
+    }
+    
+    .issues-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
+        grid-auto-rows: minmax(100px, auto)
+    }
+    
+    .issue{
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 20px;
+    }
+    
+    .issue img{
+    
+    }
 } 
 
 @media (min-width:750px){

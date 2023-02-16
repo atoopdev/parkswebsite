@@ -236,10 +236,42 @@ border-radius: 3px;
 .intro{
     background-color: #F5DEB3;
 }
+
+.intro p{
+    margin-bottom: 10px;
+}
 /* .hero-text{
     background-color: rgba(255, 255, 255, 0.6);
     border-radius: 5px;
 } */
+
+/* ************************ Issues Grid ********************** */
+
+/* entire section */
+.issues{
+
+}
+
+.issues h3{
+    text-transform: uppercase;
+}
+
+.issues-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    grid-auto-rows: minmax(100px, auto)
+}
+
+.issue{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.issue img{
+
+}
 
  /*************************************** Footer ************************************************/
 footer{

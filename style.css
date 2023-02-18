@@ -24,8 +24,11 @@ p {
 }
 
 img {
+    display: block;
     width: 300px;
+    border: 0;
     max-width: 100%;
+    height: auto;
 }
 
 a:hover{
@@ -253,25 +256,63 @@ border-radius: 3px;
 
 }
 
-.issues h3{
-    text-transform: uppercase;
+.issues h2{
+    color: #2E2715;
 }
 
+/************************* holds all issues  - basic flexbox ***********/
 .issues-container{
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    grid-auto-rows: minmax(100px, auto)
+display: flex;
+flex-direction: column;
+padding-left: 0;
+padding-bottom: 1em;
 }
 
+/********************** issue image grid ************************* */
 .issue{
+    
     border: 1px solid black;
     border-radius: 5px;
-    padding: 20px;
+    /* padding: 20px; */
+    padding-bottom: 2em;
+
 }
 
-.issue img{
+.issue-bucket{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+    /* border: 1px solid red; */
+    margin-bottom: 1em;
+}
 
+/* have title overlay image and fill all available space */
+.issue-title{
+    padding: 1em;
+    text-decoration:none;
+    text-transform: uppercase;
+    color:white;
+    font-weight: 600;
+
+    grid-column: 1;
+    grid-row: 1/2;
+
+    display: flex;
+    align-items: flex-end;
+
+    background-color: hsla(0, 0%, 5%, 0.4);
+
+}
+
+/* place image and title in same location */
+.issue-img{
+grid-column: 1;
+grid-row: 1/2;
+
+/* make images same height */
+width: 100%;
+height: 250px;
+object-fit: cover;
 }
 
  /*************************************** Footer ************************************************/
@@ -329,41 +370,44 @@ footer{
     margin-bottom: 40px;
    }
 
-   /* .hero-text{
-    padding: 20px;
-    border-radius: 10px;
-   } */
-  
    /* issues */
 
    .issues{
 
    }
    
-   .issues h3{
-       text-transform: uppercase;
-   }
-   
    .issues-container{
-       display: grid;
-       grid-template-columns: 1fr 1fr;
-       gap: 20px;
-       grid-auto-rows: minmax(100px, auto)
+   flex-direction: row;
+   flex-wrap: wrap;
    }
    
    .issue{
-       border: 1px solid black;
-       border-radius: 5px;
-       padding: 20px;
+    width: 30%;
+    margin-bottom: 2em;
+    margin-right: 1em;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-bottom: 1em;
+    
    }
    
    .issue img{
-   
+   height: 250px;
    }
+
+   .issue p{
+    padding-left: 1em;
+   }
+
+}
 
 /* desktop nav */
 
 @media (min-width:960px){
+    .content_wrapper{
+        max-width: 1200px;
+        /* border: 1px solid green; */
+    }
     .menu{
         align-items: flex-start;
         flex-wrap:nowrap;
@@ -397,6 +441,7 @@ footer{
         border-radius: 0;
     }
 
+
     /* intro section */
 
     .hero-wrapper{
@@ -411,37 +456,35 @@ footer{
         margin-bottom: 50px;
     }
 
-    /* .hero-text{
-    padding: 25px;
-    background-color: rgba(255, 255, 255, 0.6);
-    border-radius: 5px;
-    } */
-
     /* issues */
-    .issues{
+    /* issues */
 
-    }
+   .issues{
+
+   }
+
+   .issues h2{
+    margin-top: 1em;
+    text-align: center;
+    margin-bottom: 1em;
+   }
+   
+   .issues-container{
+    justify-content: center;
+   
+   }
+   
+   .issue{
+    width: 35%;
+   }
+   
+   .issue img{
+   height: 300px;
+   }
+
+   .issue p{
     
-    .issues h3{
-        text-transform: uppercase;
-    }
-    
-    .issues-container{
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 20px;
-        grid-auto-rows: minmax(100px, auto)
-    }
-    
-    .issue{
-        border: 1px solid black;
-        border-radius: 5px;
-        padding: 20px;
-    }
-    
-    .issue img{
-    
-    }
+   }
 } 
 
 @media (min-width:750px){

@@ -461,8 +461,9 @@ footer a:hover{
 
     /* intro section */
 
+    /* try to prevent text overalp with hills */
     .hero-wrapper{
-        margin-top:20%;
+        margin-top:10%;
         
     }
     .hero h1{

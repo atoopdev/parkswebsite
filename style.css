@@ -244,10 +244,7 @@ border-radius: 3px;
 .intro p{
     margin-bottom: 10px;
 }
-/* .hero-text{
-    background-color: rgba(255, 255, 255, 0.6);
-    border-radius: 5px;
-} */
+
 
 /* ************************ Issues Grid ********************** */
 
@@ -304,6 +301,10 @@ padding-bottom: 1em;
 
 }
 
+.issue-title:hover{
+    text-decoration: underline;
+}
+
 /* place image and title in same location */
 .issue-img{
 grid-column: 1;
@@ -318,6 +319,16 @@ object-fit: cover;
  /*************************************** Footer ************************************************/
 footer{
     /* add font and bg colors here */
+    background-color: #2E2715;
+    color: #A17A3E;
+}
+
+footer a{
+    color: #A17A3E;
+}
+
+footer a:hover{
+    color: #DE4B00;
 }
 
 .contact-list{
@@ -338,6 +349,12 @@ footer{
     display:inline-block;
     vertical-align:text-bottom;
     padding-right: 3px;
+    /* set color via  tool here: https://codepen.io/sosuke/pen/Pjoqqp */
+    filter: invert(47%) sepia(58%) saturate(400%) hue-rotate(357deg) brightness(94%) contrast(91%);
+}
+
+.icon:hover{
+    filter: invert(31%) sepia(35%) saturate(4448%) hue-rotate(11deg) brightness(97%) contrast(102%);
 }
 
 /*************************************** responsive styles **********************************/
@@ -359,7 +376,7 @@ footer{
 
     /* figure out vertical align */
    .hero-wrapper{
-    margin-top: 45%;
+    margin-top: 20%;
    }
 
    .hero h1{

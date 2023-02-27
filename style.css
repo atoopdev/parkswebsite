@@ -302,7 +302,7 @@ padding-bottom: 1em;
 }
 
 .issue-title:hover{
-    text-decoration: underline;
+    color:#D0AF8E;
 }
 
 /* place image and title in same location */

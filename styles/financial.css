@@ -36,9 +36,10 @@ a:hover{
 }
 
 h1{
-    font-size: 4.68rem;
+    font-size: 3.5rem;
     line-height: 0.9;
     margin-bottom: 20px;
+    /* border: 1px solid red; */
 }
 h2{
     font-size: 2.81rem;
@@ -47,9 +48,9 @@ h2{
 
 }
 
-.content_wrapper h1{
+/* .content_wrapper h1{
     font-size: 70px;
-}
+} */
 
 .content-wrapper h2{
     font-size:40px;
@@ -380,6 +381,7 @@ footer a:hover{
    }
 
    .hero h1{
+    font-size: 4rem;
     margin-bottom: 40px;
    }
 
@@ -466,7 +468,7 @@ footer a:hover{
         
     }
     .hero h1{
-        margin-bottom: 60px;;
+        margin-bottom: 60px;
     }
 
     .hero h2{
@@ -521,7 +523,6 @@ footer a:hover{
 
 @media screen and (max-width:749px){
     h1{
-        font-size: 75px;
         line-height: 0.9;
         margin-bottom: 20px;
     }
@@ -529,13 +530,15 @@ footer a:hover{
        line-height: 1; 
        margin-bottom:15px;
     }
+
     .contact-list a{
         padding: 5px;
     }
     .content_wrapper h1{
-        font-size: 70px;
+    
     }
 
+    
     .content_wrapper h2{
         font-size: 40px;
     }

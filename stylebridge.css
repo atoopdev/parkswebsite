@@ -1,0 +1,559 @@
+* { 
+    box-sizing: border-box;
+  }
+
+/* Global Styles */
+body{
+    color: #2E2715;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+/* remove margins on typography to keep margins consistent */
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  padding:0;
+}
+
+img {
+    display: block;
+    width: 300px;
+    border: 0;
+    max-width: 100%;
+    height: auto;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+h1{
+    font-size: 4.68rem;
+    line-height: 0.9;
+    margin-bottom: 20px;
+}
+h2{
+    font-size: 2.81rem;
+    line-height: 1;
+    margin-bottom: 15px;
+
+}
+
+.content_wrapper h1{
+    font-size: 70px;
+}
+
+.content-wrapper h2{
+    font-size:40px;
+}
+
+h1, h2{
+    /* font-family: 'Caveat', cursive; */
+    font-weight: 400;
+    
+
+}
+
+/* nav basic styling */
+/* nav bar bg color */
+nav{
+    padding: 0 15px;
+    /* background-color: #2E2715; */
+    background-color: #515c66;
+}
+
+nav a{
+    text-decoration: none;
+}
+
+.menu{
+    margin:0;
+    padding:0;
+}
+
+.menu,
+.submenu{
+    list-style-type: none;
+}
+
+.name-logo{
+    font-size: 20px;
+    padding: 7.5px 10px 7.5px 0;
+}
+
+.menu-item{
+    padding: 10px;
+}
+
+/* change carrot icon when submenu mouseover */
+.menu-item a:hover::after {
+    color: #A17A3E;
+}
+
+/* change menu items color when mouse hover */
+.menu-item a:hover{
+    background-color: #D0AF8E;
+    color: #2E2715;
+}
+
+
+/*  nav mobile design */
+
+.menu{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* menu text color */
+.menu li a{
+    display: block;
+    padding: 15px 10px;
+    /* color:#D0AF8E; */
+    color: white;
+    font-weight: 600;
+    /* border: 2px solid yellow; */
+}
+
+/* controls submenu item highlight size */
+.menu li.subitem a{
+    padding: 15px 15px;
+    /* border: 5px solid purple; */
+}
+
+/* hamburger menu */
+.toggle{
+    order: 1;
+    font-size: 20px;
+    color: white;
+}
+
+.menu-item{
+    order:3;
+    width: 100%;
+    text-align: center;
+    display: none;
+}
+
+.active .menu-item{
+    display: block;
+}
+
+/* mobile submenu styles */
+
+.submenu{
+    display: none;
+    padding: 0;
+}
+
+.submenu-active .submenu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+   
+    /* border: 1px solid green; */
+    
+}
+
+.has-submenu i {
+    font-size: 12px;
+}
+
+/* add down arrows next to menu items with submenus */
+/* resting color of submenu carrot */
+.has-submenu > a::after{
+    font-family: "Font Awesome 5 Free";
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 900;
+    content: "\f078";
+    color: #FFD700;
+    padding-left: 5px;
+}
+
+.subitem a{
+ 
+  
+}
+
+/* do i want to highlight top menu that's open in a diff color? */
+/* submenu bg color */
+.submenu-active{
+background-color: #635036;
+border-radius: 3px;
+}
+
+/* only highlight the submenu items when clicked */
+.submenu-active .subitem{
+    /* background-color: grey; */
+    border-radius: 3px;
+    /* border:1px solid red; */
+    padding: 0 0px;
+}
+
+
+ /***************************************** main body *****************************************/
+ 
+
+ /* wraps each section in a container */
+
+.content_wrapper{
+    max-width: 800px; 
+    width: 85%; /* applies when viewport < 800px*/
+    margin: 0 auto; /* centers content wrapper horizontally */
+    padding: 40px 0;  /* 60px prev value pushes content in on top and bottom to eliminate gaps between sections */
+  }
+
+  /********************* intro section with bg image *************************************** */
+  .hero {
+    background-image: url(../images/hoodriverbridge2.jpg);
+    background-size: cover;
+    background-position: top right;
+    padding-bottom: 100px;
+    height: 100vh;
+}
+
+.hero h1{
+    /* color: #ED4B00; */
+    /* color: #1F6FB3; */
+
+    /* color: white; */
+    color: #FFD700;
+    
+    
+    /* increase visibility over picture */
+    text-shadow: 0px 0px 20px #aaaaaa;
+}
+
+.hero h2{
+    color: #fff;
+    text-shadow: 0px 0px 20px #aaaaaa;
+}
+
+.hero p{
+    color: #3B3C36;
+    font-weight: 600;
+    padding: 10px;
+}
+
+.intro{
+    background-color: #F5DEB3;
+}
+
+.intro p{
+    margin-bottom: 10px;
+}
+
+
+/* ************************ Issues Grid ********************** */
+
+/* entire section */
+.issues{
+
+}
+
+.issues h2{
+    color: #2E2715;
+}
+
+/************************* holds all issues  - basic flexbox ***********/
+.issues-container{
+display: flex;
+flex-direction: column;
+padding-left: 0;
+padding-bottom: 1em;
+}
+
+/********************** issue image grid ************************* */
+.issue{
+    
+    border: 1px solid black;
+    border-radius: 5px;
+    /* padding: 20px; */
+    padding-bottom: 2em;
+
+}
+
+.issue-bucket{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+    /* border: 1px solid red; */
+    margin-bottom: 1em;
+}
+
+/* have title overlay image and fill all available space */
+.issue-title{
+    padding: 1em;
+    text-decoration:none;
+    text-transform: uppercase;
+    color:white;
+    font-weight: 600;
+
+    grid-column: 1;
+    grid-row: 1/2;
+
+    display: flex;
+    align-items: flex-end;
+
+    background-color: hsla(0, 0%, 5%, 0.4);
+
+}
+
+.issue-title:hover{
+    color:#D0AF8E;
+}
+
+/* place image and title in same location */
+.issue-img{
+grid-column: 1;
+grid-row: 1/2;
+
+/* make images same height */
+width: 100%;
+height: 250px;
+object-fit: cover;
+}
+
+ /*************************************** Footer ************************************************/
+footer{
+    /* add font and bg colors here */
+    background-color: #2E2715;
+    color: #A17A3E;
+}
+
+footer a{
+    color: #A17A3E;
+}
+
+footer a:hover{
+    color: #DE4B00;
+}
+
+.contact-list{
+    list-style-type: none;
+    padding: 0;
+}
+    
+.contact-list a{
+    /* color:#E5BE10; */
+    padding: 15px;
+    text-decoration: none;
+    display:inline-block;
+}
+
+.icon{
+    height: 1.25em;
+    width: 1.25em;
+    display:inline-block;
+    vertical-align:text-bottom;
+    padding-right: 3px;
+    /* set color via  tool here: https://codepen.io/sosuke/pen/Pjoqqp */
+    filter: invert(47%) sepia(58%) saturate(400%) hue-rotate(357deg) brightness(94%) contrast(91%);
+}
+
+.icon:hover{
+    filter: invert(31%) sepia(35%) saturate(4448%) hue-rotate(11deg) brightness(97%) contrast(102%);
+}
+
+/*************************************** responsive styles **********************************/
+
+/* tablet nav */
+
+@media (min-width:700px){
+    .menu{
+        justify-content: center;
+    }
+    .name-logo{
+        flex:1;
+    }
+    .toggle{
+        flex: 1;
+        text-align: right;
+        order: 2;
+    }
+
+    /* figure out vertical align */
+   .hero-wrapper{
+    margin-top: 35%;
+   }
+
+   .hero h1{
+    margin-bottom: 40px;
+    /* color:#2681D1; */
+    font-weight: 700;
+   }
+
+   .hero h2{
+    margin-bottom: 40px;
+   }
+
+   /* issues */
+
+   .issues{
+
+   }
+   
+   .issues-container{
+   flex-direction: row;
+   flex-wrap: wrap;
+   }
+   
+   .issue{
+    width: 30%;
+    margin-bottom: 2em;
+    margin-right: 1em;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-bottom: 1em;
+    
+   }
+   
+   .issue img{
+   height: 250px;
+   }
+
+   .issue p{
+    padding-left: 1em;
+   }
+
+}
+
+/* desktop nav */
+
+@media (min-width:960px){
+    .content_wrapper{
+        max-width: 1200px;
+        /* border: 1px solid green; */
+    }
+    .menu{
+        align-items: flex-start;
+        flex-wrap:nowrap;
+        background: none;
+    }
+
+    .name-logo{
+        order:0;
+    }
+    .menu-item{
+        order:1;
+        position: relative;
+        display: block;
+        width: auto;
+    }
+
+    /* controls dropdown submenu */
+    .submenu-active .submenu{
+        display: block;
+        position: absolute;
+        left: 0px;
+        top: 68px;
+        background: #635036;
+    }
+
+    .toggle{
+        display: none;
+    }
+
+    .submenu-active{
+        border-radius: 0;
+    }
+
+
+    /* intro section */
+
+    /* .hero{
+        max-width: 75%;
+        margin: 2% auto;
+    } */
+
+    /* try to prevent text overalp with hills */
+    .hero-wrapper{
+        margin-top:10%;
+        
+    }
+    .hero h1{
+        margin-bottom: 60px;;
+    }
+
+    .hero h2{
+        margin-bottom: 50px;
+    }
+
+    /* issues */
+    /* issues */
+
+   .issues{
+
+   }
+
+   .issues h2{
+    margin-top: 1em;
+    text-align: center;
+    margin-bottom: 1em;
+   }
+   
+   .issues-container{
+    justify-content: center;
+   
+   }
+   
+   .issue{
+    width: 35%;
+   }
+   
+   .issue img{
+   height: 300px;
+   }
+
+   .issue p{
+    
+   }
+} 
+
+@media (min-width:750px){
+
+    /* text centers header and footer */
+    header, footer {
+        text-align: center;
+    }
+    .contact-list{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+ }
+
+
+@media screen and (max-width:749px){
+    h1{
+        font-size: 75px;
+        line-height: 0.9;
+        margin-bottom: 20px;
+    }
+    h2{
+       line-height: 1; 
+       margin-bottom:15px;
+    }
+    .contact-list a{
+        padding: 5px;
+    }
+    .content_wrapper h1{
+        font-size: 70px;
+    }
+
+    .content_wrapper h2{
+        font-size: 40px;
+    }
+}

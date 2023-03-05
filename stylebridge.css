@@ -66,7 +66,6 @@ h1, h2{
 /* nav bar bg color */
 nav{
     padding: 0 15px;
-    /* background-color: #2E2715; */
     background-color: #515c66;
 }
 
@@ -95,13 +94,13 @@ nav a{
 
 /* change carrot icon when submenu mouseover */
 .menu-item a:hover::after {
-    color: #A17A3E;
+    color: #292E33;
 }
 
 /* change menu items color when mouse hover */
 .menu-item a:hover{
-    background-color: #D0AF8E;
-    color: #2E2715;
+    background-color: #B1B9C1;
+    color: #292E33;
 }
 
 
@@ -189,7 +188,8 @@ nav a{
 /* do i want to highlight top menu that's open in a diff color? */
 /* submenu bg color */
 .submenu-active{
-background-color: #635036;
+/* background-color: #515C66; */
+background-color: #464F57;
 border-radius: 3px;
 }
 
@@ -247,7 +247,7 @@ border-radius: 3px;
 }
 
 .intro{
-    background-color: #F5DEB3;
+    background-color: #BEC5CB;
 }
 
 .intro p{
@@ -311,7 +311,8 @@ padding-bottom: 1em;
 }
 
 .issue-title:hover{
-    color:#D0AF8E;
+    /* color:#D0AF8E; */
+    color: #FFD700;
 }
 
 /* place image and title in same location */
@@ -328,16 +329,18 @@ object-fit: cover;
  /*************************************** Footer ************************************************/
 footer{
     /* add font and bg colors here */
-    background-color: #2E2715;
-    color: #A17A3E;
+    /* background-color: #2E2715;
+    color: #A17A3E; */
+    background-color: #515c66;
+    color:#BEC5CB;
 }
 
 footer a{
-    color: #A17A3E;
+    color: #BEC5CB;
 }
 
 footer a:hover{
-    color: #DE4B00;
+    color: #FFD700;
 }
 
 .contact-list{
@@ -359,11 +362,11 @@ footer a:hover{
     vertical-align:text-bottom;
     padding-right: 3px;
     /* set color via  tool here: https://codepen.io/sosuke/pen/Pjoqqp */
-    filter: invert(47%) sepia(58%) saturate(400%) hue-rotate(357deg) brightness(94%) contrast(91%);
+    filter: invert(79%) sepia(11%) saturate(151%) hue-rotate(166deg) brightness(98%) contrast(91%);
 }
 
 .icon:hover{
-    filter: invert(31%) sepia(35%) saturate(4448%) hue-rotate(11deg) brightness(97%) contrast(102%);
+    filter: invert(78%) sepia(16%) saturate(2463%) hue-rotate(2deg) brightness(107%) contrast(103%);
 }
 
 /*************************************** responsive styles **********************************/
@@ -458,7 +461,8 @@ footer a:hover{
         position: absolute;
         left: 0px;
         top: 68px;
-        background: #635036;
+        background-color: #515C66;
+
     }
 
     .toggle{

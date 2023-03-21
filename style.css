@@ -292,11 +292,11 @@ padding-bottom: 1em;
 /********************** issue image grid ************************* */
 .issue{
     
-    border: 1px solid black;
+    /* border: 1px solid #515c66; */
     border-radius: 5px;
     /* padding: 20px; */
     padding-bottom: 2em;
-
+    margin-bottom: 2em;
 }
 
 .issue-bucket{
@@ -365,6 +365,10 @@ footer{
     color: #A17A3E; */
     background-color: #515c66;
     color:#BEC5CB;
+}
+
+footer h2{
+    color: white;
 }
 
 footer a{
@@ -472,7 +476,7 @@ footer a:hover{
     width: 30%;
     margin-bottom: 2em;
     margin-right: 1em;
-    border: 1px solid black;
+    /* border: 1px solid #515c66; */
     border-radius: 5px;
     padding-bottom: 1em;
     

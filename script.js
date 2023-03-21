@@ -1,3 +1,61 @@
+
+
+function renderPage(){
+    document.getElementById("nav-bar").innerHTML = `
+    <ul class="menu">
+        <li class="name-logo"><a href="index.html">Keir Bryerton for Parks</a></li>
+        <li class="menu-item"><a href="#">About Keir</a>
+          <!-- <ul class="submenu">
+            <li class="subitem"><a href="#">About Keir</a></li> -->
+            <!-- <li class="subitem"><a href="#">Contact Us</a></li> -->
+          <!-- </ul> -->
+        </li>
+        <li class="menu-item has-submenu"><a tabindex="0">Issues</a>
+          <ul class="submenu">
+            <li class="subitem"><a href="financial.html">Financial Management</a></li>
+            <li class="subitem"><a href="community.html">Community Involvement</a></li>
+           
+            <!-- <li class="subitem"><a href="inclusivity.html">Inclusivity</a></li> -->
+            <li class="subitem"><a href="environment.html">Land Use & Environmental Impact</a></li>
+          </ul>
+        </li>
+        <li class="menu-item has-submenu"><a href="#">Barret Park RC Field</a>
+          <ul class="submenu">
+            <li class="subitem"><a href="#">History</a></li>
+            <li class="subitem"><a href="#">My Experience</a></li>
+            <li class="subitem"><a href="safety.html">Neighborhood Safety & Privacy</a></li>
+            <li class="subitem"><a href="#">News Articles</a></li>
+            <li class="subitem"><a href="#">Letters</a></li>
+          </ul>
+        </li>
+        <li class="menu-item has-submenu"><a href="#news">Get Updates</a>
+          <ul class="submenu">
+            <li class="subitem"><a href="#">Email</a></li>
+            <li class="subitem"><a href="#">Social Media</a></li>
+          </ul>
+        </li>
+        <li class="toggle"><a href="#"><i class="fas fa-bars"></i></a></li>
+      </ul>
+      <!-- end nav-links-->
+    `
+    document.getElementById("footer").innerHTML = `
+    <div class = "content_wrapper">
+    <h2 id="contact">Let's Keep in Touch!</h2>
+
+    <!-- Social media and contact links. Add or remove any networks. -->
+    <ul class="contact-list">
+      <li><a href="https://www.keirforparks.com">www.keirforparks.com</a></li>
+      <li class="icon-link"><a class="footer-link" href="#" target="_blank"><img class="icon" src=images/twitter.svg></a></li>
+      <li class="footer-link"><a href="#"><img class="icon" src=images/square-facebook.svg></a></li>
+      <li class="footer-link"><a href="#">Privacy Policy</a></li>
+    </ul>
+    </div>
+    `
+}
+
+renderPage()
+
+
 const toggle = document.querySelector(".toggle")
 const menu = document.querySelector(".menu")
 // returns node list instead of single element

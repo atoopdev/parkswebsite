@@ -25,7 +25,7 @@ function renderPage(){
             <li class="subitem"><a href="#">My Experience</a></li>
             <li class="subitem"><a href="safety.html">Neighborhood Safety & Privacy</a></li>
             <li class="subitem"><a href="#">News Articles</a></li>
-            <li class="subitem"><a href="#">Letters</a></li>
+            <li class="subitem"><a href="letters.html">Letters</a></li>
           </ul>
         </li>
         <li class="menu-item has-submenu"><a href="#news">Get Updates</a>

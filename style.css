@@ -665,6 +665,13 @@ footer a:hover{
     } 
 }
 
+@media only screen and (max-width: 767px){
+    .hero-image-environment{
+        background-image: url(./images/environment-mobile.jpg);
+        background-position: top center;
+    }
+}
+
 .hero-image-environment {
     background-image: url(./images/environment.jpg);
     background-color: rgba(81,92,102,.5);
@@ -696,6 +703,25 @@ footer a:hover{
     
 }
 
+@media only screen and (max-width: 767px){
+    .hero-image-letters{
+        background-image: url(./images/letters-mobile.jpg);
+        background-position: top center;
+    } 
+}
+
+.hero-image-letters {
+    background-image: url(./images/letters.jpg);
+    background-color: rgba(81,92,102,.5);
+    /* display: block; */
+    background-size: cover;
+    background-position: center bottom;
+    background-blend-mode: multiply;
+    /* padding-bottom: 100px; */
+    height: 100vh;
+    
+}
+
 .subpage-img{
     margin-bottom: 1em;
 }
@@ -713,12 +739,7 @@ footer a:hover{
     margin-left: auto;
     margin-right: auto;
 }
-@media only screen and (max-width: 767px){
-    .hero-image-environment{
-        background-image: url(./images/environment-mobile.jpg);
-        background-position: top center;
-    }
-}
+
 
 /* **************************** indiv page styles  ******************* */
 .section-1{
@@ -726,6 +747,18 @@ footer a:hover{
 }
 .section-2{
     background-color: #c4beb0;
+}
+
+/* ***************************** letters page ************************* */
+
+.top{
+    /* border: 1px solid red; */
+    display: block;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    color: #1f6fb3;
+    font-weight: 700;
+
 }
 
 /* ****************************** newspaper link formating ************* */

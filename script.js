@@ -21,18 +21,15 @@ function renderPage(){
         </li>
         <li class="menu-item has-submenu"><a href="#">Barret Park RC Field</a>
           <ul class="submenu">
-            <li class="subitem"><a href="#">History</a></li>
-            <li class="subitem"><a href="#">My Experience</a></li>
+            <li class="subitem"><a href="history.html">History</a></li>
+            <li class="subitem"><a href="myexperience.html">My Experience</a></li>
             <li class="subitem"><a href="safety.html">Neighborhood Safety & Privacy</a></li>
-            <li class="subitem"><a href="#">News Articles</a></li>
+            <li class="subitem"><a href="newsarticles.html">News Articles</a></li>
             <li class="subitem"><a href="letters.html">Letters</a></li>
           </ul>
         </li>
-        <li class="menu-item has-submenu"><a href="#news">Get Updates</a>
-          <ul class="submenu">
-            <li class="subitem"><a href="#">Email</a></li>
-            <li class="subitem"><a href="#">Social Media</a></li>
-          </ul>
+        <li class="menu-item"><a href="updates.html">Get Updates</a>
+         
         </li>
         <li class="toggle"><a href="#"><i class="fas fa-bars"></i></a></li>
       </ul>

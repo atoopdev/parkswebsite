@@ -4,7 +4,7 @@ function renderPage(){
     document.getElementById("nav-bar").innerHTML = `
     <ul class="menu">
         <li class="name-logo"><a href="index.html">Keir Bryerton for Parks</a></li>
-        <li class="menu-item"><a href="#">About Keir</a>
+        <li class="menu-item"><a href="about.html">About Keir</a>
           <!-- <ul class="submenu">
             <li class="subitem"><a href="#">About Keir</a></li> -->
             <!-- <li class="subitem"><a href="#">Contact Us</a></li> -->

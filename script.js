@@ -43,7 +43,7 @@ function renderPage(){
     <ul class="contact-list">
       <li><a href="https://www.keirforparks.com">www.keirforparks.com</a></li>
       
-      <li class="footer-link"><a href="#">Privacy Policy</a></li>
+      <li class="footer-link"><a href="privacy.html">Privacy Policy</a></li>
     </ul>
     </div>
     `

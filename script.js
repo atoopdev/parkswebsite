@@ -42,13 +42,16 @@ function renderPage(){
     <!-- Social media and contact links. Add or remove any networks. -->
     <ul class="contact-list">
       <li><a href="https://www.keirforparks.com">www.keirforparks.com</a></li>
-      <li class="icon-link"><a class="footer-link" href="#" target="_blank"><img class="icon" src=images/twitter.svg></a></li>
-      <li class="footer-link"><a href="#"><img class="icon" src=images/square-facebook.svg></a></li>
+      
       <li class="footer-link"><a href="#">Privacy Policy</a></li>
     </ul>
     </div>
     `
 }
+
+// taken from footer above
+/* <li class="icon-link"><a class="footer-link" href="#" target="_blank"><img class="icon" src=images/twitter.svg></a></li>
+      <li class="footer-link"><a href="#"><img class="icon" src=images/square-facebook.svg></a></li> */
 
 renderPage()
 

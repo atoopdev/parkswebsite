@@ -817,6 +817,25 @@ footer a:hover{
     
 }
 
+@media only screen and (max-width: 767px){
+    .hero-image-privacypolicy{
+        background-image: url(./images/privacypolicy-mobile.jpg);
+        background-position: top center;
+    } 
+}
+
+.hero-image-privacypolicy {
+    background-image: url(./images/privacypolicy.jpg);
+    background-color: rgba(81,92,102,.5);
+    /* display: block; */
+    background-size: cover;
+    background-position: center bottom;
+    background-blend-mode: multiply;
+    /* padding-bottom: 100px; */
+    height: 100vh;
+    
+}
+
 .subpage-img{
     margin-bottom: 1em;
 }

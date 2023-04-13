@@ -247,7 +247,7 @@ border-radius: 3px;
 
   .hero-image-main {
     background-color: rgba(81,92,102,.5);
-    background-image: url(../images/hoodriverbridge2.jpg);
+    background-image: url(./images/hoodriverbridge2.jpg);
     /* display: block; */
     background-size: cover;
     background-position: top left;

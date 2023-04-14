@@ -19,7 +19,7 @@ function renderPage(){
             <li class="subitem"><a href="environment.html">Land Use & Environmental Impact</a></li>
           </ul>
         </li>
-        <li class="menu-item has-submenu"><a href="#">Barret Park RC Field</a>
+        <li class="menu-item has-submenu"><a href="#">Barrett Park RC Field</a>
           <ul class="submenu">
             <li class="subitem"><a href="history.html">History</a></li>
             <li class="subitem"><a href="myexperience.html">My Experience</a></li>

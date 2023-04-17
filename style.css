@@ -841,6 +841,10 @@ footer a:hover{
     margin-bottom: 1em;
 }
 
+.img-extra-small{
+    width: 200px;
+}
+
 .img-small{
     width: 400px;
 }
@@ -849,6 +853,11 @@ footer a:hover{
     float: left;
     margin-right: 1em; 
     }
+
+.image-right-float{
+    float:right;
+    margin-left: 1em;
+}
 
 .image-center-align{
     margin-left: auto;

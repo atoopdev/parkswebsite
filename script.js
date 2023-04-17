@@ -19,16 +19,19 @@ function renderPage(){
             <li class="subitem"><a href="environment.html">Land Use & Environmental Impact</a></li>
           </ul>
         </li>
+        <li class="menu-item has-submenu"><a href="#">Barrett Park RC Field</a>
+    <ul class="submenu">
+      <li class="subitem"><a href="#">Coming soon!</a></li>
+      </ul>
         <li class="menu-item"><a href="updates.html">Get Updates</a>
-   
         </li>
         <li class="toggle"><a href="#"><i class="fas fa-bars"></i></a></li>
       </ul>
       <!-- end nav-links-->
     `
 
-  //   <li class="menu-item has-submenu"><a href="#">Barrett Park RC Field</a>
-  //   <ul class="submenu">
+   //<li class="menu-item has-submenu"><a href="#">Barrett Park RC Field</a>
+   // <ul class="submenu">
   //     <li class="subitem"><a href="history.html">History</a></li>
   //     <li class="subitem"><a href="myexperience.html">My Experience</a></li>
   //     <li class="subitem"><a href="safety.html">Neighborhood Safety & Privacy</a></li>

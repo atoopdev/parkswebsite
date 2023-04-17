@@ -42,12 +42,12 @@ function renderPage(){
 
     document.getElementById("footer").innerHTML = `
     <div class = "content_wrapper">
-    <h2 id="contact">Thank You For Visiting!</h2>
+    <h2 id="contact">Let's Stay In Touch!</h2>
 
     <!-- Social media and contact links. Add or remove any networks. -->
     <ul class="contact-list">
       <li><a href="https://www.keirforparks.com">www.keirforparks.com</a></li>
-      
+      <li class="icon-link"><a class="footer-link" href="https://twitter.com/keirforparks" target="_blank"><img class="icon" src=images/twitter.svg></a></li>
       <li class="footer-link"><a href="privacy.html">Privacy Policy</a></li>
     </ul>
     </div>
@@ -55,7 +55,7 @@ function renderPage(){
 }
 
 // taken from footer above
-/* <li class="icon-link"><a class="footer-link" href="#" target="_blank"><img class="icon" src=images/twitter.svg></a></li>
+/* 
       <li class="footer-link"><a href="#"><img class="icon" src=images/square-facebook.svg></a></li> */
 
 renderPage()

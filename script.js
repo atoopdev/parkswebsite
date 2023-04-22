@@ -5,9 +5,10 @@ function renderPage(){
     <ul class="menu">
         <li class="name-logo"><a href="index.html">Keir Bryerton for Parks</a></li>
         <li class="menu-item"><a href="about.html">About Keir</a>
+        <li class="menu-item"><a href="answers.html">Candidate Questions/Answers</a></li> 
           <!-- <ul class="submenu">
-            <li class="subitem"><a href="#">About Keir</a></li> -->
-            <!-- <li class="subitem"><a href="#">Contact Us</a></li> -->
+            
+            <!-- <li class="subitem"><a href="#">Contact Us</a></li> 
           <!-- </ul> -->
         </li>
         <li class="menu-item has-submenu"><a tabindex="0">Issues</a>

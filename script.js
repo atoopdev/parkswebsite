@@ -51,6 +51,7 @@ function renderPage(){
     <!-- Social media and contact links. Add or remove any networks. -->
     <ul class="contact-list">
       <li><a href="https://www.keirforparks.com">www.keirforparks.com</a></li>
+      <li><a href="mailto:keirforparks@proton.me">keirforparks@proton.me</a></li>
       <li class="icon-link"><a class="footer-link" href="https://twitter.com/keirforparks" target="_blank"><img class="icon" src=images/twitter.svg></a></li>
       <li class="footer-link"><a href="privacy.html">Privacy Policy</a></li>
     </ul>

@@ -977,3 +977,21 @@ footer a:hover{
 .newsarticle-link:hover{
     color: #B2641F;
 }
+
+/* *********************************** social buttons ****************************** */
+
+.social-buttons{
+    display: flex;
+    flex-direction:row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.twitter-share-button{
+    margin-right: 1em;
+}
+
+.fb-share-button{
+    display:flex;
+    align-items: center;
+}

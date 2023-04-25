@@ -1,0 +1,58 @@
+The Enterprise Desktop Support Technician (EDST) is to act as an escalation point for problems that help-desk personnel can't resolve. Desktop Administrators will frequently work directly with the EDST.
+
+Explore key stages and terminology of a troubleshooting methodology
+
+Classification
+gather information from the end user in an attempt to establish the problem’s nature and scope.
+determine the scope and impact of problems so that you can prioritize them.
+log the problem
+
+Test
+determine the probable cause of a reported problem. 
+start by listing the possible causes
+divide and isolate these possible causes.
+reproduce the problem in a test environment.
+
+Escalation
+If cannot determine resolution escalate internally. Or if think problem is outside your org - escalate there.
+
+Report
+When resolved document resolution.
+
+Examine the process of problem reporting
+A problem reporting process should include problem detection, self-help options that the user performs, how to contact their help desk, problem classification and initial support, and then problem escalation, resolution, and closure. 
+
+Detect problems
+an end user detects a problem. User may or may not take action. May try to resolve the issue themselves or contact help desk.
+
+Encourage self-help attempts by end users
+training
+
+Contact the help desk
+provide a proper procedure for contacting your help desk
+ensure that your end users understand this procedure
+record the problem’s details in an incident record
+If you can’t resolve the reported problem, assign the problem to other individuals in your organization.
+Update the incident record in the ticketing database to track information about activity that you or others perform in relation to the reported problem.
+
+Detail classification and initial support
+help desk staff should attempt to classify the problem, and then determine the problem’s scope and urgency.
+Who else has the same problem? 
+When did you first notice the problem?
+What changed around the same time that you noticed the problem? 
+
+Escalate a problem
+ensure that you record an appropriate level of detail that you can pass to the next support level
+A precise description of the reported problem.
+A record of any error messages associated with the problem.
+A record of the resolution attempts that support staff made, and the results of each attempted fix.
+A record relating to any diagnostics tools that support staff use.
+
+Resolve a problem
+Details regarding any liaisons with any specialist support staff that helped implement the plan.
+Completion of any required requests according to change management procedures.
+Analysis of the possible impact of proposed changes on the IT infrastructure.
+Testing details for the proposed plan.
+Details of plans to roll back changes if they don't achieve the desired result.
+
+Close a problem

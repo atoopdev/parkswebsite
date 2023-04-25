@@ -1,0 +1,37 @@
+Implement Storage Spaces (SANS)
+
+Explore Storage Spaces
+Storage Spaces is a storage virtualization technology in Windows and Windows Server that can help protect your data from drive failures. It is conceptually similar to RAID, but implemented in software. group three or more drives together into a storage pool and then use capacity from that pool to create Storage Spaces. Stores extra copies of data in case drive fails. Run out of space? Add more drives.
+The primary advantage of Storage Spaces is that you do not have to manage single disks, but can manage multiple disks as one unit.
+
+is available for NTFS and ReFS volumes
+
+To create a highly available virtual disk, you need the following:
+-Physical disk. Physical disks are disks such as Serial ATA (SATA) or Serially Attached SCSI (SAS) disks.
+	-Creating a storage pool requires one physical disk.
+	-Creating a resilient mirror virtual disk requires a minimum of two physical disks.
+	-Creating a virtual disk with resiliency through parity requires a minimum of three physical disks.
+	-Three-way mirroring requires at least five physical disks.
+	-Disks must be blank and unformatted; no volume must exist on them.
+	-Disks attachment can use a variety of bus interfaces including SAS, SATA, small computer system interface (SCSI), and USB.
+-Storage pool. a collection of one or more physical disks that you can use to create virtual disks.
+-Storage space. This is similar to a physical disk from the perspective of users and programs. However, storage spaces are more flexible because they include thin provisioning or just-in-time (JIT) allocations, and they include resiliency to physical disk failures with built-in functionality such as mirroring.
+-Disk Drive. The drive letter through which you access this volume in Windows OS. 
+
+Note: Storage Spaces Direct is for creating highly scalable storage solutions. Unlike Storage Spaces, which is intended to create storage pools for the local client, Storage Spaces Direct is designed to configure local drives on a server, performing a role similar to traditional SAN or NAS arrays at a lower cost. This feature is not designed for client, and is only available on Windows client, only available in Windows Server Datacenter edition.
+
+Examine features of Storage Spaces
+You can create storage spaces from storage pools. If your storage pool contains more than one disk, you can also create redundant storage spaces. 
+
+Storage layout
+define the number of disks from the storage pool that you allocate to a virtual disk.
+Options include:
+-Simple. A simple space has data striping but no redundancy. Striping makes it possible to access multiple segments of data concurrently. Do not host important data on a simple volume, because it provides no failover capabilities when the disk that is storing the data fails.
+-Two-way and three-way mirrors. (cheap resiliency for small businesses) Mirror spaces maintain two or three copies of the data that they host (two data copies for two-way mirrors and three data copies for three-way mirrors). Mirror spaces also stripe the data across multiple physical drives. provide the benefit of greater data throughput and lower access latency. No journaling.
+-Parity. (cheap resiliency for small businesses)(high performance storage) A parity space is similar to RAID 5. Storage Spaces stores data, along with parity information, striped across multiple physical drives. Parity enables Storage Spaces to continue servicing read and write requests even when a drive has failed. Parity always rotates across available disks to enable I/O optimization. Storage Spaces require a minimum of three physical drives for parity spaces. Parity spaces have increased resiliency through journaling. There is no equivalent to parity in volumes on dynamic disks.
+
+Provisioning schemes
+-Thin provisioning space. (Good for small companies without IT) a mechanism that enables you to allocate storage (prvisioning slabs) when the storage space needs it. allow you to create a bigger storage space than what the disks will be able to store. You then add the disks to the storage space when you need more storage, and the storage space will automatically claim the space on the disks. No unusued storage (use less electricty/floor space.) The disadvantage of using thin provisioning is lower disk performance because storage allocation occurs when the pool needs extra storage.
+-Fixed (or “thick”) provisioning space. fixed provisioned spaces also employ the flexible provisioning slabs. The difference between thin provisioning and a fixed provisioning space is that the storage capacity allocation in the fixed provisioning space happens at the same time as storage space creation.
+
+Examine scenarios for Storage Spaces

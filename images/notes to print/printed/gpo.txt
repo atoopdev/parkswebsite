@@ -1,0 +1,84 @@
+Apply Group Policy Objects
+
+GPOs apply in a consistent order. GPOs that apply later in the process overwrite any conflicting policy settings that are applied earlier.
+
+gpo's apply in following order:
+Local GPOs: Each operating system that is running Windows Vista or newer potentially has a local GPO configured already.
+Site GPOs: Policies that link to sites process next.
+Domain GPOs: Policies that link to the domain process next. There often are multiple policies at the domain level. These policies process in order of preference.
+OU GPOs: Policies linked to OUs process next. These policies contain settings that are unique to the objects in that OU. For example, Sales users might have unique settings that are required. You can link a policy to the Sales OU to deliver those settings.
+Child OU policies: Any policies that link to child OUs process last.
+
+For example, a domain-level policy might restrict access to registry editing tools. However, you could configure an OU-level policy and link it to the Information Technology (IT) OU to reverse that policy.
+
+Local GPOs
+Each Windows-based computer has one local GPO that contains default computer and user settings, regardless of whether the computer is part of an AD DS environment. Besides this default local GPO, you can create custom local user GPOs.
+A local GPO is the least influential object in an AD DS environment because GPOs associated with sites, domains, and OUs can overwrite its settings.
+If not in networked enviro local gpo becomes most important
+you can also have different user settings for other local users, but this is only available for users’ configurations in Group Policy. Only one set of computer configurations is available that affects all computer users.
+three laters of local gpo's:
+Local Group Policy (contains the computer configuration settings)
+Administrators and Non‑Administrators Local Group Policy
+User-specific Local Group Policy
+
+Domain GPOs
+Domain GPOs are created and linked to objects within an AD DS infrastructure. The settings in the GPO affect computers and users within those objects.
+
+Options for modifying Group Policy processing
+Security filtering: You can use security filtering to specify users, computers, or groups that are able or not able to process a GPO. Ex. keep policies from applying to it.
+Enforcement: You can use enforcement to ensure that settings in a specific GPO apply regardless of any lower-level GPOs that would usually override this GPO.
+Block inheritance: You can use block inheritance to prevent a lower-level OU from inheriting settings from a higher-level OU. For example, you could block settings applied at the domain level from affecting users in the IT OU.
+
+Explore Windows PowerShell
+All Windows operating-system versions since Windows 7 and Windows Server 2008 R2 have included native support for Windows PowerShell. 
+Remote management capability. You can use Windows PowerShell to manage remote computers, provided remote management is enabled, and the remote management user has the proper authorization.
+Script-based execution. You can use Windows PowerShell scripts to build automation and complex logic into management tasks.
+
+Microsoft doesn’t restrict PowerShell to just the command line. For example, the Active Directory Administrative Center in Windows Server is a graphical user interface (GUI) that uses Windows PowerShell to perform all of its tasks.
+
+Windows PowerShell ISE (for writing scripts in a dev enviroment)
+There's another Windows PowerShell app in the same area called Windows PowerShell Integrated Scripting Environment (ISE) that provides command-completion functionality and lets you see all available commands and the parameters you can use with those commands.Has debugging tools too.
+
+Use Windows Powershell
+Windows PowerShell uses Windows PowerShell drives to provide access to data stores. These drives present data in a format similar to a file system.
+Some common Windows PowerShell drives are:
+The C drive is the local file system's C drive.
+The cert drive is the local certificate store.
+The Env drive contains environmental variables that are stored in memory.
+The HKCU drive is the HKEY_CURRENT_USER portion of the registry.
+The HKLM drive is the HKEY_LOCAL_MACHINE portion of the registry.
+The Variable drive contains the variables that are stored in memory.
+
+Cmdlets
+Cmdlets use a naming convention of a verb or action, followed by a noun or a subject.
+Some common cmdlet verbs are:
+Get. Retrieves data.
+Set. Establishes or modifies data.
+New. Creates a new object.
+parameters are indicated by a leading dash Ex. -Name "Name in quotes"
+
+Getting help with using Windows PowerShell
+Get-Help, followed by the name of the cmdlet, will give you a brief but detailed guide on that cmdlet, including the parameters you can use.
+Another useful cmdlet is Get-Command. This cmdlet shows a list of all cmdlets, aliases, functions, workflows, filters, scripts, and applications installed on your version of Windows PowerShell.
+Microsoft TechNet has the Microsoft Script Center, where you can search for Windows PowerShell scripts based on what you want the script to do.
+
+Deploy a custom Start menu in Windows 10
+
+Creating the Start menu XML layout file
+1. start with fresh install
+2. customize the start menu to desired layout.
+3. export start menu to an XML file using Export-StartLayout command in Powershell. Use the -UseDesktopApplicationID switch and after the -Path switch, add the UNC path and filename.
+
+For example, if you wish to export to a file called "StartLayoutMarketing.xml" and save to the location \\FileServer01\StartLayouts\:
+
+Export-StartLayout -UseDesktopApplicationID -Path \\FileServer01\StartLayouts\StartLayoutMarketing.xml
+
+above example is a full layout  - layout will now be locked for users. Good for kiosks, bad for users.
+
+Better option is partial layout.
+1. open the layout xml file.
+2. Modify the <DefaultLayoutOverride> element to include the following property:
+
+<DefaultLayoutOverride LayoutCustomizationRestrictionType="OnlySpecifiedGroups">
+
+3. Save the XML file.

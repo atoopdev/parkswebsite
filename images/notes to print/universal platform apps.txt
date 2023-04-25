@@ -1,0 +1,65 @@
+Manage Universal Windows Platform Apps
+
+Compare Microsoft Store and Microsoft Store for Business
+
+The Microsoft Store provides a convenient, single location where users can browse, install, and update applications.
+To access the Microsoft Store, users must sign in by using a Microsoft account.  You also can access the Microsoft Store by connecting your Microsoft account to your AD DS user account. 
+
+Universal Windows apps
+The Microsoft Store design enables users to access and install Universal Windows apps.Universal Windows apps are capable of running on multiple Windows devices, such as desktops, tablets, Xbox, HoloLens and IoT devices.
+When you install a Universal Windows app, you can pin tiles to the Start menu, some of which update continuously with live app information or status.
+
+Can convert desktop apps to Universal Windows Apps (for Windows Enterprise and Prof). Uses Desktop App Converter (repackages into UWP format) and a runtime that allows UWP packages to operate with the full trust level, rather than in an app container. Also assigns a package identity to a converted app.
+
+Why convert? 
+apply a consistent app deployment methodology that uses sideloading (installation of an app without using the device's official application distribution method) and offers a straightforward and clean uninstallation process. 
+allows developers to enhance desktop apps with UWP features
+provides integration with the Microsoft Store licensing and update functionality
+
+Locating Universal Windows apps
+Microsoft store has landing page. Can also search.
+
+Installing Universal Windows apps
+Select app in store and app installs in background. Shortcut to app appears in Start menu.
+
+Updating Universal Windows apps
+Windows checks for updates daily. Updates run automatically unless users turns off. Then updates can be run via Store.
+
+Installing Universal Windows apps on multiple devices
+Can install on 10 devices.
+
+Microsoft Store for Business
+Microsoft Store for Business consists of two parts. The first part is a web portal hosted in Microsoft Azure, known as the Business Store portal, where information technology (IT) administrators can purchase, approve, and distribute applications for the entire enterprise. The second part is the Microsoft Store app, with an enterprise-managed private section that only employees of that enterprise can access. Any Universal Windows app that you want to be available in the Microsoft Store for Business must be uploaded to the Microsoft Store.
+
+Microsoft Store vs. Microsoft Store for Business
+The Microsoft Store is primarily for end-users’ use when not necessarily working for an enterprise, whereas the Microsoft Store for Business gives enterprise employees a way to install work-related Universal Windows apps. Microsoft Store for Business will be retired in 2023. Microsoft Store for Business is not supported for managing delpoyment of apps to Windows 11.Microsoft introduced a new tool called Windows Package Manager, which allows customers to install and manage private organization apps, as well as set up their own private repository. Customers can also use Endpoint Manager to manage their private catalogs. These functionalities are either in Preview or not yet released, and therefore outside the scope of this training.
+
+Microsoft store - Microsoft account, you buy your own license, apps deploy only through store, Windows 8.1 and later OS, UWA only, Windows 10 and later.
+Microsoft Store for Business - Azure AD account, admin can group buy licenses, deploy app through store or deployment tools, windows clients only, store has UWA apps/desktop apps/Android Apps, Windows 10 Pro/Enterprise/Education.
+
+Manage access to Microsoft Store apps
+you can prevent users from accessing the Microsoft Store (enterprise ed only)
+
+Preventing users from installing applications from the Microsoft Store
+Run regedit.exe.
+Navigate to HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsStore. (If the WindowsStore key is not there, you will need to create it.)
+Create a new DWORD value named RemoveWindowsStore, and change the value to 1.
+Before this setting can take effect, you must restart the computer and sign back in.
+
+In Windows 8 and Windows 8.1, you can configure this setting via a Group Policy setting, but the WinStoreUI.admx and .adml files are not present in Windows 10 (because Windows Store for Business exists.)
+
+Controlling the applications that users can install
+Windows 10 Enterprise and Windows 10 Education editions enable you to use AppLocker to control which Universal Windows apps users can install and run. In AppLocker, you configure which Universal Windows apps to allow or deny, under the category Packaged Apps.
+
+Managing updates
+IT administrators have limited control over updates for installed Universal Windows apps. You cannot control which updates are available. By default, applications installed from the Microsoft Store update automatically.
+
+Configure assigned access to a single store app (block on user not computer level)
+To restrict a user account to run a single Universal Windows app, perform the following procedure:
+
+From the Start menu, select Settings.
+Select Accounts, and then select Other people.
+In the right pane, select Set up assigned access.
+Select Choose an account, and then select the account that you want to restrict.
+Select Choose an app, and then select the installed application to which you want to restrict the account. (weather)
+Sign out from the computer to make the changes effective.

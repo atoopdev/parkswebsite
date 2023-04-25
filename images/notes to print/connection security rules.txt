@@ -1,0 +1,99 @@
+Explore connection security rules (IPsec) (Send data across network securely)
+
+Windows doesn't authenticate or encrypt connections made from one computer to another, by default. However, by configuring and using connection security rules, you can verify the identity of each computer that is communicating. You also can encrypt the connection between those computers, and then ensure that no tampering has occurred with respect to the transmission between the two computers.
+
+Explain IPSec
+You can use IPsec to ensure confidentiality, integrity, and authentication in data transport across channels that aren't secure. 
+
+If you implement IPsec properly, it provides a private channel for sending and exchanging potentially sensitive or vulnerable data, whether it's email, FTP traffic, news feeds, partner and supply-chain data, medical records, or any other type of TCP/IP-based data.
+
+IPsec
+-Offers mutual authentication both before and during communications.
+-Forces both parties to identify themselves during the communication process.
+-Enables confidentiality through IP traffic encryption and digital-packet authentication.
+
+IPsec modes
+IPsec has two modes:
+-Encapsulating security payload (ESP). This mode encrypts data using one of several available algorithms.
+-Authentication Header (AH). This mode signs traffic, but doesn't encrypt it.
+
+Providing IP traffic integrity by rejecting modified packets
+If a packet has been modified, the digital signature won't match, and IPsec will discard the packet. 
+
+ESP in the tunnel mode encrypts the source and destination addresses as part of the payload. In the tunnel mode, ESP adds a new IP header to the packet that specifies the tunnel endpoints’ source and destination addresses. ESP can make use of Data Encryption Standard (DES), Triple Data Encryption Standard (3DES), and Advanced Encryption Standard (AES) encryption algorithms in Windows Server and Windows client. As a best practice, you should avoid using DES unless clients can’t support the stronger encryption that AES or 3DES offer.
+
+Providing protection from replay attacks
+ESP and AH use sequence numbers. As a result, any packets that hackers attempt to capture for later replay use numbers that are out of sequence. Using sequenced numbers ensures that an attacker can’t reuse or replay captured data to establish a session or gain information. Using sequenced numbers also protects against attempts to intercept a message and use it to access resources, possibly months later.
+
+Connection security rules
+You can protect a network with two types of isolation:
+Server isolation. You can isolate a server by configuring specific servers to require an IPsec policy before accepting authenticated communications from other computers. For example, you might configure a database server to accept connections only from a web application server.
+Domain isolation. You can isolate a domain by using Active Directory domain membership to ensure that computers that are domain members accept only authenticated and secured communications from other domain-member computers. The isolated network consists only of that domain’s member computers, and domain isolation uses an IPsec policy to protect traffic between domain members, including all client and server computers.
+
+Explain connection security rules
+A connection security rule forces authentication between two peer computers before they can establish a connection and transmit secure information. Windows Defender Firewall with Advanced Security uses IPsec to enforce the following configurable rules:
+
+-Isolation. An isolation rule isolates computers by restricting connections based on credentials, such as domain membership or health status. Isolation rules allow you to implement an isolation strategy for servers or domains.
+-Authentication exemption. You can use an authentication exemption to designate connections that don't require authentication. You can designate computers by a specific IP address, an IP address range, a subnet, or a predefined group, such as a gateway.
+-Server to server. A server-to-server rule protects connections between specific computers. This type of rule usually protects connections between servers. When you create the rule, you specify the network endpoints between which communications are protected. You then designate requirements and the authentication that you want to use.
+-Tunnel. A tunnel rule allows you to protect connections between gateway computers, and typically, you use it when you're connecting across the Internet between two security gateways.
+-Custom. There might be situations in which you can’t configure the authentication rules that you need by using the rules available in the New Connection Security Rule Wizard. However, you can use a custom rule to authenticate connections between two endpoints.
+
+You can configure connection security rules by using Group Policy, Windows Firewall with Advanced Security, or Windows PowerShell.
+
+The relation between firewall rules and connection security rules
+
+Firewall rules allow traffic through a firewall, but don't secure that traffic. To secure traffic with IPsec, you can create connection security rules. However, when you create a connection security rule, this doesn't allow the traffic through the firewall. You must create a firewall rule to do this if the firewall’s default behavior doesn't allow traffic. Connection security rules don't apply to programs and services. They apply only between the computers that are the two endpoints.
+
+Explore authentication options
+
+The following options are available when creating a new rule:
+-Request authentication for inbound and outbound connections option.(low security) Use this option to specify that all inbound and outbound traffic must authenticate, but that the connection is allowable if authentication fails. However, if authentication succeeds, traffic is protected. You typically use this option in low-security environments or in an environment where computers must be able to connect, but they cannot perform the types of authentication that are available with Windows Defender Firewall with Advanced Security.
+-Require authentication for inbound connections and Request authentication for outbound connections option.(medium security) ensure that all inbound traffic is authenticated or blocked. This allows you to allow outbound traffic for which authentication fails. If authentication succeeds for outbound traffic, the firewall authenticates that traffic. You typically use this option in most IT environments in which the computers that need to connect can perform the authentication types that are available with Windows Defender Firewall with Advanced Security.
+-Require authentication for inbound and outbound connections option. (high security) Use this option to require that all inbound and outbound traffic either is authenticated or else blocked. You typically use this option in higher-security IT environments where you must protect and control traffic flow, and in which the computers that must be able to connect can perform the authentication types that are available with Windows Defender Firewall with Advanced Security.
+
+Authentication methods
+The New Connection Security Rule Wizard has a page on which you can configure the authentication method and the authentication credentials that you want clients to use. If the rule exists already, you can use the Authentication tab in the Properties dialog box of the rule that you wish to edit. 
+
+-Default. Select the Default option to use the authentication method that you configured on the IPsec Settings tab of the Windows Defender Firewall with Advanced Security Properties dialog box.
+-Computer and user (Kerberos V5). The Computer and user (Kerberos V5) method uses both computer and user authentication, which means that you can request or require both the user and the computer to authenticate before communications continue. You can use the Kerberos V5 authentication protocol only if both computers are domain members.
+-Computer (Kerberos V5). (Both computers must be domain members)
+-User (Kerberos V5).(User must be domain member)
+-Computer certificate. The Computer certificate method requests or requires a valid computer certificate to authenticate, and you must have certificates from a CA trusted by both computers. (For when both computers are not part of the same domain.)
+-Advanced. You can configure any available method, and you can specify methods for first authentication and second authentication. First authentication methods include Computer (Kerberos V5), computer certificate, and a Preshared key (not recommended). Second authentication methods include User (Kerberos V5), User NTLM (Windows NT Challenge/Response protocol), user certificates, and computer certificates issued by trusted CAs.
+
+Monitor security policies and active connections
+Use Windows Defender Firewall with Advanced Security. Windows Defender Firewall functions now integrate with settings for connection-security protection, which reduces the possibility of conflict between the two protection mechanisms.
+
+Monitoring options for Windows Defender Firewall with Advanced Security
+You can use the Windows Defender Firewall with Advanced Security console to monitor security policies that you create in the Connection Security Rules node - however cannot view your created policies created using IP Security Policy Management snap-in.
+
+Monitoring connection security rules (Windows Defender Firewall with Advanced Security)
+The Connection Security Rules node lists all of the enabled connection security rules with detailed information about their settings. Connection security rules define which authentication, key exchange, data integrity, or encryption you can use to form an SA. The SA defines the security that protects the communication from the sender to the recipient.
+
+Implementing Connection Security Monitor
+You can implement the Connection Security Monitor as an MMC snap-in.It includes enhancements that you can use to view details about an active connection security policy that the domain applies or that you apply locally. Additionally, you can view Quick Mode and Main Mode statistics, filters, negotiation policies, and security associations. You also can use Connection Security Monitor to search for specific Main Mode or Quick Mode filters. To troubleshoot complex designs for connection-security policies, you can use Connection Security Monitor to search for all matches for filters of a specific traffic type.
+
+Changing default settings
+You can change the Connection Security Monitor default settings, such as automatic refresh and DNS name resolution.
+Beware turning on DNS name resolution - can slow a server's performance if too many items need resolution. DNS record name resolution requires a proper pointer (PTR) resource record in DNS.
+
+Obtaining information about the active policy
+Active Policy node of the IP Security Monitoring snap-in to the MMC
+
+To view the connection security rules in the active policy store, you can use the following Windows PowerShell command:
+Show-NetIPsecRule –PolicyStore ActiveStore
+
+if troubleshooting look at policy location and time of last modification to determine current in place policy.
+
+Main Mode SA and Quick Mode SA (SA = security associaltion)
+The Main Mode SA is the initial SA that Windows establishes between two computers. This negotiates a set of cryptographic protection suites between both hosts. This initial SA allows Quick Mode key exchange to occur in a protected environment. The Internet Security Association Key Management Protocol or Phase 1 SA is another name for the Main Mode SA. Main Mode establishes the secure environment to other exchange keys, as IPsec policy requires.
+
+Monitoring SAs
+The Security Associations folder lists all of the Main Mode and Quick Mode SAs with detailed information about their settings and endpoints.
+
+Main Mode
+Main Mode statistics provide data about the total number of SAs created and invalid packet information.
+
+Quick Mode
+Quick Mode provides more-detailed information about connections. If you are having issues with an IPsec connection, Quick Mode statistics can provide insight into the problem.

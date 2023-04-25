@@ -1,0 +1,31 @@
+Troubleshoot the Windows client operating system and apps - Windows file backup and recovery tools
+
+storing all data remotely is not always possible. Therefore, you must be able to recover local data in case of hardware failure or other scenarios.
+
+Windows includes several tools that can help you protect data and make backup copies of local files, including:
+
+-Folder Redirection and Offline Files tools. In a domain environment, Folder Redirection redirects local folders from the user profile to the file server. Offline Files makes a local copy of redirected files and then makes them available even when there is no network connectivity to the file server.
+Work Folders tool. You can use Work Folders regardless of domain membership. Work Folders synchronize data files between the file server and user devices.
+-File History tool. After you enable File History, it creates a backup of modified user files automatically on the local drive, removable drive, or network location. File History backs up the folders in user profiles and libraries, and you can add additional folders. By default, File History copies the modified files in protected folders every hour, and Windows keeps them indefinitely, as long as there is enough storage space.
+-Backup and Restore (Windows 7) tool. Although the name of the tool includes Windows 7, it is a part of Windows 10 and Windows 11. It is intended to recover files from a Windows 7 backup in Windows 10 or Windows 11.
+-Synchronization of user data with Microsoft OneDrive. If your user account is connected with a Microsoft account, or your company is using OneDrive, you can synchronize data files with the cloud and between the devices that you use.
+-Creation of a system image. A system image is not designed as a backup and restore solution, but it does contain an exact copy of all data that was on a computer when you created it. There is no option to create a schedule for system image creation. You can copy system images to hard disks, sets of DVDs, or network locations. A system image contains a virtual hard disk (.vhdx file) for each volume of the computer for which you create the image. You can mount the virtual disk in File Explorer, and access and restore each file individually. If you want to restore the entire system image, you can use the System -Image Recovery option from Windows RE.
+-Wbadmin.exe tool. You can use this command line tool to create backups and restore backup content.
+-File Explorer or robocopy.exe features. You can use File Explorer or the robocopy.exe tool to copy files manually to other media or a network location.
+
+Explain file history
+Windows saves copies of your files automatically to a removable local drive or to a shared folder on a network. After you enable File History, it saves a copy of your modified files periodically to a designated location. Windows saves modified files every hour and keeps file versions indefinitely by default. However, you can configure the interval at which the saves occur and how long Windows keeps saved files.
+
+By default, File History saves files from the following folders: Contacts, Desktop, Documents, Downloads, Favorites, Links, Music, OneDrive, Pictures, Saved Games, Searches, and Videos. Additionally, File History saves files from the following libraries: Documents, Music, Pictures, and Videos.
+
+Note - You cannot add additional folders to the File History item in Control Panel.
+
+You can protect additional folders by using File History in two ways:
+
+Using the Backup option in the Update & security section in the Settings app. To access this option, in the Settings app, select Update & security. Select Backup, and then in the Back up using File History section, select More options.
+
+Adding folders to the libraries that File History protects. configuring File Explorer to show libraries, and then modifying the library properties to include additional folders. If you create a new library, File History automatically protects it.
+
+You can modify File History settings by using the File History item in the Control Panel. You also can modify these settings from the Settings app, by selecting Update & security, selecting Backup, and then in the Back up using File History section, selecting More options
+
+You can use File Explorer to revert to previous versions of files that File History protects. You can use it to restore files by right-clicking the file or folder, and then selecting the Previous Versions tab. You also can navigate to the folder that contains a modified or deleted file, on the Home ribbon, select History to open File History, and then view the recoverable files. Alternatively, you can use the Restore your files with File History option directly, allowing you to compare modified files and restore deleted or modified files.

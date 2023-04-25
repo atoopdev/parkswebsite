@@ -1,0 +1,133 @@
+Update Windows Clients
+
+Examine Windows Update settings in Windows clients
+Settings> update and security
+in window that opens there are two tabs (left hand column of relevance) Windows Update and Delivery Optimization.
+
+From the Windows Update tab
+-check for updates
+-update history (can uninstall from here or choose Recovery Options to reset computer to previous build.)
+-change active hours. Default 8am-5pm.
+-restart option. Set custom restart time.
+
+via Advanced options
+-Receive updates for other Microsoft products when I update Windows. If you have Microsoft Office or other Microsoft products installed, selecting this option enables Windows Update to keep those products up to date simultaneously.
+-Pause Updates. This option allows the user to defer updates for up to 35 days, including security updates.
+-Defer feature updates. Some Windows editions allow you to defer updates to your computer. 
+-Choose when updates are installed. These options allow you to set the number of days to defer when feature and quality updates are installed.
+
+From the Delivery Optimization tab
+-Allow downloads from other PCs.(Faster)You can configure the additional sources as either:
+	-PCs on my local network
+	-PCs on my local network, and PCs on the Internet
+Selecting Advanced options on the Delivery Optimization page allows you to restrict the bandwidth available for downloading updates and uploading updates to other PCs.
+
+Use a WSUS server to deploy updates
+The WSUS role provides a central management point for updates to your computers running the Windows operating system. WSUS is a server role included in the Windows Server operating system that downloads and distributes updates to Windows clients and servers.
+In the simplest configuration, a small organization can have a single WSUS server that downloads updates from the Microsoft Update website. The WSUS server then distributes the updates to computers that you have configured to obtain automatic updates from the WSUS server. You must approve the updates before clients can download them.
+Larger organizations can create a hierarchy of WSUS servers. In this scenario, a single-centralized WSUS server obtains updates from Microsoft Update, and other WSUS servers obtain updates from the centralized WSUS server.
+You can organize computers into groups to simplify the approval of updates. For example, you can configure a pilot group to be the first set of computers that you use for testing updates.
+WSUS can generate reports to help monitor update installation. These reports can identify which computers have not applied recently approved updates. Based on these reports, you can investigate why this is happening.
+
+The WSUS update management process
+This process is a continuous cycle during which you can reassess and adjust the WSUS deployment to meet changing needs.
+-Assess. The goal of the assess phase is to set up a production environment that supports update management for routine and emergency scenarios.determine the most efficient topology for scaling the WSUS components.
+-Identify. During the identify phase, you identify new updates that are available, and determine whether they are relevant to your organization. You have the option to configure WSUS to retrieve all updates automatically, or to retrieve only specific types of updates. WSUS also identifies which updates are relevant to registered computers.
+-Evaluate and plan. After you identify the relevant updates, you need to evaluate whether they work properly in your environment. To evaluate updates, you should have a test environment in which you can apply updates to verify proper functionality. Example - one group of clients with all os/software used in org, and one group servers will all os/apps. Before you deploy updates to the entire organization, you can push updates to these computer groups, and then test them. Only after making sure they work as expected should you move on to the deploy phase.
+-Deploy. After you have thoroughly tested an update and determined any dependencies, you can approve it for deployment in the production network.
+
+Update clients using Windows Update for Business (alt for WSUS)
+ You can use Group Policy or MDM solutions such as Intune to configure the Windows Update for Business settings that control how and when Windows devices are updated. In addition, by using Intune, organizations can manage devices that are not joined to a domain at all or are joined to Microsoft Azure Active Directory (Azure AD) alongside your on-premises domain-joined machines.
+
+Windows Update for Business allows for:
+The creation of deployment rings, where administrators can specify which devices go first in an update wave, and which ones will come later (to ensure any quality bars are met).
+Selectively including or excluding drivers as part of Microsoft-provided updates.
+Integration with existing management tools such as Windows Server Update Services (WSUS), Configuration Manager, and Microsoft Intune.
+Peer-to-peer delivery for Microsoft updates, which optimizes bandwidth efficiency and reduces the need for an on-site server caching solution.
+
+Windows Update for Business provides the following types of updates in Windows:
+-Feature Updates. Previously referred to as upgrades, Feature Updates contain not only security and quality revisions, but also significant feature additions and changes. Starting with version 21H2, they are now released annually.
+-Quality Updates. these are traditional operating system updates, typically released the second Tuesday of each month (though they can be released at any time). These include security, critical, and driver updates. Windows Update for Business also treats non-Windows updates (such as those for Microsoft Office or Visual Studio) as Quality Updates. These non-Windows Updates are known as Microsoft Updates and devices can be optionally configured to receive such updates along with their Windows Updates.
+-Driver updates. Updates for non-Microsoft drivers that are relevant to your devices. Driver updates are on by default, but you can use Windows Update for Business policies to turn them off if you prefer.
+-Microsoft product updates. Updates for other Microsoft products, such as versions of Office that are installed by using Windows Installer (MSI). Versions of Office that are installed by using Click-to-Run can't be updated by using Windows Update for Business. Product updates are off by default. You can turn them on by using Windows Update for Business policies.
+
+Defer an update
+A Windows Update for Business administrator can defer the installation of both feature and quality updates from deploying to devices within a bounded range of time from when those updates are first made available on the Windows Update service. Deferrals work by allowing you to specify the number of days after an update is released before it is offered to a device.To defer feature updates, use the Select when Preview Builds and feature updates are received policy.
+Maximum deferral period:
+Feature updates
+365 days
+
+Quality updates
+30 days
+
+Use Group Policy settings to configure Windows Update
+you can create a Group Policy Object (GPO) to configure the necessary settings, and then use Active Directory Domain Services (AD DS) to apply those settings to the appropriate collection of computers. 
+
+Three nodes in Group Policy contain Windows Update settings that are relevant for Windows devices. Open the Group Policy Management Editor on a domain controller -
+- Computer Configuration/Administrative Templates/Windows Components/Windows Update.
+	-automatic updates. if yes must select one of four options:
+		-Notify for download and notify for install. When Windows finds updates that apply to your computer, an icon displays in the status area, with a message that updates are ready for download. Selecting the icon or the message provides the option to select the specific updates that you want to download. Windows then downloads your selected updates in the background
+		-Auto download and notify for install. Windows finds updates that apply to your computer, and then downloads these updates in the background.icon displays in the status area, with a notification that the updates are ready for installation. Selecting the icon or message provides the option to select which updates to install.
+		-Auto download and schedule the install. Specify the schedule by using the options in the Group Policy setting. If you do not specify a schedule, the default schedule for all installations will be every day at 03:00. If any of the updates require a restart to complete the installation, the Windows operating system will restart the computer automatically. If a user is signed in to the computer when the Windows operating system is ready to restart, it will notify the user and give the option to delay the restart.
+		-Allow local admin to choose setting.local administrators will be allowed to use the Automatic Updates control panel to select a configuration option. For example, administrators can choose their own scheduled installation time. Local administrators cannot disable Automatic Updates configuration.
+
+To use the Configure Automatic Updates setting, select Enabled, and then select one of the options (2, 3, 4, or 5). If you select 4, you can set a recurring schedule. If you set the status to Disabled, you must manually download and install any updates that are available on Windows Update. If you set the status to Not Configured, the use of Automatic Updates is not specified at the Group Policy level. However, an administrator can still configure Automatic Updates through Control Panel.
+
+-Specify intranet Microsoft update service location. This setting lets you specify a server on your network to function as an internal update service. Enabling this setting means that end users in your organization do not have to go through a firewall to get updates, and it gives you the opportunity to test updates before deploying them. If you set the status to Disabled or Not Configured, and if Automatic Updates is not disabled by policy or user preference, the Automatic Updates client connects directly to the Windows Update site on the Internet.
+
+To use this setting, you must set two server name values, including the:
+
+Server from which the Automatic Updates client detects and downloads updates
+Server to which updated workstations upload statistics
+
+You can set both values to be the same server.
+
+-Do not connect to any Windows Update Internet locations. This policy is applicable only when you have configured the Specify intranet Microsoft update service location setting. When enabled, this policy will prevent users from downloading updates that you have not authorized. It may disrupt users’ connection to the Microsoft Store.
+	-Do not include drivers with Windows Updates. When you enable this setting, targeted devices will not install drivers with quality updates.
+Specify deadline before auto-restart for update installation. By using this setting, you can configure a deadline before which users have to restart their computer after installing updates. The default deadline is 7 days, but you can configure a deadline between 2 and 14 days.
+-Turn off auto-restart for updates during active hours. The span of active hours can be up to 12 hours.
+-Windows Update for Business. 
+	-Select when Preview Builds and Feature Updates are received. configures whether the targeted Windows devices will be in the Windows Insider build – Fast, Windows Insider build – Slow, Release Windows Insider build, or General Availability Channel. You can further delay feature updates up to 365 days. You also can prevent feature updates from being received for up to 35 days by selecting the Pause feature updates check box.
+	-Select when Quality Updates are received. With this policy, you can configure deferral of quality updates for up to 30 days. You also can prevent quality updates from being received for up to 35 days, by selecting the Pause quality updates check box.
+
+-you also can configure update settings in Computer Configuration/Administrative Templates/Windows Components/Data Collection and Preview Builds. You can configure the following settings:
+	-Toggle user control over Insider builds. This policy setting determines whether users can access the Insider build controls in the Update & security section in the Settings app. It also enables users to choose whether to make their devices available for downloading and installing Windows preview software. These controls are located under Windows Insider Program. If you enable or do not configure this policy setting, users can download and install Windows preview software on their devices. If you disable this policy setting, the users cannot install Windows Insider builds.
+-Allow Telemetry. This policy setting determines the amount of diagnostic and usage data reported to Microsoft. A value of 0 indicates that operating system (OS) components will send no telemetry data to Microsoft. Setting a value of 0 is applicable for enterprise and server devices only. 
+	-A value of 1 sends only a limited amount of diagnostic and usage data. Note that setting values of 0 or 1 will degrade certain experiences on the device.
+	-A value of 2 sends enhanced diagnostic and usage data.
+	-A value of 3 sends the same data as a value of 2, plus additional diagnostics data, such as the system state at the time of a system halt or crash, and the files and content that may have caused the problem.
+If you disable or do not configure this policy setting, users can configure the Telemetry level in Settings.
+-Disable pre-release features or settings. A value of 1 permits Microsoft to configure device settings only. A value of 2 allows Microsoft to conduct full experimentations. If you disable this policy setting, no experimentations will occur. If you do not configure this policy setting, user can configure the Let Microsoft try features on this build option in Settings.
+
+-Computer Configuration/Administrative Templates/Windows Components/Delivery Optimization node contains the following settings:
+	-Download Mode. configure the use of Windows Update Delivery Optimization in downloads of Windows apps and updates. Available modes are: Bypass, Group, HTTP only, Internet, LAN, and Simple.
+	-Group ID. Set this policy to specify an arbitrary group ID to which the device belongs. Use this if you need to:
+
+Limit the number of devices participating in peering in a domain network with many users.
+Create a single group for Local Network Peering for branches that are on different domains or are not on the same network address translation (NAT).
+	-Max Upload Bandwidth. Set this policy to define a limit for the upload bandwidth that a device will utilize for all concurrent upload activity via Delivery Optimization (set in kilobytes per second).
+
+	-Max Cache Size. Set this policy to define the maximum cache size Delivery Optimization can utilize as a percentage of the internal disk size.
+
+	-Max Cache Age. Set this policy to define the maximum time that the Delivery Optimization cache holds each file.
+
+
+Troubleshoot Windows updates
+test updates to prevent bad updates. The fastest way to test new upgrades is to sign up as a Windows Insider. If you are using a management system such as WSUS to approve upgrades, you can defer upgrades for an additional time to test the upgrades.
+
+Uninstall updates
+The simplest way to remove a problematic update is to uninstall it. To remove an update:
+
+Open the Settings app, select Update & security, select Windows Update, select Update history, and then select Uninstall updates.
+Right-click the suspect update, and then select Uninstall.
+
+Uninstall drivers
+If you suspect a driver to be problematic, you can uninstall the driver. To uninstall an unwanted driver:
+
+Open Device Manager.
+Locate the device driver with the problem driver installed, right select it, and then select Uninstall.
+In the Uninstall dialog box, select the Delete the driver software for this device check box, if available.
+
+Use System Restore
+If you are unsure which update has caused a problem, you can use System Restore to restore the computer’s configuration to an earlier point in time. However, this can potentially remove many updates.
+

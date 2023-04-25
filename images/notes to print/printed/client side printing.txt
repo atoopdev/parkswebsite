@@ -1,0 +1,59 @@
+Manage client-side printing (have print server)
+
+You can manage client-side printing using various tools, such as Devices and Printers, Print Management console, and Windows PowerShell cmdlets, from the Print Management module.
+typical tasks:
+Changing printer properties, such as sharing, security, and advanced properties.
+Selecting your default printer.
+Viewing and managing your print queue.
+Pausing or resuming a printer's operation.
+Pausing, resuming, restarting, or canceling print jobs.
+Reordering print jobs in your print queue.
+Understand Type 3 and 4 printer drivers
+Windows used separate Type 3 printer drivers for each printer device model. Printer manufacturers created customized printer drivers for each device to ensure that Windows could use all the printer features.
+Microsoft introduced Type 4 printer drivers in Windows 8 and Windows Server 2012. By following the Type 4 printer driver model, printer manufacturers can create a single Print Class Driver that supports similar printing features and printing language common to many printer models. Common printing languages include PCL and PostScript or XPS.
+
+Type 4 printer drivers are typically delivered using Windows Update or Windows Software Update Services (WSUS). Unlike Type 3 drivers, Type 4 drivers don't download from a print server.
+A Type 4 printer driver model provides the following benefits:
+
+Sharing a printer doesn't require adding extra drivers that match the client architecture.
+A single Type 4 driver can support multiple printer models.
+Driver files are isolated on a per-driver basis, which prevents potential driver file-naming conflicts.
+Driver packages are smaller and more streamlined than Type 3 drivers, and Type 4 drivers install faster than Type 3 drivers.
+Printer driver and the printer user interface can be deployed independently with Type 4 drivers.
+
+
+Modifying printer properties
+You can modify printer behavior by configuring printer properties, such as the:
+
+General printer properties.
+Printer's physical location.
+Printer-sharing functionality.
+Ports that the printer uses.
+Times during which the printer is available.
+Number of print jobs that can spool at one time.
+Names of groups that are allowed to use the printer.
+
+Manage print server properties
+remote management through the Print Management Console
+
+The Print Management Console provides a single interface through which you can administer multiple printers and print servers and perform management tasks, such as:
+Add and remove print servers.
+Add and delete printers.
+Add and manage drivers.
+Manage print queues.
+View and modify status of printers.
+Create custom filters to view printers that match certain criteria.
+
+Add and remove print servers
+If you have permissions and want to manage other Windows-based print servers, you must first add them to the Print Management Console by right-clicking the Print Servers node, then selecting Add/Remove Print Servers.
+
+Add and delete printers
+add via Network Printer Installation Wizard. Allows you to:
+Search the network for printers.
+Add a TCP/IP or Web Service Printer by IP address or host name.
+Add a new printer by using an existing port.
+Create a new port, and add a new printer.
+
+Add and manage drivers
+Windows also installs a driver for the printing device when you add a printer. - you need to add additional drivers for other OSs or 32bit vs 64bit if relevant.The Print Management Console allows you to add printer drivers by running the Add Printer Driver Wizard. You should know with Type 4 printer drivers, users no longer need multiple drivers for different printers, and you can't download printer drivers from the print server but from Windows Update or Windows Update for Business.
+

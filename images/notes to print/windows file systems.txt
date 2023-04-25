@@ -1,0 +1,50 @@
+Explore Windows File Systems
+
+Examine the File Allocation Table (FAT) file system (old but widely supported)(good for usb to transfer data between windows and linux)
+Performance degrades with large volume sizes
+FAT is the oldest file system that Windows client supports. It has a low overhead but many limitations when compared with newer file systems. However, enterprises often use it because nearly every operating system supports it. 
+The FAT file system is a simple file system originally designed for small disks and simple folder structures. The FAT file system is named for its method of organization, the file allocation table (FAT), which resides at the beginning of the volume. To protect the volume, two copies of the FAT are kept in case one becomes damaged. In addition, the FAT tables and the root directory must be stored in a fixed location so that the system's boot files can be correctly located.
+
+A disk formatted with FAT is allocated in clusters, whose size is determined by the size of the volume. A cluster is the smallest unit of disk space that you can allocate to store a file. For example, if a volume cluster is 4 kilobytes (KB) and you store a file with a size of 100 bytes on that volume, it will use one cluster, which is 4 KB. When a file is created, an entry is created in the directory and the first cluster number containing data is established. This entry in the FAT table either indicates that this is the last cluster of the file, or points to the next cluster.
+Updating the FAT table is important as well as time consuming. If the FAT table is not regularly updated, it can lead to data loss. It's time consuming because the disk read heads must be repositioned to the drive's logical track zero each time the FAT table is updated.
+
+There's no organization to the FAT directory structure, and files are given the first open location on the drive. In addition, FAT supports only read-only, hidden, system, and archive file attributes.
+
+FAT, FAT32, and exFAT
+The main difference between the three versions is the size of the largest supported volume, the default cluster size, and the maximum number of files and folders that you can create on the volume.
+
+FAT 	Max volume size: 4GB Max File Size: 4GB Max files per volume: 65536
+Fat32 	Max volume size: 32GB Max File Size: 4GB Max files per volume: 4177920
+exFat 	Max volume size: 2 32-1 clusters Max File Size: 16 exabytes Max files per volume: nearly unlimited
+
+Examine the New Technology File System (NTFS)
+
+(NTFS) is the default file system in Windows. NTFS is best for use on volumes of about 400 MB or more. This is because performance doesn't degrade under NTFS with larger volume sizes, as it does under FAT.
+-Reliability. NTFS uses log-file and checkpoint information to restore the consistency of the file system when the computer restarts. Can remap bad clusters and move data to new area.Bad area is not reused. Disk repair should not need to be used.
+-Security. You can set permissions on a file, folder, or the entire NTFS volume, which enables you to control which users, groups, or computers can read, modify, or delete data. You also can enable auditing to log activities on the NTFS volume.
+-Data confidentiality. NTFS supports EFS to protect file content. If you have enabled EFS, you can encrypt files and folders for use by single or multiple users
+Limit storage growth. NTFS supports the use of disk quotas to limit storage growth. Disk quotas enable you to specify the amount of disk space that's available to a user.
+-Provide additional space. NTFS allows you to create extra disk space by compressing files, folders, or whole drives. You also can extend an NTFS volume by mounting an additional volume to an empty folder.
+-Support for large volumes. You can format a volume up to 256 TB by using the NTFS with a 64 KB cluster size. NTFS supports larger files and a larger number of files per volume compared with any FAT version. NTFS also manages disk space efficiently by using smaller cluster sizes. 
+-Auditing. You can audit user actions on NTFS. For example, if a user deletes a file, Event Viewer will log that action.
+-Advanced features. NTFS includes multiple advanced features, such as distributed link tracing, sparse files, and multiple data streams.
+
+By using the Convert.exe utility, you can convert FAT or FAT32 to NTFS on data volumes without downtime or data loss.
+
+Disadvantages to using NTFS
+There are a few disadvantages to using NTFS, including:
+-Lack of file encryption. Currently, there is no file encryption built into NTFS. Therefore, someone can boot under MS-DOS, or another operating system, and use a low-level disk editing utility to view data stored on an NTFS volume.
+-Unable to format a floppy disk.
+-File system conversion. You can't convert NTFS to FAT. You first must back up data, and then format the volume by using the NTFS system and restore the data.
+
+Examine the Resilient file system (servers)
+ReFS is especially useful for data volumes in multiterabyte (TB) file servers and for cluster-shared volumes in failover clusters.
+ReFS was first introduced in Windows Server 2012 and is also available on Windows client. It's built on NTFS, and it's designed to provide the highest level of resiliency, integrity, and scalability, regardless of software or hardware failures.
+
+ReFS includes the following benefits:
+
+ReFS is designed to provide the highest level of protection for data from common errors that can cause corruption, such as unexpected loss of power or disk failure. If you use ReFS with redundant storage, which is mandatory in Windows 10 and later, ReFS can detect data corruption and automatically correct it by using the second copy of the data.
+ReFS periodically scans volumes. If it detects corruption, ReFS tries to correct the corruption automatically. If it can’t repair the corruption automatically, ReFS localizes the salvaging process to the corruption area. This doesn't require any downtime for the volume.
+ReFS supports extremely large volumes, even larger than NTFS, without impacting performance. ReFS volumes can have multiple petabytes of data and a theoretical size limit for ReFS volume is 2^78 bytes.
+ReFS allows you to control file permissions and configure auditing as you would with NTFS. But several other NTFS features, such as compression, disk quotas, EFS, and volume shrinking, aren't available with ReFS volumes.
+Windows client provided limited support for ReFS. You can use it only with two-way or three-way storage spaces. You can’t format ReFS for non-mirrored storage spaces, such as simple or parity storage spaces.

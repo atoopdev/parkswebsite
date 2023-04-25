@@ -1,0 +1,140 @@
+Provide apps to users
+
+Explore types of Windows apps
+
+Desktop apps
+Desktop apps are traditional apps, such as Microsoft Office.
+Can be installed via exe msi or via package from Endpoint Configuration Manager
+
+Universal Windows Platform apps
+UWP apps are distributed using a packaging system that installs the app that protects the user, device, and system. They are simple to install (usually one-click), and uninstall just as easily, without leaving "artifacts" that Win32 apps typically do. The Microsoft Store is the most common place to find UWP apps.
+More secure - include manifest that defines what device data and resources are used.
+cross-device windows support (desktops, mobile, xbox, mixed reality headsets)
+easy distribution (Microsoft store)
+private distribution
+
+UWP apps are packaged in the .appx file format and must be digitally signed. Existing desktop apps can also be packaged as UWP apps using the MSIX Packaging Tool, enabling some of the benefits of UWP apps without requiring additional development.
+
+not all UWP apps can be installed on Windows 8.x. The Microsoft Store will not show incompatible apps on a Windows 8.x device. Windows 7 does not support UWP apps.
+
+App-V apps
+App-V is used to deliver Win32 apps virtually to clients - either automatically, or on-demand. Unlike UWP or desktop apps, the application is never installed on the client OS. The App-V client simulates an operating system environment and specially prepared virtualized applications run within that simulated environment. 
+
+App-V provides the following benefits over traditionally-deployed, locally-installed applications:
+-Run multiple versions of applications without conflict.
+-Minimize application conflict. Each app-v app runs in its own isolated container.
+-simple removal. Never installed locally.
+-Simplify application upgrades. The modular nature of virtualized applications means that you can replace one version of an application with an updated version with less effort. The App-V client is included in Windows Enterprise and Education editions, however it must still be enabled using either Group Policy or PowerShell using the Enable-Appv command. 
+Note - anot all apps are suited to be virtualized.
+
+RemoteApp apps
+Windows Server RemoteApp apps display locally but run remotely. he RemoteApp apps uses the resources of the server where it's installed, while using minimal client resources.
+RemoteApp scenarios include:
+Insufficient client hardware
+Incompatible OS (64bit that needs to run 32bit)
+BYOD scenarios.(online only.)
+
+Examine methods for deploying desktop apps
+-Manual installation. This method requires a local administrator (either a user or a support person), to know the location of the setup files, and then initiate installation.
+-Group Policy. This method uses a Group Policy Object (GPO) to automate desktop app installation using the Windows Installer package file format (.msi file) from a network share. You can make desktop apps available for users to install via Control Panel, or you can configure desktop apps so that they install automatically for specific users, or on specific computers. To automate the installation process, some desktop apps require you to create a Windows Installer transform file (.mst file).
+-Microsoft Endpoint Configuration Manager. This method uses the application deployment capabilities of Configuration Manager to automate desktop app installation from a network share. The main benefits of Configuration Manager versus deploying with Group Policy are increased flexibility and detailed reporting. You also can use Configuration Manager to distribute application updates.
+-Microsoft Intune. Intune is Microsoft’s cloud –based solution for managing desktop and mobile devices. Intune supports deployment of UWP, AppX, and has recently added support for Win32 apps such as simple MSI files. While not as robust as Configuration Manager, Intune is significantly less effort to setup and manage. Intune also manages deployment of apps to non-Windows devices such as iOS, Android and macOS, as well as deployment to unmanaged (BYOD) devices.
+-Virtualized applications. Microsoft Application Virtualization (App-V) can make applications available on desktop computers without installing the applications directly. You use the Microsoft Application Virtualization Sequencer (Sequencer) to capture and later stream the application to the computer. The App-V Sequencer is part of Windows Assessment and Deployment Kit (Windows ADK).
+-Remote applications. With the RemoteApp feature in Windows Server, you can avoid having applications installed on desktop computers. An icon on the user’s desktop opens a Remote Desktop Protocol (RDP) session to a server that hosts the application. This method works best with desktop apps that need to access data in a central location.
+-Inclusion in a Windows operating system image. Many organizations include common applications in the base Windows operating system image that they deploy to desktop computers. With this method, you can avoid having a specific deployment process for the desktop app. However, this method also results in increased image maintenance over time as your organization releases updates and new versions of the desktop app.
+
+Manual App installation
+If a network administrator has made apps available for network installation, you can open Control Panel, and then select Get Programs. A list of apps that are available for network installation displays. Windows makes these apps available by using Group Policy Objects (GPOs) and software distribution points.
+
+The Windows Installer service
+MSI files are similar to EXE files, except they always contain application installers. Windows always uses Windows Installer (a utility included with Windows) to open MSI files and install the program they contain. You also can use non-Microsoft app-packaging products to convert app installers from the EXE file format to Windows Installer packages that are in the MSI format. A Windows Installer package in the MSI format includes the information that is necessary to add, remove, and repair an app. You can install an app installer in the MSI format locally, or you can deploy it through an automatic app-deployment solution, such as Group Policy or Endpoint Configuration Manager.
+
+If an app is packaged as an MSI file, and is accessible from the target device, you can run Msiexec.exe from an elevated command prompt to install a desktop app. Example:
+
+Msiexec.exe /i \\lon-dc1\apps\app1.msi
+
+Setup.exe files compared to MSI files
+Setup.exe files, which are just wrappers around one or more MSI files, are also known as "bootstrappers." EXE files provide the following advantages over MSI files:
+-An EXE file provides users with more control over the installation process. For example, they can verify whether your system can run the software you're about to install by verifying things like necessary RAM, disk space, and prerequisite libraries.
+-An EXE file actually triggers one or more MSI files. You can have several MSI files for a single setup.exe program, and the setup.exe is responsible for calling them as appropriate. For example, you can have an MSI for x86 and one for x64, and the setup.exe would trigger the right one based on your system.
+-An EXE file does all this checking and abstracts away some of the complexity of installing your program. The alternative is giving these instructions directly to the user; for example, install this MSI, then install that MSI, and so on.
+-With an EXE file, you can optionally build a custom UI. In comparison, MSI files have a standard UI based on the Windows version.
+
+The primary advantage of using MSI files manifests when apps are uninstalled-
+No leftover artifacts when uninstalling apps that were installed using an MSI package. 
+
+Automate desktop app installation
+
+Automating installation by using Group Policy(most basic)
+Group Policy software deployment enables you to deploy desktop apps in the Windows Installer .msi file format to computers that belong to an Active Directory Domain Services (AD DS) environment. Use Group Policy as a software-deployment method in small organizations where the desktop apps that you want to deploy already are packaged in the Windows Installer format.
+
+-The target computers must belong to an AD DS domain.
+-You must package the software in the Windows Installer .msi file format.
+-User and computer accounts can be the targets of an app deployment.
+-You can target a deployment at the domain level, the site level, or the organizational unit (OU) level.
+
+Group Policy software deployment supports the following deployment types:
+Assign. You can assign apps to users or computers. When you assign an app to a user, the app installs when the user signs in. When you assign an app to a computer, the app installs when the computer starts.
+Publish. You can publish apps to users. Doing so makes an app available through the Programs and Features item in Control Panel. You cannot publish apps to computers.
+
+Drawbacks-
+-It can be difficult to determine whether a deployment is successful. Group Policy software deployment does not include reporting functionality. The only way to determine whether an app has installed correctly is to check it manually.
+-There is no prerequisite checking. You can use Windows Management Instrumentation (WMI) queries to perform these checks. However, this complex operation requires significant expertise and time.
+-There is no installation schedule. Deployment will occur the next time a Group Policy refresh occurs. You cannot schedule Group Policy software deployment to occur at a specific date and time.
+
+Automating installation by using MDT (MIcrosoft Deployment Toolkit)(Create image and deploy OS AND apps)
+You can use MDT to perform lite-touch installation (LTI). LTI requires that you trigger an operating system deployment or app installation on each computer, but it requires minimal intervention after the deployment begins. You can use MDT to perform automated app and operating-system deployment without deploying Configuration Manager. However, you can use MDT when you integrate it with Configuration Manager to perform zero-touch installation (ZTI). 
+
+The LTI process requires only the tools that are available in MDT. To perform LTI by using MDT, perform the following steps:
+-Deploy MDT on a computer that will function as the management computer, create a deployment share on this computer, and then import the image files that you will use.
+-Create a task sequence and a boot image for the computer that will function as the reference computer.
+-Start the reference computer by using the medium that contains MDT. The task sequence files, task sequence, and boot image transfer to the reference computer.
+-Use the Windows Deployment Wizard to deploy the operating system and required apps. After deployment, capture the reference computer as an image.
+-Transfer the captured image to the management computer.
+-Create a new boot image and task sequence for deployment to the target computers.
+-Start the deployment target computers by using the medium that contains MDT. The task sequence files, task sequence, and boot image transfer to the reference computer.
+-Run the Windows Deployment Wizard to deploy the prepared image.
+
+Automating installation by using Microsoft Intune
+With Windows, organizations can use Microsoft Intune to manage Windows PCs either as mobile devices with mobile device management (MDM) or as computers with the Intune software client. Windows 8.1 and later, macOS, iOS, and Android can be managed using Intune’s MDM management capabilities.
+Microsoft recommends that customers use the MDM management solution whenever possible. 
+
+Once clients are enrolled in Intune, administrators can:
+
+Make software available as an optional installation or configure it as a required installation.
+Use reporting features of Microsoft Intune. This provides reporting on the success and failure of targeted app deployment, and it means that you can determine how many clients out of the target group successfully installed the deployed app.
+Remove apps that previously were deployed to client computers.
+Setup app protection policies for installing or launching an app. An example would be requiring the devices PIN locking be enabled before it can use Outlook with the organization’s Exchange server.
+
+Note: You must upload apps to Microsoft Intune before you can deploy them.
+
+Installation by using Endpoint Configuration Manager
+Endpoint Configuration Manager provides a comprehensive platform for app deployment and management, and it supports deploying apps in the .exe, .msi, .appv, and .appx file formats.e formats. Configuration Manager enables administrators to target deployments to groups of users and computers, and to configure deployments to occur at specific dates and times. Computers must have the Configuration Manager client installed to receive software that Configuration Manager deploys.
+Benefits:
+-Collections. Configuration Manager enables you to create collections that consist of manually created groups of users or computers, or collections based on the results of queries of user or computer properties. You then can target app deployment to these collections. For example, you can create a collection that includes only the computers that are located at a specific site with a certain deployed app and a specific piece of installed hardware.
+-Multiple deployment types.can configure a single app deployment but make it possible for that deployment to occur in different ways, depending on the conditions that apply to the target computer or user. For example, you can configure an app to install locally if a user is logged on to his or her primary device, but to stream as an App-V app if the user is logged on to another device.
+-Reporting. determine how successful an app deployment was after its completion.also enables you to simulate app deployments before performing them, enabling you to determine if any factors that you have not considered might block a successful app deployment.
+-Wake on LAN (WOL).WOL functionality allows you to schedule app deployment to occur after normal business hours. 
+-Software inventory, software metering, and Asset Intelligence. A software inventory provides you with a list of which apps are installed on your organization’s computers. You can use software metering to monitor how often particular apps are used. You can use the Asset Intelligence feature to check software-licensing compliance. 
+
+Install Microsoft 365 apps
+Microsoft 365 Apps is a subscription version of Office. Microsoft 365 Apps includes productivity services that require an Internet connection, such as Teams web conferencing, Exchange Online hosted email for business, SharePoint, and online storage with OneDrive. Not all Microsoft 365 plans include all productivity services.
+
+Most Microsoft 365 plans also include a version of the Office apps that you can install. The list of applications includes Microsoft Word, Microsoft Excel, Microsoft PowerPoint, Microsoft OneNote, and Microsoft Outlook, as well as Microsoft Access and Microsoft Publisher for PCs.
+
+You can install Microsoft 365 on up to five personal computers (PCs) or Macs per user. You can also install the Office Mobile apps for iOS and Android on up to five tablets and phones per user.
+
+Updates included.
+
+https://learn.microsoft.com/en-us/training/modules/provide-apps-users/6-install-microsoft-365-apps (need to print chart)
+
+Microsoft 365 deployment options
+The locally installed version of Microsoft 365 requires Windows 8.1 or newer Windows client operating system, or Windows Server 2012 R2 or newer Windows Server operating system. You can use some of the same methods to deploy Microsoft 365 that you use to deploy desktop apps. 
+deployment options:
+-Click-to-run. You download Microsoft 365 directly from the Microsoft website. Click-to-run uses the same streaming and virtualization technologies as App-V, so you can use the Microsoft 365 apps before the installation completes.
+-Configuration Manager. This provides native integration for deployment of Microsoft 365, providing extensive control over installation, updates, and settings.
+-Microsoft Intune. You can assign Microsoft 365 Apps apps to devices managed by Intune.
+-The Office Deployment Tool (ODT). The ODT is a command-line tool that you can use to download and customize your deployment of Microsoft 365 Apps. The ODT can be used to customize and manage Click-to-run deployments as well.
+-App-V. You create Microsoft 365 App-V packages using the Office Deployment Tool.
+-Remote Desktop Service (RDS). You can install Microsoft 365 on a computer that runs RDS.
+-Group Policy. You deploy Microsoft 365 Apps as a startup script to target devices.

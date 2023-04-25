@@ -1,0 +1,269 @@
+Configure storage on Windows clients
+
+Understand storage options
+
+Advantages of using local hard disks include:
+Availability. The local hard disk is always available, including in situations where there is no network connectivity.
+Performance. Only a single user uses the local hard disk. In addition, the bandwidth of your network connection does not limit you.
+
+Disadvantages of using local hard disks include:
+Backup. You will not automatically have a backup of your data.
+Physical failures. If your local hard disk fails, you will not be able to start your computer.
+
+Virtual hard disk
+Windows client fully supports virtual hard disks. It is capable of hosting native file systems and supporting standard disk operations. Virtual hard disks are an integral part of virtual machine environments such as Client Hyper-V. 
+
+Advantages of using virtual hard disks include:
+
+Portability. Virtual hard disk files might be easier to move between systems, particularly when you use shared storage.
+Backup. A .vhd file represents a single file for backup purposes.
+Disadvantages of using virtual hard disks include:
+
+Performance. In high I/O scenarios, the additional overhead of using a virtual hard disk can affect performance.
+Physical failures. A .vhd file does not protect against cluster failure on the underlying physical disks.
+
+Supporting virtual disk formats
+Windows client supports both the .vhd (limited to 2TB) and .vhdx (max size 64TB) (file structure reduces corruption and improves alignment) virtual disk formats.
+
+Server-based storage
+Using Windows Server as a file server gives you central access to your files.
+
+Advantages of using server-based storage include:
+
+Redundancy. Because most server-based storage protects data by using redundant disk systems, you will not suffer data loss due to the failure of a single hard disk.
+Backup. Automatic backup is in place for most server-based storage.
+Performance. Server-based storage is often faster than local hard disks because it uses faster disks, which you configure in a performance-optimized way.
+
+Disadvantages of using server-based storage include:
+
+Availability. You need a network connection to access server-based storage. If you are outside your company’s network, you might not be able to access the storage remotely, unless you use some kind of caching technique, such as offline files.
+Performance. You can experience bottlenecks in both network connectivity and access to server-based storage because many users are accessing the same storage simultaneously.
+
+Examine network and cloud storage options
+There are two types of external storage systems: NAS (Network-Attached Storage) and SAN (Storage Area Networking). You use NAS for both client-based and server-based computing, whereas you most often use SAN (iscsi)for server-based computing and then make it accessible to users.
+
+NAS (servers and computers. Stand alone device. File level access.)
+NAS is storage that is connected to a dedicated storage device. You can access it over the network. Not directly attached to computer or server.Each NAS device has a dedicated operating system (Ex.  Windows Storage Server) that controls access to the data on the device, which reduces the overhead associated with sharing the storage device with other server services.
+NAS devices typically provide file-level access to the storage, which means that you can access the data on the storage only as files. You must use protocols such as Common Internet File System (CIFS), Server Message Block (SMB), or network file system (NFS) to access the files. 
+
+SAN (high speed network with storage used by servers. Block level access.)
+SAN is a high‐speed network that connects computer systems or host servers to high-performance storage subsystems. A SAN usually includes various components such as host bus adapters (HBAs), special switches to help route traffic, and storage disk arrays with logical unit numbers (LUNs) for storage. A SAN enables multiple servers to access a pool of storage in which any server can potentially access any storage unit.
+SANs provide block-level access. This means that, rather than accessing the content on the disks as files by using a file access protocol, SANs write blocks of data directly to the disks by using protocols such as Fibre Channel over Ethernet or Internet Small Computer System Interface (iSCSI). Windows supports the iSCSI protocol with the iSCSI initiator.
+Today, most SAN solutions offer SAN and NAS together. 
+
+Cloud based storage
+simplifies access to your files as long as you have Internet access. Automatic backups. Sync favorites and settings across devices.
+Microsoft account -> Microsoft OneDrive. Microsoft Azure Storage.
+
+Azure storage
+Azure Storage can handle four types of storage:
+Blob storage stores any type of text or binary data. This includes documents and media files.
+Table storage stores structured datasets. Table storage is a NoSQL key-attribute data store.
+Queue storage provides messaging for workflows. Communication between different components of cloud services is also one of the uses of queue storage.
+File storage uses the standard SMB protocol. Azure virtual machines and cloud services can share file data with file storage. On-premises applications can also access file data in a share via file storage.
+
+Describe Master Boot Record and Grid Partition Table partitions
+Before you can use a disk in Windows, you must prepare it for use. You must first partition the disk by using the master boot record (MBR) partitioning scheme or the globally unique identifier (GUID) partition table-partitioning scheme. After partitioning the disk, you must create and format one or more volumes before an operating system can use the disk.
+
+MBR disks (the original)
+The MBR contains the partition table for a disk and a small amount of executable code called the master boot code.Partitioning a disk creates the MBR automatically on the first sector of the hard disk. The MBR contains a four-partition entry table that describes the size and location of a disk partition by using 32-bit logical block addressing (LBA) fields. Most Windows client editions with BIOS firm ware motherboards require MBR-partitioned system disk and are not bopttable with a larger capacity disk. Newer motherboards with Unified Extensible Firmware Interface (UEFI) can read both MBR and the newer Grid Partition Table (GPT) disks.
+
+How MBR disks work
+The MBR is stored at a consistent location on a physical disk, enabling a computer’s BIOS to reference it. During the startup process, a computer examines the MBR to determine which partition is active on the installed disks. The active partition contains the operating system startup files.
+
+Features of MBR disks
+Supports oldest systems and newer systems still offer support.
+Can be basic or dynamic disk type. Dynamic disks support additional options that are not available on a basic disk, including volumes that are able to span multiple disks and fault-tolerant volumes.
+the MBR partition scheme imposes certain restrictions, including:
+four partitions on each disk. One can be an extended volume with logical volumes inside.
+2TB max partition.
+No redundancy. If mbr is corrupted computer with not start.
+
+Grid Partition Table (GPT) disks (Newer/better) (UEFI systems can boot from them)
+GPT disks contain an array of partition entries that describe the start and end LBA of each partition on a disk. Each GPT partition has a unique GUID and partition-content type. Each LBA that the partition table describes is 64 bits in length. The UEFI specifies the GPT format, but it is not exclusive to UEFI systems. Both 32-bit and 64-bit Windows operating systems support GPT for data disks on BIOS systems. However, they cannot boot from them. 64-bit Windows operating systems support GPT for boot disks on UEFI systems.
+
+Features of GPT disks (address the limitations of mbr disks)
+-128 partitions per disk.
+-18 exabytes of volume size. This is a theoretical maximum.
+-Redundancy. Cyclic redundancy check (CRC) duplicates and protects the GPT.
+-You cannot use the GPT partition style on removable disks.
+
+GPT architecture
+Sector 0 contains a legacy protective MBR, which contains one primary partition that covers the entire disk. this is to prevent legacy systems from thinking disk does not have partitions and risking data loss. If legacy software cannot read GPT - only sees protected MBR.
+Sector 1 contains a partition table header. contains the unique disk GUID, the number of partition entries (usually 128), and pointers to the partition table.
+partition table starts at sector 2. Each partition entry contains a unique partition GUID, the partition offset, length, type (also a GUID), attributes, and a 36-character name.
+
+Partitions Windows Makes When Installed on GPT Disk
+A
+
+Extensible Firmware Interface (EFI) system partition
+
+100 megabytes (MB)
+
+Contains the Windows Boot Manager, the files that an operating system requires to start, the platform tools that run before an operating system starts, and the files that the Windows Boot Manager must access before an operating system starts. The EFI system partition must be the first partition on the disk because it is impossible to span volumes when the EFI system partition is logically between what you are attempting to span.
+
+B
+
+Microsoft Reserved partition (MSR partition)
+
+128 MB
+
+Reserved for Windows components. The Disk Management tool hides this partition. It does not receive a drive letter. Usage example: When you convert a basic GPT disk to dynamic, the system decreases the size of the MSR partition and uses that space to create the Logical Disk Manager Metadata partition.
+
+C
+
+Operating system
+
+Remaining disk
+
+This partition contains the operating system and is the size of the remaining disk.
+
+Describe dynamic disks
+You can create volumes that span multiple disks and fault-tolerant volumes. Dynamic disks can also use the MBR or GPT partition styles. Dynamic disks use a database to track information about volumes on dynamic disks in the computer.Each dynamic disk in a computer stores a replica of the dynamic disk database, which is useful if you experience a corrupted dynamic disk database. Windows can repair the corrupted dynamic disk by using the database on another dynamic disk.On MBR partitions, Windows stores the database in the last 1 MB of the disk. On GPT partitions, the database is located in a 1-MB reserved and hidden partition.
+
+You can perform the following operations only on dynamic disks:
+
+Create and delete spanned, striped, and mirrored volumes.
+Extend a simple volume to a noncontiguous space or spanned volume.
+Remove a mirror from a mirrored volume.
+Repair mirrored volumes.
+Reactivate a missing or offline disk.
+
+You should be aware of the following considerations regarding dynamic disks:
+You cannot convert a basic disk to a dynamic disk unless there is at least 1 MB of unused space on the disk because of the Logical Disk Manager database.
+You cannot convert a dynamic disk to a basic disk without losing data. You need to delete all dynamic volumes on the disk. Disk Management automatically converts the disk to basic when you delete the last volume.
+You cannot use Windows PowerShell to manage dynamic disks. The storage cmdlets will not recognize dynamic disks.
+
+Convert a basic disk to a dynamic disk
+You use the Disk Management snap-in to convert a basic disk to a dynamic disk. Right-click the disk you want to convert and select Convert to Dynamic Disk.
+
+Basic disks vs. dynamic disks
+The following table describes the differences between using basic and dynamic disks.
+
+Basic disks
+
+Compatible with most operating systems.
+Convert to dynamic disk without data loss.
+Only uses contiguous space on one disk.
+Limited number of partitions on MBR disks.
+Dynamic disks
+
+Multidisk volumes.
+Fault-tolerant volumes.
+1024 volumes on MBR disks.
+Only compatible with Windows.
+Does not convert to basic disk without data loss.
+
+Explore disk management tools
+can initialize disks, create volumes, and format a volume file system. Additional common tasks include moving disks between computers, changing disks between basic and dynamic types, and changing the partition style of disks.
+You can use the following tools to manage Windows disks and the volumes or partitions that they contain:
+-Disk Management. A GUI for managing disks and volumes, both basic and dynamic, locally or on remote computers. (Can work remotely within domains - easy when using mmc and you add disk management snap in)
+-DiskPart. A scriptable command-line tool with functionality that is similar to Disk Management, which also includes advanced features. You can create scripts to automate disk-related tasks, such as creating volumes or converting disks to dynamic. This tool always runs locally.
+-Windows PowerShell 5.0. Windows PowerShell is a scripting language that accomplishes many tasks in the Windows environment. Starting with Windows PowerShell 3.0, disk management commands are available for use as stand-alone commands or as part of a script.
+
+Disk Management
+Use disk management snap in to mmc.
+-Simpler partition creation. When you right-click a volume, you can choose whether to create a basic, spanned, or striped partition directly from the menu.
+-Disk conversion options. When you try to extend a partition to a noncontiguous area on the same or another disk, Disk Management prompts you to convert the disk to dynamic. You also can convert basic disks to dynamic disks without incurring data loss. However, converting a dynamic disk to basic is not possible without first deleting all of the volumes.
+-Extend and shrink partitions. You can extend and shrink partitions from Disk Management.
+To open:
+Start>disk
+
+DiskPart
+you can manage fixed disks and volumes by using scripts or direct input from the command line. At the command prompt, type DiskPart, and then enter commands at the DiskPart command prompt. The following are common DiskPart actions:
+To view a list of DiskPart commands, at the DiskPart command prompt, type commands.
+To create a DiskPart script in a text file and then run the script, type a script similar to diskpart /s testscript.txt.
+To create a log file of the DiskPart session, type DiskPart /s testscript.txt > logfile.txt.
+
+common commands:
+list disk
+
+Displays a list of disks and related information, including: Disk size, the amount of available free space on the disks, whether the disks are basic or dynamic, and whether the disks use the MBR or GPT partition style. The disks marked with an asterisk (*) are the ones against which the commands will execute.
+
+select disk disknumber
+
+Selects the specified disk, where disknumber is the disk number, and gives it focus.
+
+convert gpt
+
+Converts a disk with the MBR partition style to a basic disk with the GPT partition style.
+
+Windows PowerShell
+Windows PowerShell 3.0 and newer versions include commands for natively managing disks. The following table details some Windows PowerShell commands.
+
+Get-Disk
+
+Returns information on all disks or disks that you specify with a filter.
+
+FriendlyName returns information about disks that have the specified friendly name. Number returns information about a specific disk.
+
+Clear-Disk
+
+Cleans a disk by removing all partition information.
+
+ZeroOutEntireDisk writes zeros to all sectors of a disk.
+
+Initialize-Disk
+
+Prepares a disk for use. By default, it creates a GPT partition.
+
+PartitionStyle specifies the type of the partition, either MBR or GPT.
+
+Set-Disk
+
+Updates a physical disk with the specified attributes.
+
+PartitionStyle specifies the type of the partition, either MBR or GPT. You can use this to convert a disk that was initialized previously.
+
+Get-Volume
+
+Returns information on all file systems’ volumes, or those volumes that you specify with a filter.
+
+DriveLetter Char gets information about the specified drive letter. FileSystemLabel String returns information on the NTFS file systems or Resilient File System (ReFS) volumes.
+
+Describe simple volumes (most common)
+a contiguous, unallocated area of a physical hard disk that you format to create a file system. You then assign a drive letter to it or mount it in an existing volume by using a volume mount point.
+
+Simple volume characteristics
+volume that encompasses available free space from a single, basic, or dynamic hard-disk drive. can consist of a single region on a disk or multiple regions of the same disk that link together.
+-Not fault-tolerant. Disk failure leads to volume failure.
+-Volume I/O performance is the same as disk I/O performance.
+
+Simple volume scenarios
+-Business desktop computer with one disk.
+-Business desktop computer with one disk and more than one volume. Ex. keep one volume for os, one for boot, data on third. Allows the os partition to easily be upgraded without losing data. 
+A simple volume might provide better performance than striped data layout schemes. 
+a desktop PC might benefit from a combination of an SSD for Windows system files (speed but expensive) and a large capacity hard disk drive for business data (slower but cheaper.)
+
+Dynamic Disks
+To use mirrored, spanned, or striped volumes, you must convert the disks to dynamic disks 
+
+Compare mirrored, spanned and striped volumes
+-Mirrored volume. A mirrored volume presents two disks to the operating systems as a single logical volume. A mirrored volume always consists of exactly two disks. Each disk has an identical copy of the data that is on the logical volume.
+-Spanned volume. A spanned volume joins areas of unallocated space on at least two and at most 32 disks into a single logical disk.
+Striped volume. Similar to a spanned volume, a striped volume also requires two or more disks. However, striped volumes map stripes of data cyclically across the disks.
+
+Mirrored volumes (os redundancy)
+A mirrored volume also is a RAID-1 (Redundant Array of Independent Disks) volume.You use a mirrored volume when you wish to provide redundancy for your system partition. Must be same size. Cannot resize.
+-There are two main benefits of using mirrored volumes. Recovering from a disk failure is very quick as there is no data to rebuild. Additionally, read operations have a slight performance boost because you can read from both disks simultaneously.
+-There are two main disadvantages of using mirrored volumes. Write operations are slightly slower as every write needs to occur on both disks. Mirrored volumes are the least efficient use of space compared with other disk configurations.
+
+Spanned volumes (convenient storage management)
+gather noncontiguous free space from two or more disks into the same volume. A spanned volume does not provide any fault tolerance. Additionally, because the areas that you combine are not necessarily equally distributed across the participating disks, there is no performance benefit to implementing spanned volumes. I/O performance is comparable to simple volumes.You can create a spanned volume by extending a simple volume to an area of unallocated space on a second disk, or you can designate multiple disks during the volume-creation process.
+The benefits of using spanned volumes include uncomplicated capacity planning and straightforward performance analysis.
+If you create a new spanned volume, you must define the same properties as when you create a simple volume in terms of size, file system, and drive letter. In addition, you must define how much space to allocate to the spanned volume from each physical disk.
+It is possible to shrink a spanned volume. However, it is not possible to remove an area from a specific disk. For example, if a spanned volume consists of three 100-MB partitions on each of three disks, you cannot delete the third element.If you install additional hard disks, it is possible to extend the spanned volume to include areas of unallocated space on the new disks, as long as the total number of disks does not exceed the 32-disk limit for spanned volumes.
+
+Striped volumes (improve I/0 performance, isolating the paging file)
+A striped volume is a RAID-0 volume. A striped volume combines equal-sized areas of unallocated space from multiple disks. You should create a striped volume when you want to improve the I/O performance of a computer. Striped volumes provide for higher throughput by distributing I/O across all disks that are a part of the volume.
+Striped volumes also are well suited for isolating the paging file. By creating a volume where Pagefile.sys is the only file on the entire volume, the paging file is less likely to become fragmented, which helps improve performance. Striped volumes provide a better solution than RAID-5 for paging file isolation. This is because the paging file activity is write-intensive, and RAID-5 (striped set with parity volume - has fault tolerance. Not possible to set up with Disk Management) is better suited for read performance than write performance.
+downside - no room for redundance. Failure on any disk will result in disrupting entire file system.The more disks that you combine in RAID-0, the less reliable the volume becomes.
+When you create a striped volume, you define the file system, drive letter, and other standard volume properties. Additionally, you must define the disks from which to allocate free space. The allocated space from each disk must be identical in size. It is possible to delete a striped volume, but it is not possible to extend or to shrink the volume.
+
+Manage existing volumes
+Windows allows you to resize a volume by using the Shrink Volume or Extend Volume options within the provided disk tools.To perform a shrink operation, ensure that the disk is formatted with the NTFS file system or, if it is unformatted, ensure that you are part of the Backup operator or Administrators group. When you shrink a volume, contiguous free space relocates to the end of a volume.
+Before shrinking -
+defragment disk
+make sure volume does not store any page files (unmovable file) - any unmovable file will prevent the volume from shrinking beyond that space. Move any unmovable files to another volume before shrinking.
+You can increase the size of a simple volume in the following ways:
+-extend volume if there is free space adjacent. Or convert to dynamic disk. Or create a spanned volume if there is space on other disks.

@@ -1,0 +1,78 @@
+Maintain disks and volumes
+
+Monitor storage usage
+Settings>Storage settings
+see storage and the type of files the drive is storing.
+Storage gives overview of all volumes attached to PC. When you select a drive, you will get a more detailed view of the categories of files that are taking the most space. The categories are color-coded to make it easier to see how the space is divided.
+
+Understand disk optimization
+
+Hard disk drives and defragmentation
+Initially, Windows saves files in contiguous areas on a given volume. This is efficient for the physical disk, as the read/write heads are able to access these contiguous blocks most quickly. As space becomes smaller, is harder to find free contiguous space. Deleting files also creates gaps. Newly stored content becomes fragmented.
+
+Types of fragmentation:
+-Internal fragmentation. Occurs when disk space is over-provisioned and then not used by an application. Disk space is provisioned into fixed-sized units, so any portion of a unit that's unused is a leftover fragment.
+-External fragmentation. Occurs when an application or process is removed from a storage system and the used space isn't immediately reallocated. The unused space that's left behind is a fragment.
+-Data fragmentation. Occurs when data is written to file storage in a non-sequential manner, using the next available block of storage.
+
+Solid state drives (SSD)
+Defragmentation is not needed on SSDs, as they work quite differently from traditional hard disk drives. The Windows Storage Optimizer subsystem automatically uses TRIM to mark data blocks as not being used and optimize the drive.
+
+Optimizing a disk
+Optimize Drives tool. Windows defragments drives automatically on a scheduled basis, running weekly in the background to rearrange data and reunite fragmented files. 
+To optimize a volume or drive manually, or to change the automatic optimization schedule, right-click a volume in File Explorer, select Properties, select the Tools tab, and then select Optimize. 
+Can analyze to see if needs optimization or run manual optimization.
+Can change following settings:
+Enable or disable the automated optimization.
+Specify the automated optimization frequency.
+Set a notification for three consecutive missed optimization runs.
+Select which volumes you want to optimize.
+
+You can also start the optimization process by launching Defragment and Optimize Your Drives from the Administrative Tools section within the System and Security section in Control Panel.
+
+You can configure and run disk defragmentation from an elevated command prompt by using the defrag command-line tool. Use Defrag /? at a command prompt for available options.
+
+You can minimize file system fragmentation by using the following methods:
+
+Partition a disk so that you isolate static files from those that users create and delete frequently, such as some user-profile files and temporary Internet files.
+
+Use the Disk Cleanup feature (cleanmgr.exe) to free disk space that is consumed by each user’s preferences for console files that the profile saves.
+
+Explore file and folder compression
+File compression on NTFS formatted volumes only. Uses no loss data algorithm.
+
+Configuring compression
+In folder ribbon select properties>Advanced - can select compression. Can also configure from command line.
+
+Features of NTFS folder compression (data access not compromised - files themselves are compressed not the folder as all one unit)
+-Compression is an attribute of a file or folder.
+-Volumes, folders, and files on an NTFS volume are either compressed or uncompressed.
+-New files created in a compressed folder are compressed by default.
+-The compression state of a folder does not necessarily reflect the compression state of the files within that folder. For example, you can compress a folder without compressing its contents, and you can compress some or all of the files in a compressed folder.
+-NTFS compression works with NTFS-compressed files without decompressing them because they are decompressed and recompressed without user intervention:
+-When you open a compressed file, the Windows operating system automatically decompresses it for you.
+-When the file closes, the Windows operating system compresses it again.
+-NTFS-compressed file and folder names display in a different color, by default, to make them easier to identify.
+-NTFS-compressed files and folders only remain compressed while an NTFS volume is storing them.
+-You cannot encrypt an NTFS-compressed file.
+-The compressed bytes of a file are not accessible to applications, which see only the uncompressed data:
+-Applications that open a compressed file can perform tasks on it as if the file was not compressed.
+-If you copy compressed files to a file allocation table (FAT) or Resilient File System (ReFS) volume, the copy of the file will not be compressed because those file systems do not support NTFS compression.
+
+Copying and moving compressed files and folders (copying inherits destination settings)
+-When you copy a file or folder within an NTFS partition, the file or folder inherits the compression state of the target folder. For example, if you copy a compressed file or folder to an uncompressed folder, the file or folder is uncompressed automatically.
+-When you move a file or folder within an NTFS partition, the file or folder retains its original compression state. For example, if you move a compressed file or folder to an uncompressed folder, the file remains compressed.
+-When you move a file or folder between NTFS partitions, the file or folder inherits the target folder’s compression state. Because Windows treats a move between partitions as a copy followed by a delete operation, the files inherit the target folder’s compression state.
+-When you copy a file to a folder that already contains a file of the same name, the copied file takes on the compression attribute of the target file, regardless of the compression state of the folder.
+-Compressed files that you copy to a FAT partition are uncompressed because FAT volumes do not support compression. However, when you copy or move files from a FAT partition to an NTFS partition, they inherit the compression attribute of the folder into which you copy them.
+-When you copy a file, NTFS calculates disk space based on the uncompressed file’s size. This is important because files are uncompressed during the copy process, and the system must ensure there is enough space. If you copy a compressed file to an NTFS partition that does not have enough space for the uncompressed file, an error message notifies you that there is not enough disk space.
+
+Compressed (zipped) folder (works on NTFS and FAT) (a single file inside which Windows allows you to browse) (data access sometimes compromised)
+-In Windows, you can combine several files and folders into a single compressed folder by using the Compressed (zipped) Folder feature. Use this feature to share a group of files and folders with others, without sending individual files and folders.
+-Files and folders that you compress by using the Compressed (zipped) Folder feature can compress on both FAT-formatted and NTFS-formatted volumes. A zipper icon identifies files and folders that you compress by using this feature.
+-You can open files directly from these compressed folders, and you can run some of these programs directly from compressed folders without uncompressing them. Files in compressed folders are compatible with other file compression programs and files. You also can move compressed files and folders to any drive or folder on your computer, the Internet, or your network.
+-Compressing folders by using Compressed (zipped) Folder does not affect a computer’s overall performance. Central processing unit (CPU) utilization increases only when you use Compressed (zipped) Folder to compress a file. Compressed files take up less storage space, and you can transfer them to other computers more quickly than uncompressed files. You can work with compressed files and folders the same way you work with uncompressed files and folders.
+
+Comparing zipped folder compression and NTFS folder compression
+-Additionally, zipped folders are useful for combining multiple files into a single email attachment, whereas NTFS compression is not.
+-NTFS compression does not create a second, compressed zip-type file. Instead, it actually reduces the size of the selected file, folder, or volume by compressing its content.

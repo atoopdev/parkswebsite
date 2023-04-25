@@ -1,0 +1,193 @@
+Explore Microsoft Defender
+
+Microsoft Defender Antivirus helps protect your computer from spyware, malware, and viruses. Microsoft Defender Antivirus also is Hyper-V-aware, which means that can detect whether Windows is running as a virtual machine. Microsoft Defender Antivirus uses definitions to determine if software it detects is unwanted, and it alerts you to potential risks. To help keep definitions up to date, Microsoft Defender Antivirus automatically installs new definitions as they're released.
+
+You can use Microsoft Defender Antivirus to run a Quick, Full, Custom, or Offline scan. If you suspect spyware has infected a specific area of a computer, you can customize a scan by selecting specific drives and folders. You also can configure the schedule that Microsoft Defender Antivirus will use.
+
+You can choose to have Microsoft Defender Antivirus exclude processes in your scan. This can make a scan finish more quickly, but your computer will have less protection.
+
+Alert levels help you determine how to respond to spyware and unwanted software. You can configure Microsoft Defender Antivirus behavior when a scan identifies unwanted software. You also receive an alert if software attempts to change important Windows operating system settings.
+
+Quick
+
+View detailed configuration information. Checks the areas that malware, including viruses, spyware, and unwanted software, are most likely to infect.
+
+Full
+
+Checks all files on your hard disk and all running programs.
+
+Custom
+
+Enables users to scan specific drives and folders.
+
+Microsoft Defender Offline
+
+Reboots the device and runs a scan outside the Windows kernel.
+
+Quick scan daily, Full scan is worried could be infected.
+
+If you trust detected software, stop Microsoft Defender from alerting you to risks that the software might pose by adding it to the Allowed list. In the Alert dialog box, on the Action menu, select Allow, and then select Apply actions. If you decide to monitor the software later, remove it from the Allowed list. Settings>Excluded files and locations
+
+Microsoft Defender Offline runs separate from the Windows kernel and can target malware that bypasses the Windows shell, including malware that may infect or overwrite a computer’s master boot record (MBR). Microsoft Defender Offline can be launched with a single button from the Microsoft Defender Antivirus client.
+
+Microsoft Defender Antivirus includes 12 Windows PowerShell cmdlets that you can use to perform various tasks. The following table lists these cmdlets.
+Add-MpPreference
+
+Modify Microsoft Defender Antivirus settings.
+
+Get-MPComputerStatus
+
+View status of antimalware software.
+
+Get-MPPreference
+
+View Microsoft Defender Antivirus scan and update preferences.
+
+Get-MpThreat
+
+View threat detection history.
+
+Get-MpThreatCatalog
+
+View list of known threats from the definitions catalog.
+
+Get-MpThreatDetection
+
+View active and previous detected malware threats.
+
+Remove-MpPreference
+
+Remove default actions or exclusions.
+
+Remove-MpThreat
+
+Remove an active threat.
+
+Set-MpPreference
+
+Configure Microsoft Defender Antivirus scan and update preferences.
+
+Start-MpScan
+
+Trigger a scan on the computer.
+
+Start-MpWDOScan
+
+Trigger a Microsoft Defender Offline scan.
+
+Update-MpSignature
+
+Update a computer’s antimalware definitions.
+
+you also can use the mpcmdrun.exe command from the cmd.exe environment to trigger a scan. For example, to trigger a quick scan, run the following command:
+mpcmdrun.exe -scan -scantype 1
+
+Additional features in Microsoft Defender Antivirus
+-Block at First Sight. This cloud protection feature allows Microsoft Defender Antivirus to rapidly identify and block new malware. You enable Block at First Sight through Group Policy. When you enable this feature, both cloud-based protection and Automatic sample submission will be turned on.
+-Detect and Block Potentially Unwanted Applications. This feature enables you to block unwanted software during downloading and installation times. available to enterprise users whose client infrastructure you manage by using Endpoint Configuration Manager or Intune.
+-Microsoft Defender for Endpoint. This cloud-based online service assists organizations in detecting, investigating, and responding to advanced persistent threats. Microsoft Defender for Endpoint provides behavior-based advanced attack detection, a forensic timeline, and a unique threat intelligence knowledge base.
+
+Understand Firewalls
+Firewalls block or allow network traffic, based on the traffic’s properties. You can utilize hardware-based firewalls or software firewalls that run on a device.
+
+Depending on your firewall’s sophistication, you can configure it to block or allow traffic based on the:
+
+Traffic source address
+Traffic destination address
+Traffic source port
+Traffic destination port
+Traffic protocol
+Packet contents
+
+Administrators often place firewalls at a network perimeter, between an organization’s screened subnet and the Internet, and between the screened subnet and the internal network. Today, it also is common for each host to have its own additional firewall.
+
+Examine network location profiles
+Windows uses network location awareness to identify networks uniquely to which a computer is connected. Network location awareness collects information from networks, including IP addresses and address data for media access control (MAC) address data from important network components, like routers and gateways, to identify a specific network.
+
+There are three types of network location:
+-Domain networks. These typically are workplace networks that attach to a domain. Use this option for any network that allows communication with a domain controller. Network discovery is on by default.
+-Private networks. These are networks at home or work where you know and trust the people and devices on the network. When you select Home or work (private) networks, this turns on network discovery.
+-Guest or public networks. These are networks in public places. This location keeps the computer from being visible to other computers. When you select the Public place network location, Windows turns off network discovery.
+
+You can modify the firewall settings for each type of network location from the main Windows Defender Firewall page. Select Turn Windows Defender Firewall on or off, select the network location, and then make your selection.
+
+You also can modify the following options:
+-Block all incoming connections, including those in the list of allowed programs.
+-Notify me when Windows Defender Firewall blocks a new program.
+
+If you connect to a Public network, and Windows Defender Firewall is on, some programs or services might ask you to allow them to communicate through the firewall so that they can work properly.
+
+Explain Windows Defender Firewall with Advanced Security (windows firewall>Advanced settings)
+You can perform advanced configuration in the Windows Defender Firewall with Advanced Security snap-in. You can access this snap-in through Control Panel from the Windows Defender Firewall page by selecting Advanced settings in the left pane. The snap-in provides an interface for configuring Windows Defender Firewall locally, on remote computers, and by using Group Policy.
+
+Windows Defender Firewall with Advanced Security is an example of a network-aware app. Can have diff profiles for security depending on what network on. Relaxed on domain, strict on public network. (Actions>Properties)
+
+Windows Defender Firewall with Advanced Security properties
+The options that you can configure for each of the three network profiles are:
+
+Firewall state. Turn on or off for each profile.
+
+Inbound connections. Configure to block connections that do not match any active firewall rules, block all connections regardless of inbound rule specifications, or allow inbound connections that do not match an active firewall rule.
+
+Outbound connections. Configure to allow connections that do not match any active firewall rules, or block outbound connections that do not match an active firewall rule.
+
+Settings. Configure display notifications, unicast responses, local firewall rules, and local connection security rules.
+
+Logging. Configure the following logging options:
+
+Name. Use a different name for each network profile’s log file.
+
+Size limit (KB). The default size is 4,096. Adjust this if necessary when troubleshooting.
+
+No logging occurs until you set one or both of following two options to Yes:
+
+Log dropped packets
+Log successful connections
+
+Windows Defender Firewall with Advanced Security rules
+Rules are a collection of criteria that define what traffic you will allow, block, or secure with a firewall. You can configure the following types of rules:
+
+Inbound
+Outbound
+Connection security rules
+
+Inbound rules
+Inbound rules explicitly allow or block traffic that matches the rule’s criteria. For example Remote Desktop - allow from local network, block if remote. When you first install the Windows operating system, Windows Defender Firewall blocks all unsolicited inbound traffic. To allow a certain type of unsolicited inbound traffic, you must create an inbound rule that describes that traffic. 
+
+Outbound rules
+Windows Defender Firewall allows all outbound traffic unless a rule blocks it. 
+
+Inbound and outbound rule types
+There are four different types of inbound and outbound rules:
+-Program rules. These control connections for a program. These rules are useful when you are not sure of the port or other required settings, because you only specify the path to the program’s executable (.exe) file.
+-Port rules. These control connections for a TCP or UDP port. Use this type of firewall rule to allow a connection based on the TCP or UDP port number over which the computer is trying to connect. 
+-Predefined rules. These control connections for a Windows-based experience. Use this type of firewall rule to allow a connection by selecting one of the programs or experiences from the list. Network-aware programs that you install typically add their own entries to this list, so that you can enable and disable them as a group.
+-Custom rules. Configure these as necessary. Use this type of firewall rule to allow a connection based on criteria that other types of firewall rules do not cover.
+
+Example: Consider the scenario in which you want to create and manage tasks on a remote computer by using the Task Scheduler user interface. Before connecting to the remote computer, you must enable the Remote Scheduled Tasks Management firewall exception on the remote computer. You can do this by using the predefined rule type on an inbound rule.
+
+Connection security rules
+Work with firewall rules but are seperate. Connection security rules secure traffic as it crosses a network by using IPsec. Use connection security rules to require authentication or encryption of connections between two computers. Connection security rules specify how and when authentication occurs, but they do not allow connections.
+You can create the following connection security rule types:
+-Isolation rules. These isolate computers by restricting connections based on authentication criteria, such as domain membership or health status. Isolation rules allow you to implement a server or domain isolation strategy.
+-Authentication exemption rules. These designate connections that do not require authentication. You can designate computers by specific IP address, an IP address range, a subnet, or a predefined group, such as a gateway. You typically use this type of rule to grant access to infrastructure computers, such as Active Directory domain controllers, certification authorities (CAs), or Dynamic Host Configuration Protocol (DHCP) servers.
+-Server-to-server rules. These protect connections between specific computers. When you create this type of rule, you must specify the network endpoints between which you want to protect communications. You then designate requirements and the type of authentication that you want to use, such as the Kerberos version 5 protocol. A scenario in which you might use this rule is if you want to authenticate traffic between a database server and a business-layer computer.
+-Tunnel rules. These secure communications that travel between two computers by using tunnel mode in IPsec instead of transport mode. Tunnel mode embeds the entire network packet into one that you route between two defined endpoints. For each endpoint, specify a single computer that receives and consumes the sent network traffic, or specify a gateway computer that connects to a private network onto which the received traffic is routed after extracting it from the tunnel.
+-Custom rules. Configure these as necessary. Custom rules authenticate connections between two endpoints when you cannot set up authentication rules by using the other rule types.
+
+Monitoring
+Windows Defender Firewall uses the monitoring interface to display information about current firewall rules, connection security rules, and security associations (SAs). The Monitoring page displays which profiles are active (domain, private, or public), and the settings for the active profiles. Events can also be found in Event Viewer.
+
+Windows PowerShell commands
+
+You can use the following Windows PowerShell cmdlets to manage Windows Defender Firewall rules:
+
+Get-NetFirewallRule. Use this cmdlet to display a list of available firewall rules.
+Copy-NetFirewallRule. Use this cmdlet to copy an existing firewall rule.
+Enable-NetFirewallRule. Use this cmdlet to enable an existing firewall rule.
+Disable-NetFirewallRule. Use this cmdlet to disable an existing firewall rule.
+New-NetFirewallRule. Use this cmdlet to create a new firewall rule.
+Remove-NetFirewallRule. Use this cmdlet to delete a firewall rule.
+Rename-NetFirewallRule. Use this cmdlet to rename a firewall rule.
+Set-NetFirewallRule. Use this cmdlet to configure the properties of an existing firewall rule.
+Show-NetFirewallRule. Use this cmdlet to view all firewall rules in the policy store.

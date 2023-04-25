@@ -1,0 +1,55 @@
+Active Directory groups
+
+Groups are used to collect user accounts, computer accounts, and other groups into manageable units.
+- allows administrators to manage activities like permissions at scale.
+
+-Distribution groups Used to create email distribution lists. Cannot be used to scope permissions.
+-Security groups Used to assign rights and permissions.
+	- User rights define a person’s administrative role in the domain - ex. Backup Operator can backup and restore files. (what you can do.)
+	- Permissions are different than user rights. Permissions are assigned to the security group for the shared resource. Permissions determine who can access the resource and the level of access, such as Full Control. 
+Both distribution groups and security groups can be used as an email entity.
+
+Active Directory default security groups
+DnsAdmins - Members of this group have administrative access to the DNS Server service.
+Domain Admins - Designated administrators of the domain; the Domain Admins group is a member of every domain-joined computer's local Administrators group and receives rights and permissions granted to the local Administrators group, in addition to the domain's Administrators group.
+Domain Computers - All workstations and servers that are joined to the domain are by default members of this group.
+Domain Users - All users in the domain
+Enterprise Admins - Enterprise Admins are like Domain Admins, but have permissions to change forest-wide configuration settings; the Enterprise Admins group is a member of every domain's Administrators group and receives rights and permissions granted to that group. Enterprise admin > Domain admin as forest can have mult domains
+IIS_IUSRS - Built-in group used by Internet Information Services.
+Print Operators - Members of this group can administer domain printers.
+Remote Desktop Users - Members of this group are granted the right to log on remotely using RDP.
+
+Configure User Account Control
+
+Explore User Account Control
+UAC is a security feature that provides a way for users to elevate their status from a standard user account to an administrator account, without having to sign out or switch user profiles. 
+When something needs admin control, user receives prompt to proceed and enter admin credentials.
+pre win 10 required admin credentials to do a lot of basic tasks, like change time zones. this is no longer the case.
+
+Standard users can (without UAC prompts) -
+Install updates from Windows Update.
+Install drivers from Windows Update or those that are included with the operating system.
+View Windows settings. However, a standard user is prompted for elevated permissions when changing Windows settings.
+Pair Bluetooth devices with the computer.
+Reset the network adapter and perform other network-diagnostic and repair tasks.
+
+Understand UAC elevation prompts
+
+Administrator account permission tasks
+The following list details some of the tasks that require elevation to an administrator account:
+
+Install and uninstall applications.
+Install a driver for a device, such as a digital camera driver.
+Install Windows updates.
+Configure Parental Controls.
+Install an ActiveX control.
+Open Windows Defender Firewall in Control Panel.
+Change a user’s account type.
+Modify UAC settings in the Security Policy Editor snap-in (Secpol.msc) to the Microsoft Management Console (MMC).
+Configure Remote Desktop access.
+Add or remove a user account.
+Copy or move files into the Program Files or Windows directory.
+Schedule Automated Tasks.
+Restore system backup files.
+Configure Automatic Updates.
+Browse to another user’s directory.

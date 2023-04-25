@@ -1,0 +1,203 @@
+Examine key performance components in Windows client
+
+Performance is a measure of how quickly a computer completes application and system tasks. 
+
+Factors that can influence computer system performance include:
+
+Access speed of the physical hard disks.
+Memory available for all running processes.
+Fastest speed of the processor.
+Maximum throughput of the network interfaces.
+Resources that the individual applications consume.
+Faulty or poor configuration of components, which leads to the unnecessary consumption of resources.
+Out-of-date or inappropriate drivers for system components and peripherals, including the graphics subsystem.
+
+Windows computers have four main hardware components that you should monitor:
+
+Processor
+Disk
+Memory
+Network
+
+Note: Although not considered a core component, the graphics adapter and its driver also can have a significant impact on the performance of graphics-intensive applications. If your users intend to run applications that are graphically demanding, ensure that you select a device with a powerful graphics subsystem, and that you install the latest vendor-specific driver rather than relying on a generic driver.
+
+Processor
+One important factor in determining your computer’s overall processor capacity is processor speed. Processor speed is determined by the number of operations that the processor performs over a specific time period. Multiple processors or multipe core processors better for processor intensive tasks.
+Processor architecture - 64bit processors can access more memory and thus faster.
+
+Disk
+Hard disks store programs and data. HD with moving parts are slower. SSD's are faster but vary with r/w performance. Disk collections like RAID also faster. All disk is moved to memory before used. If have surplus of memory, windows will make a recently used file cache in memory for faster recall. Some apps are more reads than write intensive - consider use when looking at hd's.
+
+Memory
+Programs and data load from disk into memory before the program manipulates the data. In workstations that run multiple programs, or where datasets are very large, installing more memory can improve workstation performance.
+Windows uses a memory model that does not reject excessive memory requests. Instead, Windows manages them by using a process known as paging. During paging, Windows moves the data and programs in memory that processes are not currently using to the paging file on the hard disk. This frees up physical memory to satisfy the excessive memory requests. However, because a hard disk is comparatively slow, it has a negative effect on workstation performance. By adding more memory, and by using a 64-bit processor architecture that supports larger memory, you can reduce the need for paging.
+
+Network
+the network is a critical component for performance monitoring, because network devices store so many of the applications and data processed. In addition, wireless networks share the available bandwidth.
+
+Understand bottlenecks
+A performance bottleneck occurs when a computer is unable to service the current requests for a specific resource. By using performance-monitoring tools on a regular basis, and by comparing the results to historical data, you can identify performance bottlenecks before they affect users. Once you identify a bottleneck, you must decide how to remove it. Your options for removing a bottleneck include:
+
+Running fewer applications.
+Adding additional resources to the computer.
+
+Common causes for resource bottlenecks
+Resource bottlenecks might occur for several reasons. Some of the most common causes are:
+
+Resources are insufficient, and your computer might require additional or upgraded components.
+
+A resource is malfunctioning, and you need to replace it.
+
+A resource is not configured correctly, and you need to change configuration settings.
+
+An application is monopolizing a particular resource, which might require that you do one of the following:
+
+Substitute with another application.
+Have a developer rewrite the application.
+Add or upgrade resources.
+Run the application when demands for resources are low.
+
+Performance tuning and testing
+When you experience performance issues, you should make one change at a time, and then monitor your resources after every change to verify whether the change solved the performance issue. In addition to monitoring, you can review event logs, because some performance problems generate output that you can review in Event Viewer. To see whether network components are affecting performance, compare the performance of programs that run over the network with programs that run locally.
+
+Establish a performance baseline
+You can set up a baseline in the Performance Monitor to help you with the following tasks:
+
+Evaluate your computer’s workload
+Monitor system resources
+Notice changes and trends in resource use
+Test configuration changes
+Diagnose problems
+
+Monitor Windows client performance
+
+Task Manager
+You can use the Performance tab in Task Manager to help to identify performance problems. The Performance tab displays a summary of CPU and memory usage, and network statistics. (Consider this first step)
+
+Resource Monitor
+When the Resource Monitor first opens, the initial view is of the Overview tab. On the right side are four graphs: CPU, Disk, Network, and Memory. You can examine these graphs, looking for excessive peaks in CPU, Disk, Network, or Memory activity.In the main pane, you can examine details about each component by expanding each component’s information list. It lists each process that is running on the computer, and includes information about resource consumption for each process.
+
+Performance Monitor
+You can use data collector sets and the Performance Monitor tools to organize multiple data collection points into a single component that you can use to review or log performance. The Performance Monitor also includes default data collector set templates to help system administrators begin the process of collecting performance data.
+
+In the Performance Monitor, under the Data Collector Sets node, you can use the User Defined node to create your own data collector sets. You can specify which objects and counters you want to include in the set for monitoring. To help you select appropriate objects and counters, you can use the following templates provided for monitoring:
+System Diagnostics. This template selects objects and counters that report the status of hardware resources, system response time, and processes on the local computer, along with system information and configuration data. The report provides guidance on ways to optimize the computer’s responsiveness.
+System Performance. This template generates reports that detail the status of local hardware resources, system response times, and processes.
+WDAC Diagnostics. This template enables you to trace debug information for Windows Data Access Components.
+You also can configure a data collector set to run at a scheduled time, for a specific length of time, or until it reaches a predefined size. For example, you can run the data collector set for 10 minutes every hour during working hours to create a performance baseline. You also can set the data collector to restart when set limits are reached, so that a separate file will be created for each interval.
+
+commonly used performance counters:
+LogicalDisk\% Free Space
+
+This counter measures the percentage of free space on the selected logical disk drive. Take note if this falls below 15 percent, because you risk running out of free space for the operating system to store critical files. One solution is to add more disk space.
+
+PhysicalDisk\% Idle Time
+
+This counter measures the percentage of time the disk was idle during the sample interval. If this counter falls below 20 percent, the disk system is saturated. You should consider replacing the current disk system with a faster one.
+
+PhysicalDisk\Avg. Disk Sec/Read
+
+This counter measures the average time, in seconds, to read data from the disk. If the number is larger than 25 milliseconds (ms), that means the disk system is experiencing latency when it is reading from the disk.
+
+PhysicalDisk\Avg. Disk Sec/Write
+
+This counter measures the average time, in seconds, it takes to write data to the disk. If the number is larger than 25 ms, the disk system experiences latency when it is writing to the disk.
+
+PhysicalDisk\Avg. Disk Queue Length
+
+This counter indicates how many I/O operations are waiting for the hard drive to become available. If the value is larger than two times the number of spindles, it means that the disk itself might be the bottleneck. If this counter indicates a possible bottleneck, consider measuring the Avg. Disk Read Queue Length and Avg. Disk Write Queue Length to try to determine if read or write operations are the cause.
+
+Memory\Cache Bytes
+
+This counter indicates the amount of memory that the file-system cache uses. There might be a disk bottleneck if this value is greater than 300 megabytes (MB).
+
+Memory\% Committed Bytes in Use
+
+This counter measures the ratio of Committed Bytes to the Commit Limit, or in other words, the amount of virtual memory in use. If the number is greater than 80 percent, it indicates insufficient memory.
+
+Memory\Available Mbytes
+
+This counter measures the amount of physical memory, in megabytes, available to run processes. If this value is less than 5 percent of the total physical random access memory (RAM), that means there is insufficient memory, which can increase paging activity.
+
+Memory\Free System Page Table Entries
+
+This counter indicates the number of page table entries not currently in use by the system. If the number is less than 5,000, there might be a memory leak.
+
+Memory\Pool Non-Paged Bytes
+
+This counter measures the size, in bytes, of the nonpaged pool. This is an area of system memory for objects that cannot be written to a disk, but instead must remain in physical memory for as long as they are allocated. If the value is greater than 175 MB (or 100 MB with a /3 gigabyte (GB) switch), then there is a possible memory leak.
+
+Memory\Pool Paged Bytes
+
+This counter measures the size, in bytes, of the paged pool. This is an area of system memory for objects that can be written to disk when they are not being used. There might be a memory leak if this value is greater than 250 MB (or 170 MB with the /3 GB switch).
+
+Memory\Pages per Second
+
+This counter measures the rate at which pages are read from or written to the disk to resolve hard-page faults. If the value is greater than 1,000 as a result of excessive paging, there might be a memory leak.
+
+Processor\% Processor Time
+
+This counter measures the percentage of elapsed time that the processor spends executing a non-idle thread. If the percentage is greater than 85 percent, the processor is overwhelmed, and the server might require a faster processor.
+
+Processor\% User Time
+
+This counter measures the percentage of elapsed time that the processor spends in user mode. If this value is high, the server is busy with the application.
+
+Processor\% Interrupt Time
+
+This counter measures the time that the processor spends receiving and servicing hardware interruptions during specific sample intervals. If the value is greater than 15 percent, this counter indicates a possible hardware issue.
+
+System\Processor Queue Length
+
+This counter indicates the number of threads in the processor queue. The server does not have enough processor power if the value is more than two times the number of CPUs for an extended period of time.
+
+Network Interface\Bytes Total/Sec
+
+This counter measures the rate at which bytes are sent and received over each network adapter, including framing characters. The network is saturated if more than 70 percent of the interface is consumed.
+
+Network Interface\Output Queue Length
+
+This counter measures the length of the output packet queue, in packets. There is network saturation if the value is more than 2.
+
+Process\Handle Count
+
+This counter measures the total number of handles that a process currently has open. This counter indicates a possible handle leak if the number is greater than 10,000.
+
+Process\Thread Count
+
+This counter measures the number of threads currently active in a process. There might be a thread leak if this number is more than 500 between the minimum and maximum number of threads.
+
+Process\Private Bytes
+
+This counter indicates the amount of memory that this process has allocated that it cannot share with other processes. If the value is greater than 250 between the minimum and maximum number of threads, there might be a memory leak.
+
+Optimize disk and memory performance
+Select a 64-bit version of Windows. Using a 64-bit version enables your computer to use more memory than the 4 GB limitation imposed by 32-bit operating systems.
+Avoid shared memory video. Some video adapters use shared system memory. This means that the video adapter uses memory for display purposes that would otherwise be available for servicing applications. Some computers come equipped with video adapters that use dedicated onboard memory for display purposes, ensuring that more memory is available for applications.
+Optimize paging. For most single disk drive computers that run Windows, leaving the paging file settings at the default values is adequate. However, you might gain a small performance benefit by following these guidelines:
+Create the paging file on a different physical disk than the operating system disk. If you have a device with an SSD as the primary disk and a normal hard disk as the secondary disk, moving the paging file is not likely to improve performance.
+Configure a fixed-size paging file. A paging file that can grow on the disk might encompass fragmented areas of the disk volume. 
+On non-SSD drives, ensure that the disk volume is not fragmented when you create the paging file. If you want to create a fixed-size paging file on a computer that already has a paging file, ensure that you do not create a paging file that encompasses fragmented areas of the disk. Additionally, before you create a fixed-size paging file, you should configure the computer to use no paging, and then defragment the volumes.
+When you configure the paging file, ensure that its size is sufficient. equal to or twice the size of the physical memory.
+Add physical memory to a computer that is paging excessively. If you investigate performance on a computer with a memory bottleneck, you often find that disk performance is low as well. By adding extra physical memory to the computer you can reduce the load on the disk subsystem and thereby improve both memory and disk performance.
+Implement faster disks.7200 rpm or faster, and select disks with the lowest seek time. can install a disk controller that supports a faster bus type. The first Serial ATA (SATA) standard supports transfer rates up to 150 megabytes per second (MBps) whereas the latest SATA standard supports transfer rates up to almost 2000 MBps. 
+Consider using SSDs.
+Defragment volumes that are used heavily.
+Ensure that you enable write-caching. You can use Device Manager to examine the properties of any installed disks, and to verify that write-caching is enabled.
+Distribute the memory load across all available disks. If your computer has multiple physical disks, consider distributing disk-intensive activities across these disks. OS on one, paging file on another, data files on a third.
+
+Configure Windows client search indexes
+Indexing is a technology used by Windows search. A local database. Windows uses this index to keep track of files, folders, file types, data properties, and other details about files so that you can search by those details to locate data more easily. Generally when you search for a file, Windows accesses this index first. Make sure only indexing area you would want to search.
+Control Panel>Indexing Options
+
+Contents of the Windows Search Index
+One index is maintained per computer. System administrators can use Group Policy to prevent specific paths or file types from being indexed.
+-By default, Windows Search indexes each user’s e-mail and Documents and Settings folders (users can add custom locations like network shares). Indexing of shared folders can be turned off with Group Policy.
+Windows Search does not index password-protected Office files.
+Windows Search indexes e-mail and attachments in a secure environment. Indexing of attachments can be turned off with Group Policy.
+The Windows Search index is updated automatically in the background when data is added, deleted, and modified.
+
+Index Encrypted Files
+Windows Search 4.0 and higher fully supports indexing encrypted files on local file systems, enabling users to index and search the properties and contents of encrypted files. Users can manually configure Windows Search to include encrypted files, or administrators can configure this with Group Policy. only users with the correct permissions can search the content of encrypted files by honoring ACLs and by restricting access to users with decryption permissions for the files. Additionally, Windows Search restricts access to encrypted files to local searches only.
+
+Note - The indexing of encrypted files should not be enabled unless the search index itself is protected with full volume encryption. While encrypting the index file with EFS is possible, it is not recommended.

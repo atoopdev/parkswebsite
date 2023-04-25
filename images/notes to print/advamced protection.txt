@@ -1,0 +1,139 @@
+Explore advanced protection methods
+
+Explore the Security Compliance Toolkit
+The Microsoft Security Compliance Toolkit enables enterprise security administrators to effectively manage their enterprise’s Group Policy Objects (GPOs). administrators can compare their current GPOs with Microsoft-recommended GPO baselines or other baselines, edit them, store them in GPO backup file format, and apply them via a domain controller or inject them directly into testbed hosts to test their effects.
+
+Windows security baselines
+A security baseline is a group of Microsoft-recommended configuration settings that explains their security impact.
+
+You can use security baseline to:
+-Ensure that user and device configuration settings are compliant with the baseline.
+-Set configuration settings. For example, you can use Group Policy, Endpoint Configuration Manager, or Microsoft Intune to configure a device with the setting values specified in the baseline.
+
+Why are security baselines needed?
+
+Security baselines are an essential benefit to customers because they bring together expert knowledge from Microsoft, partners, and customers. You don't have to go through each setting yourself one by one.
+
+ Microsoft provides customers with security baselines that are available in consumable formats, such as Group Policy Objects backups.
+
+Security baselines are included in the Security Compliance Toolkit (SCT) which can be accessed here: 
+https://www.microsoft.com/download/details.aspx?id=55319
+
+Use AppLocker to control applications (Enterprise and Education only)
+
+Problems controlling apps:
+The Universal Windows and desktop apps that users can access.
+Which users are allowed to install new applications.
+Which versions of the applications are allowed to run, and for which users.
+
+AppLocker benefits
+You can use AppLocker to specify which software can run on user PC’s and devices. AppLocker enables users to run the applications, installation programs, and scripts that they require to be productive, while still providing the security and compliance benefits of application standardization.
+-Limit the number and types of applications that can run.
+-Reduce the total cost of ownership by ensuring that workstations are homogeneous across an enterprise, and that users run only the software and applications that the enterprise approves.
+-Reduce the security risks and possibility of information leaks from running unauthorized software.
+
+AppLocker rules
+You define apps that can run. Is configured with group policy.
+To author AppLocker rules, you use a new AppLocker Microsoft Management Console (MMC) snap-in in the Group Policy Management Editor window. AppLocker provides several rule-specific wizards. You can use one wizard to create a single rule and another wizard to generate rules automatically, based on your rule preferences and the folder that you select. The four wizards that AppLocker provides administrators with to author rules are:
+-Executable Rules Wizard
+-Windows Installer Rules Wizard
+-Script Rules Wizard
+-Packaged App Rules Wizard
+
+The Event Viewer stores events for AppLocker on the local computer. You can review these events if you want to check whether your AppLocker rules apply as designed. 
+
+AppLocker Event ID's
+8000
+
+Indicates that the AppLocker policy did not apply correctly to the computer.
+
+8004
+
+Indicates that an .exe or .dll file did not run.
+
+8007
+
+Indicates that a script or .msi file did not run.
+
+8022
+
+Packaged app is disabled.
+
+8025
+
+Packaged app installation is disabled.
+
+Use AppLocker to control Universal Windows Platform apps
+To enable AppLocker restrictions for the Universal Windows apps, you must configure the appropriate Group Policy settings by performing the following procedure:
+Open the Local Group Policy Editor (gpedit.msc).
+
+Under Local Computer Policy, in the left pane, navigate to Computer Configuration\Windows Settings\Security Settings\Application Control Policies\AppLocker, and then select Packaged app Rules.
+
+Right-click Packaged app Rules, and then select Create New Rule.
+
+Use the Create Packaged App Rules Wizard to configure the application restriction policy with the following settings:
+
+Configure the permissions to allow or deny the app.
+
+Select an app publisher. You can select an installed app as a reference.
+
+Modify the rule by making the rule apply to:
+
+Only the specific version of the app that you select.
+Any apps from the publisher.
+Any apps from any publisher.
+Define exceptions.
+
+Name the policy.
+
+Create the default rule. This default rule has a lower precedence, but it enables all signed packaged apps to run. To create the default rule, right-click Packaged app Rules, and then select Create Default Rules.
+
+Select the enforcement level. By default, policies are enforced. You can change the policy to audit policies only. To do this:
+
+Right-click the AppLocker node, and then select Properties.
+In the AppLocker Properties dialog box, select the Configured check box adjacent to Packaged app rules. In the list, depending on your requirements select either Enforce rules or Audit only, and then select OK.
+
+Enabling the Application Identity service
+Enforcement of AppLocker rules requires that the Application Identity service must run on all computers affected by your AppLocker policy. This service identifies applications, and then processes the AppLocker policies against the identified applications. You can enable this service by opening Services.msc, and then selecting the Application Identity service. Configure the service for automatic startup, and then start the service manually. You also can start the service by configuring the setting through a GPO.
+
+Secure data in the enterprise
+
+Windows Device Health Attestation
+Windows Device Health Attestation ensures that the OS has not been tampered with or compromised and helps verify the overall health of the system. Certain services (like Exchange e-mail, SharePoint, or Azure AD membership) take advantage of this service and can disallow access until a Windows Enterprise edition PC meets certain qualifications. 
+This functionality requires the use of “modern authentication.” Modern authentication is the name Microsoft uses to describe the Azure AD Authentication Library (ADAL) for clients and other technologies that implement authentication using OAuth 2.0 and Open ID connect protocols. 
+
+Windows Information Protection
+Windows Information Protection (WIP) previously Enterprise Data Protection (EDP) is a feature of Windows Pro and Enterprise. The feature is intended to keep organizational data secure, regardless of the actions of end users.
+
+When enabled, WIP watches for content that is downloaded from SharePoint, Office 365, and corporate Web servers and file servers. It offers a range of controls, from blocking the download of content, warning users, or auditing their access to preventing data from being shared outside the organization.
+
+Content downloaded to the device is automatically protected by WIP, and only approved applications can access the content. An organization can also elect to securely wipe data from the device using Configuration Manager, Intune, or third-party mobile device management (MDM).
+
+WIP will provide encryption at rest using Microsoft's Encrypting File System (EFS) and also use the Microsoft-hosted Azure Rights Management Services functionality, which is included with Microsoft 365, to protect the data when the data egresses outside of the corporate network boundary or when it arrives on non-Windows platforms, such as iOS and Android.
+
+VPN profiles
+Windows offers configuration of Microsoft and select third-party VPN profiles on client computers using Group Policy, Intune, or third-party MDM. VPN profiles can be set to be always on when a user is logged on or triggered by a specified Windows application. VPN traffic can also be configured for specific applications or network traffic, or the administrator can specify that a device is locked down, meaning that all network traffic should occur over a VPN.
+
+Understand Microsoft Defender for Endpoint
+Microsoft Defender for Endpoint is a whole new platform that helps administrators enhance security, as well as establish centralized security control over both cloud and on-premises resources. Not same as Microsoft Defender. Microsoft Defender for Endpoint to monitor Microsoft Defender functionalities on local Windows clients to maintain consistent configuration and an acceptable security level. Microsoft Defender for Endpoint can also integrate with Office 365 Threat Intelligence, Cloud App Security, Azure ATP and Intune.
+
+Microsoft Defender for Endpoint uses
+-Endpoint behavioral sensors. Embedded in Windows, these sensors collect and process behavioral signals from the operating system and sends this sensor data to your private, isolated, cloud instance of Microsoft Defender for Endpoint.
+-Cloud security analytics. Leveraging big-data, machine-learning, and unique Microsoft optics across the Windows ecosystem, enterprise cloud products (such as Microsoft 365), and online assets - behavioral signals are translated into insights, detections, and recommended responses to advanced threats.
+-Threat intelligence. Generated by Microsoft hunters, security teams, and augmented by threat intelligence provided by partners, threat intelligence enables Microsoft Defender for Endpoint to identify attacker tools, techniques, and procedures, and generate alerts when these are observed in collected sensor data. 
+
+Windows Defender Application Control
+Application control moves away from the traditional application trust model where all applications are assumed trustworthy by default to one where applications must earn trust in order to run.Normally, when a user runs a process, that process has the same level of access to data that the user has. As a result, sensitive information could easily be deleted or transmitted out of the organization if a user knowingly or unknowingly runs malicious software. 
+
+Microsoft Defender Device Guard (code injection)
+Device Guard combines the features of Application Control with the ability to leverage the Windows Hyper-V hypervisor to protect Windows kernel-mode processes against the injection and execution of malicious or unverified code.
+
+Microsoft Defender Credential Guard
+uses virtualization-based security to isolate secrets so that only privileged system software can access them. Prevents  credential theft attacks, such as Pass-the-Hash or Pass-The-Ticket. Because they are no longer stored in the Local Security Authority (LSA), credential theft can be blocked even on a compromised system.
+
+Microsoft Defender Application Guard
+Application Guard helps to isolate untrusted sites. You define what is among trusted websites, cloud resources, and internal networks. Everything not on your list is considered untrusted.
+If an employee goes to an untrusted site through either Microsoft Edge or Internet Explorer, Microsoft Edge opens the site in an isolated Hyper-V-enabled container, which is separate from the host operating system. If the site turns out to be malicious, the host PC is protected.
+
+Microsoft Defender Exploit Guard (host intrusion)
+It allows administrators to define and manage policies for reducing surface attacks and exploits, network protection, and protecting suspicious apps from accessing folders commonly targeted.

@@ -1,0 +1,184 @@
+Windows Support and Diagnostic Tools
+
+Examine Task Manager (performance-monitoring)
+viewing system performance and resource utilization on a device. shows only apps and processes that are running. "More Details" button will show detailed info about system activity.
+
+Task Manager includes the following tabs:
+-Processes. The Processes tab displays a list of running programs, subdivided into apps and internal Windows processes. For each running process, this tab displays a summary of processor and memory usage.
+-Performance. The Performance tab displays a summary of CPU and memory usage, and network statistics.
+-App history. The App history tab displays statistics and resource consumption by apps. This is useful for identifying a specific app that is consuming excessive resources.
+-Startup. The Startup tab displays items that run at startup. You can choose to disable any listed programs.
+-Users. The Users tab displays resource consumption on a per-user basis. You also can expand the user view to see more detailed information about the specific processes that a user is running.
+-Details. The Details tab lists all the running processes on a server, providing statistics about CPU, memory, and other resource consumption. You can use this tab to manage running processes. For example, you can stop a process, stop a process and all related processes, or change the priority values of processes. When you change the priority of a process, you determine the degree to which the process can consume CPU resources. When you increase priority, you allow the process to request more CPU resources.
+-Services. The Services tab provides a list of running Windows services with related information, including whether a service is running and the process identifier (PID) value of a running service. You can start and stop services by using the list on the Services tab.
+
+local computer only
+
+Examine Resource Monitor (cpu/disk/network/memory utilization) - snapshot of system performance
+
+monitor system performance and utilization of CPU, disk, network, and memory resources. 
+If a Windows computer runs slowly, you can use Resource Monitor to view current activity in each of the four component areas, and determine which is causing a performance bottleneck.
+
+local computer only
+
+Examine Event Viewer
+
+provides access to the Windows event logs.Event logs provide information regarding system events. events include information, warning, and error messages about Windows components and installed applications.Event Viewer provides categorized lists of essential Windows log events, including application, security, setup, and system events, in addition to log groupings for individual installed applications and specific Windows component categories. Individual events provide detailed information regarding the type of event that occurred, when the event occurred, the source of the event, and technical detailed information to assist in troubleshooting the event.
+Event Viewer enables you to consolidate logs from multiple computers onto a centralized computer when you use subscriptions.you can configure Event Viewer to perform an action when specific events occur. This could include sending an email message, launching an app, running a script, or performing other maintenance actions to notify you or attempt to resolve a potential issue.
+
+Event Viewer in Windows includes the following features:
+-The ability to view multiple logs. You can filter for specific events across multiple logs, making it quicker to investigate issues and troubleshoot problems that might appear in several logs.
+-Inclusion of customized views. You can use filtering to narrow searches to only those events in which you are interested, and you then can save these filtered views.
+-The ability to configure tasks scheduled to run in response to events. You can automate responses to events. To do this, Event Viewer is integrated with Task Scheduler.
+-The ability to create and manage event subscriptions. You can collect events from remote computers, and then store them locally.
+
+vent Viewer tracks information from several different logs. These logs provide detailed information that includes:
+
+A description of the event.
+An event ID number.
+The component or subsystem that generated the event.
+Information, Warning, or Error status.
+The time of the occurrence.
+The user’s name on whose behalf the event occurred.
+The computer on which the event occurred.
+A link to Microsoft TechNet for more information about the event.
+
+Windows logs (system-wide impact)
+Application, security, setup (application setup), system(windows components and services), forwarded events (events collected from remote computers)
+
+Applications and Services logs (events from single app or component)
+this category of logs includes a number of subtypes:
+
+Hardware Events
+Internet Explorer
+Key Management Service
+Microsoft Office Alerts
+TuneUp
+Microsoft Azure
+Windows PowerShell
+Microsoft > Windows subnode with lots of subnodes of granular info
+
+Manage logs
+only local admin can clear a log manually
+use group policy to centrally configure event log settings (navigate to Computer Configuration\Policies\Administrative Templates\Windows Components\Event Log Service.)
+
+For each log, you can define:
+
+The location of the log file.
+The maximum size of the log file.
+Automatic backup options.
+Permissions on the logs.
+Behavior that occurs when the log is full.
+
+Custom views
+To specify a filter that spans multiple logs, you need to create a custom view. You create custom views in the Action pane in Event Viewer. You can filter custom views based on multiple criteria, including:
+-The time that the event was logged.
+-Event level to display, such as errors or warnings.
+-Logs from which to include events.
+-Specific event IDs to include or exclude.
+-User context of the event.
+-Computer on which the event occurred.
+
+Subscriptions
+collect copies of events from multiple remote computers, and then store them locally. To specify which events to collect, create an event subscription. To use the event-collecting feature, you must configure the forwarding and the collecting computers. The event-collecting functionality depends on the Windows Remote Management (WinRM) service and the Windows Event Collector service (Wecsvc). Both of these services must be running on computers that are participating in the forwarding and collecting process.
+
+Enable subscriptions
+To enable subscriptions, perform the following steps:
+
+On each source computer, to enable Windows Remote Management, type the following command at an elevated command prompt, and then press Enter:
+winrm quickconfig
+
+On the collector computer, to enable the Windows Event Collector service, type the following command at an elevated command prompt, and then press Enter:
+wecutil qc
+
+Add the computer account of the collector computer to the local Event Log Readers group on each of the source computers.
+
+Explain Performance Monitor
+Performance Monitor is a Microsoft Management Console (MMC) snap-in that you can use to obtain system performance information. use this tool to analyze the performance effect that applications and services have on a computer, and you can use it to obtain an overview of system performance or collect detailed information for troubleshooting.
+
+The Performance Monitor includes the following features:
+-Monitoring Tools. The Monitoring Tools section contains the Performance Monitor, which provides a visual display of built-in Windows performance counters, either in real time or as historical data. You can add performance counters to the Performance Monitor by dragging and dropping the counters, or by creating a custom data collector set. The Performance Monitor uses performance counters to measure the system’s state or activity. Includes multiple graph views and custom views that can be exported as data sets.
+-Data collector sets. The data collector set is a custom set of performance counters, event traces, and system configuration data. After you create a combination of data collectors that describe useful system information, you then can save them as a data collector set, and then run and view the results.You can configure a data collector set to generate alerts when it reaches thresholds. You also can configure a data collector set to run at a scheduled time, for a specific length of time, or until it reaches a predefined size. For example run for 10min on the hour every hour during work hours to create a performance baseline. 
+Reports. Use the Reports feature to view and generate reports from a set of counters that you create by using data collector sets. The Performance Monitor creates a new report automatically every time a data collector set runs.
+
+Explain Reliability Monitor
+reviews a computer’s reliability and problem history. 
+
+System stability chart
+summarizes annual system stability in daily increments. This chart indicates any information, error, or warning messages. In addition, it simplifies the task of identifying issues and the date on which they occurred.
+Software Installs
+Software Uninstalls
+Application Failures
+Hardware Failures
+Windows Failures
+Miscellaneous Failures
+
+Records key events in a timeline
+tracking the following events:
+
+Memory problems
+Hard-disk problems
+Driver problems
+Application failures
+Operating system failures
+
+use this timeline to determine whether a particular system change correlates with the start of system instability.
+
+The Problem Reports and Solutions tool - part of the Windows Sysinternals tool suite - sysinternals.com
+You can use Problem Reports and Solutions to track resolution information and to recheck and find new solutions. 
+
+Compare Process Explorer and Process Monitor
+Process Explorer. Enables you to determine the currently active processes on a Windows computer, and depending upon mode:
+
+Enables you to see the handles that the selected process has opened.
+Enables you to see the dynamic-link libraries (DLLs) and memory-mapped files that the process has loaded
+
+Process Monitor. This is an advanced tool for monitoring Windows that shows real-time file system, registry, and process/thread activity. Process Monitor includes monitoring and filtering capabilities.
+
+Examine the Diagnostics and Recovery Toolset (part of Microsoft Desktop Optimization Pack)(DaRT 10)
+enables you to troubleshoot, diagnose, and repair a Windows computer that will not start, or that generates errors when starting
+Recover Windows computers that are unusable or will not start up properly.
+Diagnose the probable causes of problems.
+Quickly repair nonstarting or locked-out computers.
+Restore lost files, and detect and remove malware, quickly.
+Create a DaRT recovery image (ISO or WIM) and save the image to CD, DVD, or USB bus device.
+Use the recovery image files to deploy them locally or to a remote or recovery partition.
+
+DaRT 10 consists of the following tools:
+Computer management. Use the Computer Management tools to view system information and event logs, to manage disks, and to manage services and drivers.
+Crash analyzer. Use this tool to determine the cause of a computer failure by analyzing the memory dump file on the computer that you are repairing.
+Disk commander. Use this tool to repair disk partitions and volumes.
+Disk wipe. Use this tool to perform low-level disk format by using optional multiple passes.
+Explorer. Use this tool to browse local and network file resources.
+File restore. Use this tool to recover accidentally deleted files.
+File search. Use this tool to locate files when you do not know the path to a file you wish to recover.
+Hotfix uninstall. Use this tool to remove hotfixes or service packs from a computer.
+Locksmith. Use this tool to set or reset the password for any local account.
+Registry editor. Use this tool to edit the local registry.
+SFC scan. Use this tool to launch the System File Repair Wizard, which enables you repair system files that are preventing the installed operating system from starting.
+Solution Wizard. Use this tool to present a series of questions, and then based on your answer, the tool recommends the best tool for the situation.
+TCP/IP config. Use this tool to configure TCP/IP settings manually for a computer that you are troubleshooting.
+
+Use the Steps Recorder
+diagnostic tool for visually recording the steps that lead to a problem.
+To record steps, in the Steps Recorder tool, select Start Record. Then, perform the necessary steps to reproduce a particular problem. When you finish, select Stop Record. You then can save the recording. Saving the recording creates an MHTML file (stored in a zipped format) that you can later analyze to see the steps involved in a particular procedure. Aside from troubleshooting, you also can use the recorded steps to demonstrate particular procedures for your users.
+
+Explore the Microsoft Management Console
+Microsoft Management Console (MMC) unifies and simplifies day-to-day system management tasks. It hosts tools and displays them as consoles. These tools, consisting of one or more applications, are built with modules called snap-ins. The snap-ins also can include additional extension snap-ins. MMC is a core part of Microsoft's management strategy.
+
+Explore additional tools
+
+Sysinternals
+Sysinternals
+In addition to the built-in performance monitoring tools in Windows, you also can download and use the Sysinternals suite of tools. Sysinternals offers a number of advanced system utilities. You can use a number of the following tools to monitor performance some of which include:
+
+Contig. This tool enables you to defragment your frequently used files quickly.
+DiskMon. This tool enables the computer to capture all hard disk activity, and acts like a software disk activity light in the system tray.
+PageDefrag. This tool enables you to defragment your paging files and registry hives.
+Process Explorer. This tool enables you to determine which files, registry keys, and other objects processes have open, which DLLs they have loaded, and more. This tool also displays who owns each process.
+Process Monitor. This tool enables you to monitor file system, registry, process, thread, and dynamic-link library (DLL) activity in real time.
+Autoruns. Extensive scan of programs, drivers, scripts, and extensions that are configured to run during bootup, sign in or when certain Windows applications launch.
+
+Windows Performance Toolkit
+Included in the Windows Assessment and Deployment Kit, the Windows Performance Toolkit consists of performance monitoring tools that produce in-depth performance profiles of Windows operating systems and applications. It provides deep analysis of how applications and services are consuming resources.
+

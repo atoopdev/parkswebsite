@@ -1,0 +1,142 @@
+Configure and manage shared folders
+
+Explore shared folders
+When you share a folder, you make its content available on the network to multiple users. You can limit who can access the shared folder and what type of share permissions they have. Additionally, you can limit the number of users who can access the share at the same time and specify if an offline copy of the files users open will be created automatically on their computer.
+
+Shared folders maintain a separate set of permissions from the file-system permissions, which means that you can set share permissions even if you share a folder on the FAT file system.
+Permissions apply to all shared content - cannot set permissions for indiv files.
+Sharing is limited to folders. You can’t share an individual file or group of files within a folder that isn't shared.
+
+After you share a folder, all users will see the share name over your network. However, only users with Read permissions can view its content.
+
+Only members of Administrators group can share files.
+
+File and printer sharing is disabled by default. When you share the first folder on a Windows client device, Windows turns on file and printer sharing automatically. This setting remains turned on even if you remove all shared folders.
+
+Shared folders permissions
+When you share a folder, you must configure the permissions that a user or group will have when they connect to the folder through the share. This is called sharing permissions, and there are three options:
+
+-Read. Users can view content, but they can’t modify or delete it.
+-Change. Users can also modify, delete, and create content, but they can’t modify permissions. Includes Read permission.
+-Full Control. Users can perform all actions, including modifying the permissions. Includes Change permission.
+
+View shared folders
+Windows client creates several shared folders by default. You can view all shared folders in the Computer Management console, by selecting the Shared Folders node. You also can run net view \\localhost /all command or the Get-SmbShare cmdlet.
+shared folders do not have different icons
+
+Connecting to a shared folder
+Users can connect to a shared folder most commonly over the network by using its Universal Naming Convention (UNC) address. The UNC address contains the name of the computer that is hosting the folder and the shared folder name, separated by a backward slash (\), and preceded by two backward slashes (\). For example, the UNC name for the Sales shared folder on the LON-CL1 computer in the Adatum.com domain would be \LON-CL1.Adatum.com\Sales.
+
+Sharing folders by using the Shared Folders snap-in
+You can use the Shared Folders snap-in to manage a computer’s file shares centrally. Use this snap-in to create file shares, set permissions, and to view and manage open files and the users who can connect to a computer’s file shares. Additionally, you can view the properties for the shared folder, which would allow you to perform actions such as specifying file permissions.
+
+You can create a new share in the Shared Folders snap-in by running the Create a Shared Folder Wizard. Users have read-only by default.
+
+Sharing folders by using File Explorer
+Using the Share with option from the shortcut menu or ribbon (also called Network File and Folder Sharing on the Sharing tab).
+Selecting Advanced security from the Sharing tab.
+
+Using the Share with option (Network File and Folder Sharing)
+When you right-click a folder, and then select Share with, you see a submenu that allows you to stop sharing the folder or share the folder with specific people. When you share with specific people, you can select Everyone or use Find people to share the folder with specific groups.Be aware that Network File and Folder Sharing will set share permissions and file permissions. The Share permissions will be set as Everyone – Full Control, and the file permissions will be set based on what you select. 
+
+Using Advanced Sharing
+Advanced Sharing provides several more configuration options compared to Network File and Folder Sharing. You can specify the share name, which is the same as the folder name, by default. However, you can modify the name, choosing any name that isn't used for a share name on the same computer. You also can configure the number of users that can access a shared folder simultaneously, specify caching settings, and define share permissions, which can be Full Control, Change, or Read.
+
+When you use Advanced Sharing, you're configuring only share-folder permissions. You must configure file permissions separately. It can be easy to have no access on share and full control on files - causing problems.
+
+Sharing folders by using the command line
+You can share a folder by using the net share command, as the following example illustrates:
+
+Net Share name=drive:path
+
+This will create a simple share, which uses the share name that you specify, and which grants all users Read permissions. You can specify additional parameters when creating a share, which the following table lists:
+
+/Grant:user permission
+
+Allows you to specify Read, Change, or Full share permissions for the specified user.
+
+/Users:number
+
+Allows you to limit the number of users who can connect to the share.
+
+/Remark:”text”
+
+Allows you to add a comment to the share.
+
+/Cache:option
+
+Allows you to specify the caching options for the share.
+
+sharename /Delete
+
+Allows you to remove an existing share.
+
+Sharing folders by using Windows PowerShell
+
+New-SmbShare –Name ShareName –Path C:\LocalFolder
+
+The following table lists additional Windows PowerShell commands that you can use to manage shares.
+
+Get-SmbShare
+
+Retrieves a list of the computer’s existing shares.
+
+Set-SmbShare
+
+Modifies an existing share.
+
+Remove-SmbShare
+
+Removes an existing share.
+
+Get-SmbShareAccess
+
+Retrieves a share’s permissions.
+
+Grant-SmbShareAccess
+
+Sets share permissions.
+
+Examine shared folder properties
+(Advanced Sharing)
+Share properties control share behavior, including:
+
+how users can view and connect to a share
+how many users can access a share simultaneously
+which share permissions will be effective when users access the data through a share
+the offline settings for the share data
+
+if you want to modify more advanced share properties, such as by using access-based enumeration or Server Message Block (SMB) encryption, you can do that only by using the Set-SmbShare cmdlet.
+
+You can configure the following basic properties for a share by using Advanced Sharing:
+-Share name. Each share must have a share name, and it must be unique for each Windows–based computer. The share name can be any string that doesn't contain special characters, and it's part of the UNC path, which Windows users use when connecting to a share. You can share the same folder multiple times and with different properties, but each share name must be unique. If the share name ends with a dollar sign ($), the share is hidden and not visible on the network. However, you can connect to it if you know the share name and have appropriate permissions.
+-Number of simultaneous users. This limits the number of users that can have an open connection to the share.The default value in Windows client is no more than 20 users. However, you can configure this to a lower number.
+-Caching/offline settings. You can control which of the share’s files and programs are available to offline users, or those who do not have network connectivity. You can configure files to:
+	Cache on the client computer automatically when a user has network connectivity and opens them for the first time.
+	Cache offline, only if the user manually configures this and has the necessary permissions.
+	Not cache at all.
+-Permissions. You can configure shared folder permissions, which Windows uses in conjunction with file system permissions when a user tries to use a shared folder to access data over a network. Shared folder permissions can allow Read, Change, or Full control permissions.
+
+If you share a folder by using Network File and Folder Sharing, you can share a folder only once, and you can’t configure its properties manually. The share name is set automatically and is the same as the folder name. 
+
+You can configure advanced share properties only by using Windows PowerShell. You can’t configure or view them by using the GUI tool. Advanced share settings that you can configure in Windows include access-based enumeration and SMB encryption. For example, you can enable access-based enumeration(Access-based enumeration displays only the content for which a user has permissions.) for the share name Folder1 by using the following cmdlet:
+
+Set-SmbShare –Name Folder1 –FolderEnumerationMode AccessBased
+
+You can view all shared folder properties for the share name Folder1 by using the following cmdlet:
+
+Get-SmbShare –Name Folder1 | Format-List –Property *
+
+Combine shared folder and NTFS permissions
+When you create a shared folder on a volume that is formatted with a file system that supports security, both the shared folder permissions and the file and folder permissions combine to control permissions to file resources when a user connects via a network. 
+
+When you grant shared folder permissions, the following rules apply:
+
+Except when using the Share in Network File and Folder Sharing, the Everyone group has the Read shared folder permission.
+Users must have appropriate file system permissions for each file and subfolder in a shared folder to access those resources, in addition to appropriate shared folder permissions.
+When you combine file-system and shared-folder permissions, the resulting permission is the most restrictive one of the effective permissions between the two types. Typically, this is the highest common denominator of the file-system and shared-folder permissions.
+When a user attempts to connect to content through a share, the share permissions on a folder apply to that folder, all of its files and sub-folders, and all files in those sub-folders.
+
+When you configure shared folder permissions per shared folder, you can allow or deny only Read, Change, and Full Control permissions, and these permissions apply to content in all folders and subfolders. You have much more granularity when you configure file-system permissions. You can configure permissions for each file, and you can allow or deny many more file-system permissions than share permissions.
+
+-If a share permission is set to Read, the most that you can do when connecting through a shared folder is read the file, even if the individual file system permission is set to Full Control. All file system permissions that are less restrictive than the share permissions filter out, so that only the most restrictive permissions remain – in this case, the Read permission

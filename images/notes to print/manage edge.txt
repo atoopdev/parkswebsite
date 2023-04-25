@@ -1,0 +1,202 @@
+Manage the Microsoft Edge browser
+
+Examine the Microsoft Edge browser
+
+Pinned tabs and toolbars
+In Microsoft Edge, you can pin tabs to the tab row. Pinned tabs take up less space because they only display the site icon, and they reappear when you close and reopen Microsoft Edge.
+
+Collections
+Collections allow you to easily collect, organize and share content that you find across the web. Collections provide a side panel that allows you to add pages or drag objects into the panel. This provides an easy way to perform actions such as comparing items when shopping or collecting information for planning a trip or event.
+
+Synchronization of settings
+With Microsoft Edge Chromium (version 77 and later) the sync solution is no longer tied to the Windows sync ecosystem. Microsoft Edge will work across all the platforms, such as Windows 8.1, iOS, Android and macOS. This also enables us to offer sync for non-primary accounts on Windows. The data supported by sync includes:
+
+Favorites
+Passwords
+Addresses and more (form-fill)
+Collections
+Settings
+Open tabs
+Extensions
+
+Pivot between profiles (example between woprk and home)
+
+Paste and go/Paste and search
+
+Web notifications
+Notifications in the Action Center can be from sites that support notifications. You can configure which sites display notifications. Notifications from InPrivate windows will not appear.
+
+Immersive Reader (Reading view)
+will remove pictures if possible.You can switch the reading view on and off by right-clicking on the page and selecting Immersive Reader or F9.
+
+Improved Touch Device Features
+Better accessibility features
+Improved battery life
+Better browsing experience in popular websites as a result of improved HTML5 compatibility and now based on Chromium
+Improved security by using kernel attack protection, which makes attacks on the kernel less successful
+Better management of favorites including creating folders for favorites and importing favorites from other browsers
+Compatible sites can use Windows Hello to improve user authentication for a faster sign in experience
+
+Note favorites now stored in database: 
+%LocalAppData%\Packages\Microsoft.MicrosoftEdge_8wekyb3d8bbwe\AC\MicrosoftEdge\User\Default\DataStore\Data\nouser1\120712-0049\DBStore.
+
+Options and settings
+New InPrivate window. Browse sites with additional privacy. This topic is covered in more depth later in this lesson.
+
+Zoom. This allows you to zoom in or out.
+
+Find on page. This is a text box in which you can enter text to search for, on the open webpage.
+
+Print. This allows you to print your webpage.
+
+Extensions. This shows the installed extensions, and includes a link to Microsoft Edge Add-ons for installing additional extensions.
+
+Help and feedback > What's new and tips. This opens the Microsoft Edge Tips page where you can learn how to use Microsoft Edge more efficiently.
+
+Settings. Some of the settings you can configure in Microsoft Edge are:
+
+Appearance. This allows you to choose between light and dark themes, show favorites bar, collections, feedback button, and setting the Home button.
+Profiles. This allows you to manage your account, sync, passwords, stored payment information, import favorites, and multiple profile preferences.
+Privacy and services. This is where you define privacy settings. This can include tracking level, allowing what data to send, smart screen settings, and clearing history and saved data.
+Phone and other devices. This option allows you to set up sync of settings between other devices you use.
+
+Configure Microsoft Edge
+You can use group policy objects (GPOs) to configure policy settings for Microsoft Edge and managed Microsoft Edge updates on all supported versions of Windows.
+
+Install the Microsoft Edge administrative templates
+To configure Microsoft Edge with group policy objects, you must first install the administrative templates (ADMX files) that add rules and settings for Microsoft Edge to the group policy Central Store in your Active Directory domain or the Policy Definition template folder on individual computers. If using an MDM such as Microsoft Intune, you can ingest the ADMX files, and create configuration policies.
+
+There are two administrative templates for Microsoft Edge:
+
+msedge.admx contains the objects used to configure Microsoft Edge settings. Examples of these settings include:
+
+Default home page URL
+Setting connections to default to HTTPS.
+Allowed Extensions
+
+msedgeupdate.admx contains the objects used to manage Microsoft Edge updates. Examples of these settings include:
+
+How often automatic update checks are performed.
+Changing the update channel
+Address or URL of a proxy server
+
+Setting mandatory and recommended policies
+Microsoft Edge supports both mandatory and recommended policies. Mandatory policies override user preferences and prevent the user from changing it, while recommended policies provide a default setting that may be overridden by the user. 
+
+To configure a mandatory policy, open the Group Policy Editor and go to (Computer Configuration or User Configuration) > Policies > Administrative Templates > Microsoft Edge.
+To configure a recommended policy, open the Group Policy Editor and go to (Computer Configuration or User Configuration) > Policies > Administrative Templates > Microsoft Edge – Default Settings (users can override).
+
+Verifying applied policies
+On a target client device, open Microsoft Edge and navigate to edge://policy to see all policies that are applied.
+If you used Active Directory group policy settings, settings are propagated to domain computers at a regular interval defined by your domain administrator. To force policies to be applied immediately, open a command prompt or PowerShell session and run the gpupdate /force command. You may need to close and reopen Microsoft Edge if it was open while you were configuring policy settings.
+
+Examine privacy features in Microsoft Edge
+
+InPrivate browsing
+browse without collecting browsing history. you can use Group Policy to configure how your organization uses InPrivate Browsing, thereby providing you with full manageability control on users’ work devices. (Does not give true privavcy in terms of network traffic.)
+
+Tracking protection
+Tracking Protection monitors the frequency of all third-party content as it appears across all websites that a user visits. You can configure what level of tracking you want allowed, such as blocking trackers from sites you haven't visited, but allowing sites you frequent to track. 
+
+Note: Tracking Protection Lists can help increase your browsing privacy. When you install a Tracking Protection List, you'll prevent the websites specified in the list from sending your browsing history to other content providers. Microsoft maintains a website that contains Tracking Protection Lists that you can install.
+
+Clear browsing data
+Microsoft Edge allows users to clear browsing data. This can be found in option found in Settings -> Privacy, search and services.
+Types of information that can be cleared include the following:
+-Browsing history. Clears the history of all urls visited within the selected time range.
+-Download history. Clears the list of files downloaded. Note that this doesn't delete the actual files downloaded.
+-Cookies and other site data. Deleting cookies typically signs you out of any sites you're currently authenticated to.
+-Cached images and files. As you browse, the content you view is downloaded and stored. This improves performance when frequenting the same websites, as the content doesn't redownload if it hasn't changed. Over time, this cache can grow quite large, and clearing the cache can sometimes free up a significant amount of disk space. If users are having trouble viewing a website (that is working fine on other devices), clearing the cache is a good first-step in troubleshooting.
+-Passwords and Autofill form data. These options clear saved passwords and common form data (such as an address) that may be stored.
+
+Manage Microsoft Edge extensions
+When you use Microsoft Edge without any add-ons or modifications, most websites will display normally. Extensions are web add-ons that you can use to customize your browser. These are lightweight software components that extend the existing functionality, thereby improving the overall browsing experience. For example, you can use extensions to view, edit, and create Office files directly in the browser window, block unwanted ads, or translate webpages. These can be downloaded from the Microsoft Edge Add-ons store.
+
+You can install extensions by performing the following steps:
+
+Open Microsoft Edge.
+On the Settings and More menu (the ellipsis, ... , in the top-right corner), and select Extensions.
+In the Extensions dialog box, select Open Microsoft Edge Add-ons.
+In the Edge Add-ons site, select the extension that you want to install.
+
+Can also run Chrome based extensions if running Windows 10 version 1803 and newer.
+
+Implement Internet Explorer mode
+Microsoft introduced IE Mode in the Microsoft Edge browser, which allowed Edge to seemlessly render web applications designed for IE 11, negating the need to continue using Internet Explorer.
+
+Internet Explorer Mode in Microsoft Edge
+Internet Explorer (IE) mode was designed for organizations that still need Internet Explorer 11 for backward compatibility with legacy websites but also need a modern browser. IE Mode uses the integrated Chromium engine for modern sites, and it uses the Trident MSHTML engine from Internet Explorer 11 (IE11) for legacy sites. When a site loads in IE mode, the IE logo indicator displays on the left side of navigation bar.
+Microsoft Edge will not necessarily switch to IE Mode automatically. Users can manually switch to IE Mode when browsing a site that contains legacy code. Alternatively, you can configure known sites (via policy) to use IE mode. When a user navigates to a known site, the browser will automatically switch to IE Mode, while all other sites will be rendered as modern web sites.
+
+Creating an Enterprise Mode Site list
+it's recommended you configure and deploy a policy to use an Enterprise Mode Site List. When used, Microsoft Edge will switch automatically to IE Mode whenever a user navigates to a site on the list. The Enterprise Site list is an XML file containing a list of sites. There are two versions of list, a schema v.1 and a scheme v.2. You should use the v.2 version if creating a new list, and It's strongly recommended you migrate to the v.2 schema if working with an existing list using the v.1 schema.The easiest way to create a site list is to use the built-in manager in the Microsoft Edge browser. You can access the in-browser Enterprise Site List Manager at edge://compat/SiteListManager.
+
+Enabling Microsoft Edge to use the Enterprise Mode Site list
+Once the list is created, it must be deployed using a policy.
+
+Download and use the latest Microsoft Edge Policy Template.
+
+Open Group Policy Editor.
+
+Select User Configuration/Computer Configuration > Administrative Templates > Microsoft Edge.
+
+Double-click Configure Internet Explorer integration.
+
+Select Enabled.
+
+Under Options, set the dropdown value to:
+
+Internet Explorer mode if you want sites to open in IE mode on Microsoft Edge
+None if you want to stop users from configuring Internet Explorer mode via edge://flags or through the command line
+In the content pane, double-click Configure the Enterprise Mode Site List.
+
+Select Enabled, in the Configure the Enterprise Mode Site List text box, type the url to the Enterprise Site list XML file.
+Note: do not select Internet Explorer 11 option from drop down menu as will not be supported after June 15 2022.
+
+Manually enabling IE Mode in the browser
+Users can open settings and navigate to edge://settings/defaultBrowser and set the Allow sites to be reloaded in Internet Explorer mode to Allow. They can add sites using the Add option. (Note: only stores 30days) Alternatively, if they are on a website that leverages Internet Explorer capabilities, they can select the ellipsis and select Reload in Internet Explorer Mode. 
+
+Explain Microsoft Edge Insider channels
+The default version of Microsoft Edge received updates on a fairly regular basis, approximately every four weeks. Like the Windows Insider program, Edge provides different channels for giving more control to Administrators on how often devices receive these updates and providing a way for administrators and users to preview upcoming builds.
+
+Edge provides the following channel options: Stable, Extended Stable, Beta, Dev, and Canary. Each channel is a separate browser application that is downloaded. This means that you can have multiple channels installed if desired, such as using the Stable channel browser for using line-of-business web applications, and the Dev channel browser for previewing upcoming features.
+Note: security and quality updates ship as needed.
+-Stable. Intended for broad deployment. Stable version of the prior Beta channel release. Most users should be using this channel. New features every 4 weeks.
+-Extended Stable.An enterprise release option for Stable aligned to a longer release cycle.Updated on every other release, aligned with even-numbered releases, such as version 94, 96, 98, etc. New feeatures every 8 weeks. Note: The Extended Stable channel is not a separate browser application. When this channel is selected, the existing Edge installation is changed to update on the even-numbered versions.
+-Beta.Supported release that is ideal for a sample set of users validating the next build in the environment prior to its release in the Stable channel.New features every 4 weeks.
+-Dev. Opportunity to see what is coming in the next beta release. Intended for planning and developing with the latest capabilities. Higher quality build than Canary channel, but is not supported. Updates weekly.
+-Canary. Bleeding edge content. Builds have a high chance of issues, and are not supported. Updated daily.
+
+Installing Channels
+Channels can be downloaded from the Microsoft Edge Insider channels site at https://www.microsoftedgeinsider.com/en-us/download/. You can select the channel and platform to download, and run these channels side by side. 
+You can also opt in to channels using policies as well, such as Group Policy or Endpoint Configuration Manager.Applying this policy is useful for targeting devices that are better suited for longer update cycles, or selective groups for previewing or collecting feedback on an upcoming release.
+
+The following steps are an example of configuring a client configured for automatic updates to switch to the Extended Stable channel using Group Policy:
+Open the local Group Policy Editor and go to Computer Configuration > Administrative Templates > Microsoft Edge Update > Applications > Microsoft Edge.
+Select Target Channel override and then select Enabled.
+Under Options, select Extended Stable from the Policy dropdown list.
+
+Troubleshoot common Microsoft Edge issues
+Microsoft Edge loads pages slowly.
+
+Try to delete cached files and enable InPrivate Browsing to disable any trackers.
+
+Some webpages display “needs Internet Explorer” message.
+
+Webpages that user ActiveX, Silverlight, Java, and other similar technologies will more often show this message. Use IE Mode to display that webpage.
+
+Users cannot find favorites or downloads previously used in Internet Explorer.
+
+Internet Explorer favorites are not imported automatically to Microsoft Edge. When you open Favorites in Microsoft Edge, you can choose to import favorites from Internet Explorer.
+
+Text in reading pane is too small.
+
+In Settings in Microsoft Edge, you can configure the font and size that you want to use for the reading pane.
+
+Ads are not blocked in Microsoft Edge.
+
+Install an AdBlock extension from the Edge Add-ons catalog.
+
+Webpages cannot be saved with Microsoft Edge.
+
+Microsoft Edge does not have the same Save as feature as Internet Explorer 11. You can use the Web Note annotation tool to save the page to OneNote, or share the page in an email. Windows 10 also includes the Microsoft Print to PDF printer that you can use to save the webpage as a PDF file. In the reading view, you have the option of saving webpages and PDF files to your reading list.

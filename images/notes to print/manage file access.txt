@@ -1,0 +1,156 @@
+Configure and Manage file access
+
+Explore tools used for managing files and folders
+
+File Explorer
+tool that you typically use to manage files and folders. 
+-Creating files and folders.
+-Accessing files and folders.
+-Managing properties of files and folders.
+-Searching for content in files and folders.
+-Previewing contents of files and folders.
+
+Command prompt
+cd, chdir
+
+Changes the parent directory.
+
+md, mkdir
+
+Creates a directory.
+
+del, erase
+
+Deletes one or more files.
+
+Move
+
+Moves one or multiple files.
+
+Dir
+
+Displays a list of files and subdirectories in a directory.
+
+icacls
+
+Displays or modifies permissions by using access control lists (ACLs).
+
+Windows PowerShell
+To manage file permissions, you can use the Get-ACL and Set-ACL cmdlets. 
+
+For example, to see the current ACL on the C:\Perflogs directory, with the output in list format, run the following command:
+Get-ACL C:\\perflogs \| Format-List
+
+To modify a file or folder’s ACL, use the Set-ACL cmdlet. 
+For example, to set the ACL on the C:\Folder2 folder to be the same as the permissions on CL\Folder1,including inheritance settings, you would run the following command:
+Get-ACL C:\\Folder1 \| Set-ACL C:\\Folder2
+
+Understand file and folder permissions
+Types of permissions
+-Basic permissions. These are the most commonly used permissions. You most often will work with basic permissions and assign them to groups and users. Each basic permission is built from multiple special permissions.
+-Advanced permissions. These permissions provide a finer degree of control compared to basic permissions. However, advanced permissions are more complex to document and manage than basic permissions.
+
+Basic file and folder permissions
+-To modify permissions, you must have the Full Control permission for a folder or file. The one exception is for file and folder owners. The owner of a file or folder can modify permissions, even if they do not have any current permission. Administrators can take ownership of files and folders to make modifications to permissions.
+
+Full control
+
+Provides complete control of the file or folder and control of permissions.
+
+Modify
+
+Allows users to read a file, write changes to it, and modify permissions. The advanced permissions that comprise Modify permissions are Traverse folder/execute file, List folder/read data, Read attributes, Read extended attributes, Create files/write data, Create folders/append data, Write attributes, Write extended attributes, Delete, and Read permissions.
+
+Read & execute
+
+Allows users to see folder content, read files, and start programs. This applies to an object and any child objects by default. The advanced permissions that make up Read & execute permissions are Traverse folder/execute file, List folder/read data, Read attributes, Read extended attributes, and Read permissions.
+
+Read
+
+Allows users to read a file, but not make any changes to it. This applies to an object and any child objects by default. The advanced permissions that make up Read permissions are List folder/read data, Read attributes and Read extended attributes, and Read permissions.
+
+Write
+
+Allows users to change folder and file content. This applies to an object and any child objects by default. The advanced permissions that make up Write permissions are Create files/write data, Create folders/append data, Write attributes, and Write extended attributes.
+
+Understand permission inheritance
+-Explicit permissions. When you set permissions directly on a file or a folder, the permissions are applied explicitly. You can assign permissions to the object directly by modifying the security settings in the object’s properties dialog box. (Take precedence over inherited permissions.)
+-Inherited permissions. Files and folders typically are arranged in a nested structure, where a folder contains subfolders and files, and those subfolders contain files and folders. Permission inheritance allows for child objects to inherit the parent object’s permissions settings. This allows you to assign explicit permissions to a parent folder and have inheritance pass those permissions settings down to the parent folder’s subfolders and files.
+
+Inheritance for all objects
+If the Allow or Deny check boxes that are associated with each of the permissions appear shaded, a file or folder has inherited permissions from one of its parent folders. There are two ways that you can make changes to inherited permissions:
+-make changes to parent folder
+-remove inheritance
+can also add explicit "deny" permissions granularly but makes things confusing.
+
+right click file or folder>properties>security tab>advanced button
+inherited from column lists where permissions are inherited
+applies to column shows where permissions are applied
+
+Preventing inheritance
+When you block permission inheritance, you have the option to convert inherited permissions into explicit permissions, or you can remove all inherited permissions. If you want to restrict a particular group or user, you can convert inherited permissions into explicit permissions to simplify configuration.
+
+-To prevent a child file or folder from inheriting permissions from a parent folder, select This folder only in the Applies to drop-down list box when you configure permissions for the parent folder.
+
+-To prevent a folder or file from inheriting permissions from a parent folder, perform the following procedure:
+right click>Properties>Security tab>Advanced
+select "disable inheritance"
+In the Block Inheritance dialog box, select any of the following options:
+	-Convert inherited permissions into explicit permissions on this object
+	-Remove all inherited permissions from this object
+	-Cancel
+
+Forcing permission inheritance
+The Advanced Security dialog box for folders includes a Replace all child object permission entries check box with inheritable entries from this object. Selecting this check box will replace the permissions on all child objects for which you can change permissions, including child objects that had Block inheritance configured. This is useful if you need to change permissions on a large number of subfolders and files, especially if you set the original permissions incorrectly.
+
+Implement conditions to limit file and folder access
+Traditionally, you control permissions to files and folders by using group membership. However, if your Windows–based computer is a domain member, you can extend this traditional access control by using conditions to limit access.allows you to utilize user or computer properties to limit access beyond group membership. Example - limit access to department managers.These special properties are called claims and then are added to user tokens at login. Admins can specifiy in AD DS what properties can be used as claims. Or can use conditions to limit access to files/folders.(When adding permissions, conditions option is at bottom.)
+
+When you specify conditions:
+
+You use a Group condition so that you can specify that the permission will apply to the user based on the following group-membership rules:
+
+Member of Any of the specified groups.
+Member of Each of the specified groups.
+Not Member of Any of the specified groups.
+Not Member of Each of the specified groups.
+You use a Device condition so that you can specify that the permission will apply if a user accesses the file from a specified computer or computers. The next unit provides more detail about this condition.
+
+Can apply multiple conditions
+
+Understand effective permissions
+Each file or folder on the NTFS file system or ReFS has inherited or explicit permissions assigned, or both. Windows determines effective permissions by combining the user and group permissions and comparing them to the permissions of the selected user.
+When you combine permissions, Windows evaluates the Deny permissions before the Allow permissions that are set at the same level. Therefore, the Deny permission takes precedence and overrides the Allow permission set on the same level.
+If you set Deny and Allow permissions at different levels (for example, if Deny is set at the folder and Allow is set at its subfolder) Allow can take precedence and override Deny.
+
+Use the effective access feature
+right click>properties>security tab>Advanced Security Settings>effective access tab
+The Effective Access tab in Advanced Security Settings enables you to view the effective permissions for a user, group, or device account.determines the permissions a user or group has on an object by calculating the permissions that are granted to the user or group. The calculation takes into account the group membership permissions and any of the permissions inherited from the parent object. Will show you what rights a person or group has on file or folder once you enter info. Allows you to add claims. The actual permissions a user is assigned might be different, because permissions can be granted or denied based on how a user signs in. Is unable to estimate that.
+
+Examine permissions when copying and moving files
+When you copy or move a file or folder, the permissions can change, depending on where you move the file or folder.
+
+Effects of copying files and folders (most of the time inherit destination permissions)
+Copying a file or folder creates new objects with the same content as the original files or folders, and it has the following effects on permissions:
+
+When you copy a file or folder within a single volume, the copy of the folder or file inherits the permissions of the destination folder.
+When you copy a file or folder to a different volume, the copy of the folder or file inherits the permissions of the destination folder.
+When you copy a file or folder to a volume that doesn't support permissions (non-NTFS and non-ReFS), such as a FAT file system, the copy of the folder or file loses its permissions. This is because the target volume doesn't support permissions.
+
+Effects of moving files and folders 
+When you move a file or folder, permissions might change, depending on the destination folder’s permissions. Moving a file or folder has the following effects on permissions:
+
+-If you move a file or folder within the same volume, only the pointer(s) are updated, and data isn't moved. Permissions that are inherited at the source location no longer apply and the file or folder that you moved inherits the permissions from the new parent folder. If the file or folder has explicitly assigned permissions, it retains those permissions, in addition to the newly inherited permissions.
+-When you move a file or folder to a different volume, the folder or file inherits the destination folder’s permissions, but it doesn't retain the explicitly assigned or inherited permissions from the source location. When you move a folder or file between volumes, Windows copies the folder or file to the new location and deletes the original file from the source location.
+-When you move a file or folder to a volume that doesn't support permissions (non-NTFS and non-ReFS), the folder or file loses its permissions because the target volume doesn't support permissions.
+
+When you move a file or folder within a volume or between volumes, you must have both the Write permission for the destination folder and the Modify permission for the source file or folder. 
+
+The Copy command isn't aware of the security settings on folders or files. However, commands that are more robust have this awareness. For example:
+
+Xcopy has the /o switch to include Ownership and ACL settings.
+
+Robocopy has several switches that cause security information to be copied:
+
+/Copy:copyflag(s) the default setting is the equivalent of /Copy:DAT where D=Data, A=Attributes, and T=Timestamps. You can add the S flag where S=Security, such as NTFS ACLs.
+/Sec is the equivalent of /Copy:DATS.

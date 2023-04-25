@@ -1,0 +1,100 @@
+Examine wireless network technologies
+Wireless networking uses radio waves to connect wireless devices to other network devices.
+wireless network = wireless devices, access points, wireless bridges that conform to 802.11x wireless standards.
+
+Wireless network topologies
+There are two types of wireless network topologies:
+-Infrastructure. wireless local area networks (LANs) and cellular networks, and require the use of a device, such as an access point (AP), to allow communication between client wireless devices. You can manage infrastructure wireless networks centrally.
+-Ad hoc. Ad hoc networks can connect wireless devices dynamically in a peer-to-peer configuration without the use of any infrastructure devices.
+
+802.11x wireless standards
+802.11a
+
+This is the first extension to the original 802.11 specification. It provides up to 54 megabits per second (mbps) and operates in the 5 gigahertz (GHz) range. It isn't compatible with 802.11b.
+
+802.11b
+
+This specification provides 11 mbps and operates in the 2.4 GHz range.
+
+802.11e
+
+This specification defines Quality of Service and multimedia support.
+
+802.11g
+
+This specification is for transmission over short distances at speeds up to 54 mbps. It's backward compatible with 802.11b, and operates in the 2.4 GHz range.
+
+802.11n
+
+This specification adds multiple-input and multiple-output, thereby providing increased data throughput at speeds up to 100 mbps. It vastly improves speed over previous specifications, and it supports both 2.4 GHz and 5 GHz ranges.
+
+802.11ac
+
+This specification builds on 802.11n to attain data rates of 433 mbps. 802.11ac operates only in the 5 GHz frequency range.
+
+Wireless security
+Because wireless traffic travels across open airwaves, it's susceptible to interception by attackers.
+
+current security methods available for wireless networks:
+
+Wired Equivalent Privacy (WEP)
+
+WEP is the oldest form of wireless security. Some devices support different versions: WEP 64-bit key, WEP 128-bit key, WEP 256-bit key. The security issues surrounding WEP are well documented, and you should avoid using WEP unless it's the only alternative.
+
+Wi-Fi Protected Access (WPA)
+
+Developed to replace WEP, WPA has two variations.
+	-WPA-Personal is for home and small business.Easier to implement. involves providing a security password, and uses a technology called Temporal Key Integrity Protocol. The password and the network SSID generate constantly changing encryption keys for each wireless client.
+	-WPA-Enterprise. use of a Remote Authentication Dial-In User Service (RADIUS) server for authentication.
+WPA2
+
+This is an improved version of WPA that has become the Wi-Fi security standard. WPA2 employs Advanced Encryption Standard (AES), which employs larger encryption key sizes.
+
+WPA3
+
+WPA3 improves upon WPA2, and is relatively new. It addresses issues with using brute-force attacks to match passwords and unencrypt data. Malicious users with the WiFi password can’t see the contents of traffic by other clients. The Easy Connect feature makes connecting IoT devices easier.WPA-Enterprise increases encryption to 192 bits.
+
+Wireless driver model
+Windows 10 introduces a new Wireless Driver Interface (WDI) driver model. This feature allows for a universal WLAN driver package that supports native functionality in the various versions of Windows. Such a driver is called a Universal Windows driver. This driver works on OneCore Universal App Platform (UAP) based editions of Windows, such as Windows for desktop editions (Home, Pro, Enterprise, and Education) and Windows IoT Core (IoT Core).
+A Universal Windows driver calls a subset of the interfaces that are available to a Windows driver. For example, the cellular and Wi-Fi connections can be managed using the same networking stack. allows for easy configuration of metered connections. offers greater reliability, with the capability to recover quickly when a device hangs for firmware-related reasons. The new driver model also supports MAC address randomization (prevents you from being tracked when your device is pinging looking for wireless connections) to increase security and privacy.
+
+Configure Wi-Fi settings and profiles
+
+Configure wireless networks
+Seetings>Network and Internet>Wifi>Manage known networks
+Select network you want to manage
+tap to view properties
+
+can also do from Network and Sharing Center
+tap wireless network adapter
+view properties of connection
+
+You can use Windows Server Group Policy Objects (GPOs) to configure wireless profiles. 
+
+Miracast
+Miracast is a wireless, screen-mirroring protocol your PC can use to project your screen to TVs, projectors, and streaming media players that also support Miracast. Windows has built-in support for the Wi-Fi Alliance Miracast devices. Miracast is a protocol that will transmit audio and video between devices via Wi-Fi. It's peer-to-peer and uses Wi-Fi Direct for the connection.Both devices must be on same wireless network. Miracast supports WPA2-PSK encryption, so all content you share is safe.
+
+Configure wireless display with Miracast
+Both devices must support Miracast. Windows 8.1 and later support. If monitor doesn't support, can plug an adapter into hdmi. Make sure driver and firmware up to date. (must be within range - usually same room)
+
+Add the display to complete the connection
+display settings>add a wireless display. Computer will search for device. click to connect.
+To project your screen:
+
+Swipe in from the right edge of the screen, and then tap Devices. (If you're using a mouse, point to the lower-right corner of the screen, move the mouse pointer up, and then select Devices.)
+Tap or select Project, and then tap or select the wireless display you want.
+
+Disconnect from a wireless display
+wipe in from the right edge of the screen, and then tap Devices. (If you're using a mouse, point to the lower-right corner of the screen, move the mouse pointer up, and then select Devices.)
+Tap or select Project, and then tap or select Disconnect.
+
+
+
+Near Field Communication
+Windows has built-in support for Near Field Communication (NFC), which is still an emerging technology based on short-range wireless radio technologies using radio frequency identification (RFID). NFC-enabled printing enables users to “tap” a device (such as a tablet or phone) onto a printer to connect to it. Where the components can’t be tapped together, NFC should still work if the devices are brought close together, within a maximum distance of 4 inches (10 centimeters).requires some form of NFC-enabled hardware, such as a smart tag, sticker, key fob, or wallet card, which may also be located inside a laptop or tablet. Most smartphones have NFC built into the devices, which enables NFC sharing of photos between NFC-connected devices.
+
+Once an enterprise has made available NFC-enabled devices, administrators can perform the following management tasks:
+
+Add an NFC smart tag to their printer, or purchase printers with NFC built in.
+Enable the following connection types to be used: Universal Naming Convention (UNC), Web Services on Devices (WSD), and Wi-Fi Direct.
+Optionally, use the PowerShell cmdlet Write-PrinterNfcTag to provision an NFC tag with information about a printer.

@@ -22,7 +22,7 @@ function renderPage(){
         </li>
         <li class="menu-item has-submenu"><a href="#">Barrett Park RC Field</a>
     <ul class="submenu">
-      <li class="subitem"><a href="#">Coming soon!</a></li>
+      <li class="subitem"><a href="neighborsperspective.html">A Neighbor's Perspective</a></li>
       </ul>
         <li class="menu-item"><a href="updates.html">Get Updates</a>
         </li>

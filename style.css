@@ -23,6 +23,10 @@ p {
   padding:0;
 }
 
+.space-below{
+    margin-bottom: 1em;
+}
+
 .emphasis{
     font-weight: 700;
 }

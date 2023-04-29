@@ -4,7 +4,14 @@ function renderPage(){
     document.getElementById("nav-bar").innerHTML = `
     <ul class="menu">
         <li class="name-logo"><a href="index.html">Keir Bryerton for Parks</a></li>
-        <li class="menu-item"><a href="about.html">About Keir</a>
+
+        <li class="menu-item has-submenu"><a href="#">About Keir</a>
+        <ul class="submenu">
+        <li class="subitem"><a href="about.html">About Keir</a></li>
+        <li class="subitem"><a href="hoodriverdemocrats.html">Not Endorsed by Hood River Democrats</a></li>
+        </ul>
+        </li>
+
         <li class="menu-item"><a href="answers.html">Candidate Questions/Answers</a></li> 
           <!-- <ul class="submenu">
             

@@ -891,6 +891,10 @@ footer a:hover{
     width: 400px;
 }
 
+.img-medium{
+    width: 500px;
+}
+
 .image-left-float{
     float: left;
     margin-right: 1em; 
@@ -906,6 +910,7 @@ footer a:hover{
 .image-center-align{
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 1em;
 }
 
 .iframe-container{

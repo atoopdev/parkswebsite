@@ -24,6 +24,7 @@ function renderPage(){
         <li class="menu-item has-submenu"><a href="#">Barrett Park RC Field</a>
         <ul class="submenu">
         <li class="subitem"><a href="barrettparkhistory.html">Barrett Park History</a></li>
+        <li class="subitem"><a href="neighborsperspective.html">A Neighbor's Perspective</a></li>
         </ul>
         </li>
 

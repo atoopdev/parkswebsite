@@ -39,6 +39,10 @@ p {
     background-color: yellow;
 }
 
+.center-text{
+    text-align: center;
+}
+
 img {
     display: block;
     width: 300px;

@@ -20,6 +20,7 @@ function renderPage(){
         </li>
         <li class="menu-item has-submenu"><a tabindex="0">Issues</a>
           <ul class="submenu">
+          <li class="subitem"><a href="pool.html">Aquatic Center</a></li>
             <li class="subitem"><a href="financial.html">Financial Management</a></li>
             <li class="subitem"><a href="community.html">Community Involvement</a></li>
            
